@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import SectionHeader from "../components/SectionHeader.jsx"
 import { services, trustIndicators } from "../data/content.js"
 
@@ -48,6 +48,108 @@ const metrics = [
 
 const ringRadius = 68
 const ringCircumference = 2 * Math.PI * ringRadius
+
+const serviceAccents = [
+  { start: "#34d399", end: "#14b8a6" },
+  { start: "#facc15", end: "#fb923c" },
+  { start: "#38bdf8", end: "#6366f1" },
+  { start: "#a855f7", end: "#ec4899" },
+  { start: "#f472b6", end: "#fb7185" },
+  { start: "#60a5fa", end: "#22d3ee" },
+]
+
+const serviceIcons = [
+  (
+    <svg viewBox="0 0 32 32" className="h-10 w-10">
+      <rect x="6" y="8" width="20" height="16" rx="3" strokeWidth="2" stroke="currentColor" fill="none" />
+      <path d="M10 12h12M10 16h10M10 20h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  ),
+  (
+    <svg viewBox="0 0 32 32" className="h-10 w-10">
+      <circle cx="16" cy="12" r="4" strokeWidth="2" stroke="currentColor" fill="none" />
+      <path d="M10 24c1-3 3-4 6-4s5 1 6 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none" />
+    </svg>
+  ),
+  (
+    <svg viewBox="0 0 32 32" className="h-10 w-10">
+      <path d="M6 24h20M10 20l6-8 6 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none" />
+      <path d="M10 14h12" stroke="currentColor" strokeWidth="1.5" />
+    </svg>
+  ),
+  (
+    <svg viewBox="0 0 32 32" className="h-10 w-10">
+      <circle cx="11" cy="12" r="3" strokeWidth="2" stroke="currentColor" fill="none" />
+      <circle cx="21" cy="12" r="3" strokeWidth="2" stroke="currentColor" fill="none" />
+      <path d="M6 24c2-2 4-3 5-3s3 1 5 3" stroke="currentColor" strokeWidth="1.5" fill="none" />
+      <path d="M26 24c-2-2-4-3-5-3s-3 1-5 3" stroke="currentColor" strokeWidth="1.5" fill="none" />
+    </svg>
+  ),
+  (
+    <svg viewBox="0 0 32 32" className="h-10 w-10">
+      <circle cx="16" cy="11" r="2" fill="none" stroke="currentColor" strokeWidth="2" />
+      <circle cx="16" cy="17" r="2" fill="none" stroke="currentColor" strokeWidth="2" />
+      <circle cx="16" cy="23" r="2" fill="none" stroke="currentColor" strokeWidth="2" />
+    </svg>
+  ),
+  (
+    <svg viewBox="0 0 32 32" className="h-10 w-10">
+      <rect x="8" y="8" width="16" height="16" rx="4" strokeWidth="2" stroke="currentColor" fill="none" />
+      <path d="M14 13h4M14 17h6M14 21h2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  ),
+]
+
+const serviceHighlights = services.slice(0, 6).map((service, index) => ({
+  ...service,
+  accent: serviceAccents[index % serviceAccents.length],
+  icon: serviceIcons[index % serviceIcons.length],
+}))
+
+const serviceBlocks = [
+  {
+    title: "Patient Access & Intake",
+    summary:
+      "Patient access, eligibility, and pre-registration workflows keep your front desk efficient and denials minimal.",
+    bullets: [
+      "Eligibility verification & benefit confirmation",
+      "Appointment scheduling & pre-visit intake",
+      "Charge capture & demographic accuracy",
+      "Prior authorization tracking",
+    ],
+    image: "https://images.pexels.com/photos/3183171/pexels-photo-3183171.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    accentStart: "#facc15",
+    accentEnd: "#fb7185",
+  },
+  {
+    title: "Claims Preparation & Submission",
+    summary:
+      "Clean claim preparation, payer edits, and smart routing ensure your claims stay compliant and timely.",
+    bullets: [
+      "Medical coding with QA sampling",
+      "Claim scrub & payer-specific edits",
+      "Denial prevention monitoring",
+      "Electronic submission & tracking",
+    ],
+    image: "https://images.pexels.com/photos/5709398/pexels-photo-5709398.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    accentStart: "#38bdf8",
+    accentEnd: "#4ade80",
+  },
+  {
+    title: "Accounts Receivable & Recovery",
+    summary:
+      "AR follow-up, denial resolution, and reporting deliver the financial clarity your leadership expects.",
+    bullets: [
+      "AR follow-ups & payer outreach",
+      "Payment posting & reconciliation",
+      "Denial management & appeals",
+      "Strategic reporting for executive governance",
+    ],
+    image: "https://images.pexels.com/photos/3184432/pexels-photo-3184432.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    accentStart: "#c084fc",
+    accentEnd: "#f472b6",
+  },
+]
 
 const optionSteps = [
   { label: "1", title: "Option" },
@@ -443,11 +545,52 @@ const Home = () => {
             description="Select individual service lines or engage end-to-end delivery."
           />
         </div>
-        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {services.slice(0, 6).map((service) => (
-            <div key={service.title} className="card-metal reveal rounded-2xl p-6">
-              <p className="text-sm font-semibold text-brand-slate">{service.title}</p>
-              <p className="mt-3 text-sm leading-relaxed text-slate-600">{service.description}</p>
+        <div className="mt-4 flex flex-wrap gap-4 text-sm font-semibold tracking-[0.4em] text-slate-500">
+          {serviceBlocks.map((block) => (
+            <span
+              key={block.title}
+              className="rounded-full border border-white/50 bg-white/50 px-4 py-2 text-slate-600 shadow-sm"
+            >
+              {block.title}
+            </span>
+          ))}
+        </div>
+        <div className="mt-10 flex flex-col gap-10 lg:flex-row lg:items-stretch">
+          {serviceBlocks.map((block) => (
+            <div
+              key={block.title}
+              className="relative flex-1 overflow-hidden rounded-[999px] border border-white/20 bg-gradient-to-b from-white/95 via-white/85 to-white/90 px-12 py-14 text-slate-900 shadow-[0_40px_80px_-40px_rgba(15,23,42,0.8)]"
+              style={{ minHeight: "450px" }}
+            >
+              <div
+                className="absolute inset-0 opacity-20"
+                style={{ background: `radial-gradient(circle at 20% 20%, ${block.accentStart}, transparent 55%)` }}
+              />
+              <div
+                className="absolute inset-0 opacity-20"
+                style={{ background: `radial-gradient(circle at 80% 80%, ${block.accentEnd}, transparent 50%)` }}
+              />
+              <div className="relative z-10 flex flex-col gap-6">
+                <div className="flex items-center gap-5">
+                  <div
+                    className="h-6 w-6 rounded-full"
+                    style={{ background: `linear-gradient(135deg, ${block.accentStart}, ${block.accentEnd})` }}
+                  />
+                  <h3 className="text-3xl font-semibold leading-tight">{block.title}</h3>
+                </div>
+                <p className="text-sm leading-relaxed text-slate-600">{block.summary}</p>
+                <div className="space-y-3 text-sm font-medium text-slate-600 pl-2">
+                  {block.bullets.map((item) => (
+                    <div key={item} className="flex items-start gap-3">
+                      <span
+                        className="mt-1 inline-flex h-2.5 w-2.5 rounded-full"
+                        style={{ background: `linear-gradient(135deg, ${block.accentStart}, ${block.accentEnd})` }}
+                      />
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           ))}
         </div>
