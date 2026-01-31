@@ -9,40 +9,40 @@ const metrics = [
     value: "95%",
     label: "NET COLLECTION RATE",
     position: "top",
-    gradientStart: "#2dab39",
-    gradientEnd: "#1f7a28",
+    gradientStart: "#4dd5f3",
+    gradientEnd: "#16a34a",
   },
   {
     number: "2",
     value: "80%",
     label: "FIRST PASS ACCEPT RATE",
     position: "bottom",
-    gradientStart: "#2dab39",
-    gradientEnd: "#1f7a28",
+    gradientStart: "#4dd5f3",
+    gradientEnd: "#16a34a",
   },
   {
     number: "3",
     value: "95%",
     label: "CODING ACCURACY",
     position: "top",
-    gradientStart: "#2dab39",
-    gradientEnd: "#1f7a28",
+    gradientStart: "#4dd5f3",
+    gradientEnd: "#16a34a",
   },
   {
     number: "4",
     value: "10%",
     label: "AGING > 90 DAYS",
     position: "bottom",
-    gradientStart: "#2dab39",
-    gradientEnd: "#1f7a28",
+    gradientStart: "#4dd5f3",
+    gradientEnd: "#16a34a",
   },
   {
     number: "5",
     value: "30",
     label: "AR DAYS",
     position: "top",
-    gradientStart: "#2dab39",
-    gradientEnd: "#1f7a28",
+    gradientStart: "#4dd5f3",
+    gradientEnd: "#16a34a",
   },
 ]
 
@@ -295,7 +295,7 @@ const Home = () => {
               giving your organization consistent performance without added burden.
             </p>
           </div>
-          <div className="mt-10 overflow-hidden rounded-[38px] border border-white/20 bg-gradient-to-br from-slate-50 via-white to-slate-100 px-8 py-12 shadow-2xl">
+          <div className="mt-10 px-8 py-8">
             <style>{`
               @keyframes spin {
                 from {
@@ -365,12 +365,12 @@ const Home = () => {
                       </div>
                     </div>
                   </div>
-                  {index < metrics.length - 1 && (
-                    <div
-                      className="absolute top-1/2 -right-4 w-8 h-1 z-0"
-                      style={{ backgroundColor: "#ffd413", transform: "translateY(-50%)" }}
-                    />
-                  )}
+                    {index < metrics.length - 1 && (
+                      <div
+                        className="absolute top-1/2 -right-4 w-8 h-1 z-0"
+                      style={{ backgroundColor: "#ff9a00", transform: "translateY(-50%)" }}
+                      />
+                    )}
                 </div>
               ))}
             </div>
