@@ -2,7 +2,6 @@ import { Link } from "react-router-dom"
 import { useEffect } from "react"
 import SectionHeader from "../components/SectionHeader.jsx"
 import { services, trustIndicators } from "../data/content.js"
-
 const metrics = [
   {
     number: "1",
@@ -58,53 +57,32 @@ const serviceAccents = [
   { start: "#60a5fa", end: "#22d3ee" },
 ]
 
-const serviceIcons = [
-  (
-    <svg viewBox="0 0 32 32" className="h-10 w-10">
-      <rect x="6" y="8" width="20" height="16" rx="3" strokeWidth="2" stroke="currentColor" fill="none" />
-      <path d="M10 12h12M10 16h10M10 20h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-  ),
-  (
-    <svg viewBox="0 0 32 32" className="h-10 w-10">
-      <circle cx="16" cy="12" r="4" strokeWidth="2" stroke="currentColor" fill="none" />
-      <path d="M10 24c1-3 3-4 6-4s5 1 6 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none" />
-    </svg>
-  ),
-  (
-    <svg viewBox="0 0 32 32" className="h-10 w-10">
-      <path d="M6 24h20M10 20l6-8 6 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none" />
-      <path d="M10 14h12" stroke="currentColor" strokeWidth="1.5" />
-    </svg>
-  ),
-  (
-    <svg viewBox="0 0 32 32" className="h-10 w-10">
-      <circle cx="11" cy="12" r="3" strokeWidth="2" stroke="currentColor" fill="none" />
-      <circle cx="21" cy="12" r="3" strokeWidth="2" stroke="currentColor" fill="none" />
-      <path d="M6 24c2-2 4-3 5-3s3 1 5 3" stroke="currentColor" strokeWidth="1.5" fill="none" />
-      <path d="M26 24c-2-2-4-3-5-3s-3 1-5 3" stroke="currentColor" strokeWidth="1.5" fill="none" />
-    </svg>
-  ),
-  (
-    <svg viewBox="0 0 32 32" className="h-10 w-10">
-      <circle cx="16" cy="11" r="2" fill="none" stroke="currentColor" strokeWidth="2" />
-      <circle cx="16" cy="17" r="2" fill="none" stroke="currentColor" strokeWidth="2" />
-      <circle cx="16" cy="23" r="2" fill="none" stroke="currentColor" strokeWidth="2" />
-    </svg>
-  ),
-  (
-    <svg viewBox="0 0 32 32" className="h-10 w-10">
-      <rect x="8" y="8" width="16" height="16" rx="4" strokeWidth="2" stroke="currentColor" fill="none" />
-      <path d="M14 13h4M14 17h6M14 21h2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-  ),
-]
-
 const serviceHighlights = services.slice(0, 6).map((service, index) => ({
   ...service,
   accent: serviceAccents[index % serviceAccents.length],
-  icon: serviceIcons[index % serviceIcons.length],
 }))
+
+const serviceIcons = [
+  (
+    <svg viewBox="0 0 32 32" className="h-8 w-8">
+      <rect x="8" y="8" width="16" height="16" rx="3" stroke="currentColor" strokeWidth="2" fill="none" />
+      <path d="M10 14h12M10 18h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  ),
+  (
+    <svg viewBox="0 0 32 32" className="h-8 w-8">
+      <circle cx="16" cy="12" r="4" stroke="currentColor" strokeWidth="2" fill="none" />
+      <path d="M10 24c2-3 4-4 6-4s4 1 6 4" stroke="currentColor" strokeWidth="1.5" fill="none" />
+    </svg>
+  ),
+  (
+    <svg viewBox="0 0 32 32" className="h-8 w-8">
+      <path d="M16 10v6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path d="M12 18h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path d="M11 16l5-6 5 6" stroke="currentColor" strokeWidth="1.4" fill="none" />
+    </svg>
+  ),
+]
 
 const serviceBlocks = [
   {
@@ -117,7 +95,8 @@ const serviceBlocks = [
       "Charge capture & demographic accuracy",
       "Prior authorization tracking",
     ],
-    image: "https://images.pexels.com/photos/3183171/pexels-photo-3183171.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    image: null,
+    icon: serviceIcons[0],
     accentStart: "#facc15",
     accentEnd: "#fb7185",
   },
@@ -131,7 +110,8 @@ const serviceBlocks = [
       "Denial prevention monitoring",
       "Electronic submission & tracking",
     ],
-    image: "https://images.pexels.com/photos/5709398/pexels-photo-5709398.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    image: null,
+    icon: serviceIcons[1],
     accentStart: "#38bdf8",
     accentEnd: "#4ade80",
   },
@@ -145,7 +125,8 @@ const serviceBlocks = [
       "Denial management & appeals",
       "Strategic reporting for executive governance",
     ],
-    image: "https://images.pexels.com/photos/3184432/pexels-photo-3184432.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    image: null,
+    icon: serviceIcons[2],
     accentStart: "#c084fc",
     accentEnd: "#f472b6",
   },
@@ -555,40 +536,56 @@ const Home = () => {
             </span>
           ))}
         </div>
-        <div className="mt-10 flex flex-col gap-10 lg:flex-row lg:items-stretch">
+        <div className="mt-10 flex flex-col gap-10 lg:flex-row lg:items-stretch lg:justify-center lg:gap-16">
           {serviceBlocks.map((block) => (
             <div
               key={block.title}
-              className="relative flex-1 overflow-hidden rounded-[999px] border border-white/20 bg-gradient-to-b from-white/95 via-white/85 to-white/90 px-12 py-14 text-slate-900 shadow-[0_40px_80px_-40px_rgba(15,23,42,0.8)]"
-              style={{ minHeight: "450px" }}
+              className="service-pill group relative flex-1 overflow-hidden rounded-[999px] border border-white/20 shadow-[0_40px_80px_-40px_rgba(15,23,42,0.8)]"
+              style={{ minHeight: "580px", minWidth: "400px" }}
             >
               <div
-                className="absolute inset-0 opacity-20"
+                className="service-pill-media"
+                style={{
+                  background: block.image
+                    ? `url(${block.image})`
+                    : `linear-gradient(180deg, ${block.accentStart}20, ${block.accentEnd}20)`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              />
+              <div
+                className="service-pill-glow service-pill-glow-start"
+                aria-hidden="true"
                 style={{ background: `radial-gradient(circle at 20% 20%, ${block.accentStart}, transparent 55%)` }}
               />
               <div
-                className="absolute inset-0 opacity-20"
+                className="service-pill-glow service-pill-glow-end"
+                aria-hidden="true"
                 style={{ background: `radial-gradient(circle at 80% 80%, ${block.accentEnd}, transparent 50%)` }}
               />
-              <div className="relative z-10 flex flex-col gap-6">
-                <div className="flex items-center gap-5">
-                  <div
-                    className="h-6 w-6 rounded-full"
-                    style={{ background: `linear-gradient(135deg, ${block.accentStart}, ${block.accentEnd})` }}
-                  />
-                  <h3 className="text-3xl font-semibold leading-tight">{block.title}</h3>
-                </div>
-                <p className="text-sm leading-relaxed text-slate-600">{block.summary}</p>
-                <div className="space-y-3 text-sm font-medium text-slate-600 pl-2">
-                  {block.bullets.map((item) => (
-                    <div key={item} className="flex items-start gap-3">
-                      <span
-                        className="mt-1 inline-flex h-2.5 w-2.5 rounded-full"
-                        style={{ background: `linear-gradient(135deg, ${block.accentStart}, ${block.accentEnd})` }}
-                      />
-                      {item}
-                    </div>
-                  ))}
+              <div
+                className="service-pill-icon"
+                style={{ background: `linear-gradient(135deg, ${block.accentStart}, ${block.accentEnd})` }}
+              >
+                {block.icon}
+              </div>
+              <div className="service-pill-overlay">
+                <div className="service-pill-overlay-inner">
+                  <h3 className="service-pill-title">{block.title}</h3>
+                  <p className="service-pill-summary">{block.summary}</p>
+                  <ul className="service-pill-bullets">
+                    {block.bullets.map((item) => (
+                      <li key={item}>
+                        <span
+                          className="service-pill-bullet"
+                          style={{
+                            background: `linear-gradient(135deg, ${block.accentStart}, ${block.accentEnd})`,
+                          }}
+                        />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>
