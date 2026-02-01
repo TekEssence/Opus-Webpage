@@ -84,6 +84,12 @@ const serviceIcons = [
   ),
 ]
 
+const unifiedAccent = {
+  accentStart: "#ffd9c0",
+  accentEnd: "#b5e0f4",
+  gradientStops: ["#ffd9c0", "#ffe3a0", "#b5e0f4"],
+}
+
 const serviceBlocks = [
   {
     title: "Patient Access & Intake",
@@ -97,8 +103,9 @@ const serviceBlocks = [
     ],
     image: null,
     icon: serviceIcons[0],
-    accentStart: "#facc15",
-    accentEnd: "#fb7185",
+    tagAccentStart: "#f87171",
+    tagAccentEnd: "#dc2626",
+    ...unifiedAccent,
   },
   {
     title: "Claims Preparation & Submission",
@@ -112,8 +119,9 @@ const serviceBlocks = [
     ],
     image: null,
     icon: serviceIcons[1],
-    accentStart: "#38bdf8",
-    accentEnd: "#4ade80",
+    tagAccentStart: "#f87171",
+    tagAccentEnd: "#dc2626",
+    ...unifiedAccent,
   },
   {
     title: "Accounts Receivable & Recovery",
@@ -127,17 +135,10 @@ const serviceBlocks = [
     ],
     image: null,
     icon: serviceIcons[2],
-    accentStart: "#c084fc",
-    accentEnd: "#f472b6",
+    tagAccentStart: "#f87171",
+    tagAccentEnd: "#dc2626",
+    ...unifiedAccent,
   },
-]
-
-const optionSteps = [
-  { label: "1", title: "Option" },
-  { label: "2", title: "Option" },
-  { label: "3", title: "Option" },
-  { label: "4", title: "Option" },
-  { label: "5", title: "Option" },
 ]
 
 const OptionBubble = ({ number, label }) => (
@@ -530,7 +531,14 @@ const Home = () => {
           {serviceBlocks.map((block) => (
             <span
               key={block.title}
-              className="rounded-full border border-white/50 bg-white/50 px-4 py-2 text-slate-600 shadow-sm"
+              className="rounded-full border px-4 py-2 text-slate-600 shadow-sm"
+              style={{
+                borderColor: "rgba(255,255,255,0.5)",
+                background: block.tagAccentStart
+                  ? `linear-gradient(180deg, ${block.tagAccentStart}, ${block.tagAccentEnd})`
+                  : "rgba(255,255,255,0.6)",
+                color: block.tagAccentStart ? "#fff" : "#475569",
+              }}
             >
               {block.title}
             </span>
@@ -548,7 +556,9 @@ const Home = () => {
                 style={{
                   background: block.image
                     ? `url(${block.image})`
-                    : `linear-gradient(180deg, ${block.accentStart}20, ${block.accentEnd}20)`,
+                    : block.gradientStops
+                    ? `linear-gradient(180deg, ${block.gradientStops.join(", ")})`
+                    : `linear-gradient(180deg, ${block.accentStart}, ${block.accentEnd})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
@@ -598,26 +608,6 @@ const Home = () => {
           >
             View All Services
           </Link>
-        </div>
-      </div>
-    </section>
-
-    <section className="option-pipeline section-divider">
-      <div className="mx-auto max-w-5xl px-6 py-16 reveal">
-        <div className="option-pipeline-track">
-          {optionSteps.map((step, index) => (
-            <div key={step.label} className="option-pipeline-node">
-              <div className="option-pipeline-ring">
-                <div className="option-pipeline-inner">
-                  <div className="option-pipeline-number">{step.label}</div>
-                  <div className="option-pipeline-title">{step.title}</div>
-                </div>
-              </div>
-              {index < optionSteps.length - 1 && (
-                <span className="option-pipeline-connector" />
-              )}
-            </div>
-          ))}
         </div>
       </div>
     </section>
