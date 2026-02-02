@@ -542,7 +542,7 @@ const Home = () => {
             title="Operate your revenue cycle with board-level visibility."
             description="We combine payer-specific workflows with disciplined QA, AR escalation, and monthly governance reporting."
           />
-          <div className="grid gap-4">
+          <div className="grid gap-4 md:grid-cols-2">
             {trustIndicators.map((item) => (
               <div key={item.title} className="card-metal reveal rounded-2xl p-6">
                 <p className="text-sm font-semibold text-brand-slate">{item.title}</p>
@@ -714,7 +714,7 @@ const Home = () => {
             description="Representative performance signals from comparable provider groups."
           />
         </div>
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+        <div className="mt-10 grid gap-6 grid-cols-1 md:grid-cols-3">
           {[
             {
               title: "Multi-specialty Clinic",
