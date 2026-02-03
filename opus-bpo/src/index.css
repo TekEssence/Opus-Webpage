@@ -1379,6 +1379,7 @@ a {
     radial-gradient(circle at 80% 0%, rgba(59, 130, 246, 0.35), transparent 40%),
     linear-gradient(135deg, #f59e0b, #f43f5e, #f97316);
   box-shadow: 0 40px 70px -40px rgba(15, 23, 42, 0.8);
+  animation: about-hero-slide 1.2s cubic-bezier(0.23, 1, 0.36, 1) forwards;
 }
 
 .about-hero::after {
@@ -1464,5 +1465,19 @@ a {
   100% {
     transform: scale(0.8);
     opacity: 0.5;
+  }
+}
+
+@keyframes about-hero-slide {
+  0% {
+    opacity: 0;
+    transform: translateX(-48px);
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
