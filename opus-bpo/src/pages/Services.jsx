@@ -32,11 +32,10 @@ export default function Services() {
       <section className="services-hero">
         <p className="services-hero-eyebrow">SERVICE LINES</p>
         <h1 className="services-hero-title">
-          Experience the RCM stack in stepped chapters.
+          Built to Support Healthcare. Designed to Deliver Results.
         </h1>
         <p className="services-hero-copy">
-          Scroll through each capability to see its focus area and layered outcome. The timeline keeps you
-          oriented while every card scales into place as it fills the viewport.
+          Delivering reliable medical billing and revenue cycle services built on accuracy, compliance, and measurable outcomes.
         </p>
       </section>
 

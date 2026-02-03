@@ -1076,7 +1076,7 @@ a {
 }
 
 .services-timeline-column {
-  background: linear-gradient(160deg, rgba(15, 23, 42, 0.95), rgba(14, 165, 233, 0.18));
+  background: linear-gradient(160deg, rgba(35, 68, 144, 0.95), rgba(35, 68, 144, 0.95));
   border-radius: 28px;
   padding: 2rem;
   position: sticky;
@@ -1336,4 +1336,35 @@ a {
   .services-card {
     grid-template-columns: 1fr;
   }
+}
+.services-hero {
+  max-width: 900px;
+  margin: 0 auto 24px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.services-hero-eyebrow {
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: #0ea5e9;
+  margin-bottom: 0.5rem;
+}
+
+.services-hero-title {
+  font-size: clamp(2.5rem, 3vw, 3.4rem);
+  line-height: 1.2;
+  font-weight: 700;
+  margin: 0 0 0.75rem;
+  color: #0f172a;
+}
+
+.services-hero-copy {
+  max-width: 720px;
+  color: #475569;
+  font-size: 1.05rem;
+  line-height: 1.6;
 }

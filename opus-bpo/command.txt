@@ -3,3 +3,9 @@ cd "c:\Users\shreya\Desktop\Shreya\OPUS website\opus-bpo"
 git add .
 git commit -m ""
 git push
+git push -u origin shreya
+
+To get the previous code
+
+git log --oneline    
+git reset --hard HEAD
