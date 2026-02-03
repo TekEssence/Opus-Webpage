@@ -42,7 +42,7 @@ export default function Services() {
 
       <section className="services-timeline-section">
         <div className="services-timeline-column">
-        <div className="services-timeline-list">
+          <div className="services-timeline-list">
             {services.map((service, index) => (
               <button
                 key={service.title}
@@ -53,9 +53,9 @@ export default function Services() {
                 }}
               >
                 <span className="services-time-chip-step">{String(index + 1).padStart(2, "0")}</span>
-                  <div>
-                    <p className="services-time-chip-title">{service.title}</p>
-                  </div>
+                <div>
+                  <p className="services-time-chip-title">{service.title}</p>
+                </div>
               </button>
             ))}
           </div>
