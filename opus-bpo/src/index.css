@@ -423,8 +423,12 @@ a {
 }
 
 .hero-media:has(> img[alt="Healthcare leadership"]) .grid > div p {
-  color: #1f2937;
+  color: #061c3b;
   line-height: 1.5;
+}
+
+.hero-media:has(> img[alt="Healthcare leadership"]) .text-slate-100\/90 {
+  color: #050505;
 }
 
 @keyframes hero-pan {

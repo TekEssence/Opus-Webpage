@@ -54,13 +54,8 @@ const AboutVision = () => (
         <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center">
           <div className="grid gap-6">
             <img
-              src="https://images.pexels.com/photos/3183186/pexels-photo-3183186.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              src="/about-6.jpg"
               alt="RCM collaboration"
-              className="h-56 w-full rounded-3xl object-cover shadow-subtle"
-            />
-            <img
-              src="https://images.pexels.com/photos/3183198/pexels-photo-3183198.jpeg?auto=compress&cs=tinysrgb&w=1200"
-              alt="Operational planning"
               className="h-56 w-full rounded-3xl object-cover shadow-subtle"
             />
           </div>
