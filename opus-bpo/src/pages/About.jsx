@@ -1,4 +1,5 @@
 import SectionHeader from "../components/SectionHeader.jsx"
+import { NavLink } from "react-router-dom"
 
 const About = () => (
   <>
@@ -22,8 +23,12 @@ const About = () => (
               revenue cycle execution with governance-level visibility.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <button className="about-hero-cta">Meet the team</button>
-              <button className="about-hero-ghost">Explore our services</button>
+              <NavLink to="/about/pillars" className="about-hero-cta">
+                Meet the team
+              </NavLink>
+              <NavLink to="/services" className="about-hero-ghost">
+                Explore our services
+              </NavLink>
             </div>
           </div>
         </div>
@@ -35,12 +40,12 @@ const About = () => (
         <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center">
           <div className="grid gap-6">
             <img
-              src="https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              src="/about-2.jpg"
               alt="RCM analysts collaborating"
               className="h-56 w-full rounded-3xl object-cover shadow-subtle"
             />
             <img
-              src="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              src="/about-3.jpg"
               alt="Healthcare finance review"
               className="h-56 w-full rounded-3xl object-cover shadow-subtle"
             />
@@ -62,10 +67,10 @@ const About = () => (
                     <span>{item.label}</span>
                     <span className="text-brand-blue">{item.value}</span>
                   </div>
-                  <div className="mt-2 h-2 w-full rounded-full bg-blue-100">
+                  <div className="progress-shell mt-2">
                     <div
-                      className="h-full rounded-full bg-brand-blue"
-                      style={{ width: item.value }}
+                      className="progress-fill"
+                      style={{ "--target-width": item.value }}
                     ></div>
                   </div>
                 </div>

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap");
+﻿@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -100,6 +100,160 @@ a {
   transform: scaleX(1);
 }
 
+.vision-hero-section {
+  position: relative;
+  padding: clamp(2rem, 3vw, 3.5rem) 0 4rem;
+  overflow: hidden;
+  color: #f5f7ff;
+  background: radial-gradient(circle at 15% 20%, rgba(37, 150, 190, 0.65), transparent 40%),
+    radial-gradient(circle at 80% 0%, rgba(37, 150, 190, 0.3), transparent 45%),
+    radial-gradient(circle at 0% 100%, rgba(37, 99, 235, 0.25), transparent 45%),
+    linear-gradient(135deg, #020617, #0f172a 35%, #1d4ed8 80%);
+  border-radius: 40px;
+  box-shadow: 0 35px 90px -55px rgba(2, 6, 23, 0.8), 0 25px 60px -40px rgba(16, 78, 139, 0.45);
+}
+
+.vision-hero-section::before,
+.vision-hero-section::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.55;
+  filter: blur(0);
+  z-index: 0;
+}
+
+.vision-hero-section::before {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(37, 150, 190, 0.95), transparent 55%);
+  top: -120px;
+  right: -80px;
+  mix-blend-mode: screen;
+}
+
+.vision-hero-section::after {
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.55), transparent 55%);
+  bottom: -200px;
+  left: -140px;
+  mix-blend-mode: screen;
+}
+.vision-hero-section .hero-media {
+  background: rgba(14, 15, 41, 0.6);
+  border-radius: 36px;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.35);
+}
+
+.vision-hero-section .hero-media,
+.vision-hero-section .hero-media .relative {
+  color: #fff;
+}
+
+.vision-hero-section h1,
+.vision-hero-section .text-brand-slate,
+.vision-hero-section p {
+  color: #f8fafc;
+}
+
+.vision-values-grid {
+  margin-top: clamp(1.5rem, 2vw, 2.75rem);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: clamp(1rem, 1.2vw, 1.5rem);
+  position: relative;
+  padding: clamp(1.5rem, 1.8vw, 2.25rem);
+  border-radius: 32px;
+  background: linear-gradient(145deg, rgba(2, 6, 23, 0.75), rgba(16, 78, 139, 0.55));
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 25px 65px -30px rgba(5, 10, 25, 0.85);
+  backdrop-filter: blur(12px);
+  z-index: 2;
+}
+
+.vision-values-grid::before,
+.vision-values-grid::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.vision-values-grid::before {
+  background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.25), transparent 45%);
+  opacity: 0.7;
+}
+
+.vision-values-grid::after {
+  background: radial-gradient(circle at 80% 60%, rgba(98, 165, 255, 0.18), transparent 55%);
+  opacity: 0.6;
+}
+
+.vision-value-card {
+  position: relative;
+  border-radius: 24px;
+  background: linear-gradient(145deg, rgba(14, 165, 233, 0.35), rgba(37, 99, 235, 0.4));
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 20px 40px -25px rgba(3, 5, 20, 0.9), inset 0 2px 0 rgba(255, 255, 255, 0.2);
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
+  color: #f4f6ff;
+  overflow: hidden;
+  backdrop-filter: blur(6px);
+}
+
+.vision-value-card:hover,
+.vision-value-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 35px 55px -25px rgba(0, 0, 0, 0.85), inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.vision-value-card .value-icon {
+  background: conic-gradient(from 135deg, rgba(255, 213, 79, 0.8), rgba(37, 150, 190, 0.8));
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+}
+
+.vision-value-card .value-icon span {
+  color: #050414;
+  font-size: 1.2rem;
+}
+
+.vision-value-card .value-body h3 {
+  color: #f8fafc;
+  font-size: 1.1rem;
+}
+
+.vision-value-card .value-body p {
+  margin-top: 0.35rem;
+  color: rgba(248, 248, 255, 0.85);
+  line-height: 1.4;
+}
+
+.vision-value-card .value-progress {
+  background: rgba(255, 255, 255, 0.1);
+  margin-top: 0.75rem;
+}
+
+.vision-value-card .value-progress-fill {
+  background: linear-gradient(90deg, #ffd700, #22d3ee, #a855f7);
+  box-shadow: 0 8px 18px rgba(34, 211, 238, 0.35);
+}
+
+.vision-value-card .value-tooltip {
+  position: static;
+  margin-left: auto;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fefbff;
+  box-shadow: 0 10px 20px -12px rgba(0, 0, 0, 0.55);
+}
+
 .section-divider {
   position: relative;
 }
@@ -174,6 +328,103 @@ a {
 .hero-media > * {
   position: relative;
   z-index: 2;
+}
+
+@keyframes warp-glow {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.75;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+}
+
+.hero-media:has(> img[alt="Healthcare leadership"]) {
+  background: radial-gradient(circle at 10% 0%, rgba(249, 115, 22, 0.25), transparent 45%),
+    radial-gradient(circle at 80% 15%, rgba(37, 99, 235, 0.4), transparent 50%),
+    linear-gradient(135deg, #c99eb6, #da9c9c 45%, #cebc76 70%, #a4d5e0 100%);
+  border-radius: clamp(1.5rem, 2vw, 2.75rem);
+  border: 1px solid rgba(5, 35, 90, 0.35);
+  box-shadow: 0 40px 90px -50px rgba(15, 23, 42, 0.9), 0 35px 60px -40px rgba(244, 114, 182, 0.45);
+  isolation: isolate;
+}
+
+.hero-media:has(> img[alt="Healthcare leadership"])::before,
+.hero-media:has(> img[alt="Healthcare leadership"])::after {
+  animation: warp-glow 22s ease-in-out infinite;
+  animation-delay: 1s;
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  mix-blend-mode: screen;
+  filter: blur(0);
+}
+
+.hero-media:has(> img[alt="Healthcare leadership"])::before {
+  background: radial-gradient(circle at 15% 20%, rgba(59, 130, 246, 0.4), transparent 50%),
+    radial-gradient(circle at 70% 10%, rgba(244, 114, 182, 0.45), transparent 55%);
+}
+
+.hero-media:has(> img[alt="Healthcare leadership"])::after {
+  background: radial-gradient(circle at 80% 80%, rgba(251, 191, 36, 0.6), transparent 55%),
+    radial-gradient(circle at 35% 85%, rgba(37, 99, 235, 0.35), transparent 50%);
+  mix-blend-mode: color-dodge;
+  opacity: 0.85;
+}
+
+.hero-media:has(> img[alt="Healthcare leadership"]) .space-y-6 {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-media:has(> img[alt="Healthcare leadership"]) .grid {
+  position: relative;
+  z-index: 2;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.hero-media:has(> img[alt="Healthcare leadership"]) .grid > div {
+  background: linear-gradient(135deg, rgba(122, 136, 197, 0.92), rgba(223, 182, 193, 0.628));
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 25px 60px -40px rgba(15, 23, 42, 0.85);
+  border-radius: 20px;
+  padding: 1.6rem;
+  min-height: 140px;
+  transition: transform 320ms ease, box-shadow 320ms ease, border-color 320ms ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-media:has(> img[alt="Healthcare leadership"]) .grid > div::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 10%, rgba(59, 130, 246, 0.35), transparent 55%);
+  opacity: 0;
+  transition: opacity 320ms ease;
+}
+
+.hero-media:has(> img[alt="Healthcare leadership"]) .grid > div:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 40px 80px -30px rgba(37, 99, 235, 0.4);
+  border-color: rgba(59, 130, 246, 0.6);
+}
+
+.hero-media:has(> img[alt="Healthcare leadership"]) .grid > div:hover::after {
+  opacity: 1;
+}
+
+.hero-media:has(> img[alt="Healthcare leadership"]) .grid > div p {
+  color: #1f2937;
+  line-height: 1.5;
 }
 
 @keyframes hero-pan {
@@ -1480,4 +1731,10 @@ a {
     opacity: 1;
     transform: translateX(0);
   }
+}
+.vision-hero-section .hero-media {
+  background: radial-gradient(circle at 10% 20%, rgba(37, 150, 190, 0.45), transparent 55%),
+    radial-gradient(circle at 90% 20%, rgba(37, 99, 235, 0.35), transparent 50%),
+    linear-gradient(145deg, #0f172a, #1d4ed8 65%, #2596be 100%);
+  border-radius: 40px;
 }

@@ -10,9 +10,8 @@ const Layout = () => {
   const location = useLocation()
   const aboutLinks = [
     { label: "Vision & Mission", href: "/about/vision-mission" },
-    { label: "Pillars of OPUS", href: "/about/pillars" },
-    { label: "Why OPUS", href: "/about/why-opus" },
-    { label: "Certification", href: "/about/certification" },
+    { label: "Pillars Of Opus", href: "/about/pillars" },
+    { label: "Why Opus", href: "/about/why-opus" },
   ]
 
   useEffect(() => {
@@ -63,10 +62,35 @@ const Layout = () => {
             </div>
           </div>
           <nav className="hidden items-center gap-8 lg:flex">
-            {navItems.map((item) =>
-              item.label === "About" ? (
-                <div key={item.path} className="nav-group relative">
+              {navItems.map((item) =>
+                item.label === "About" ? (
+                  <div key={item.path} className="nav-group relative flex items-center gap-1">
+                    <NavLink
+                      to={item.path}
+                      className={({ isActive }) =>
+                        `nav-link ${linkBase} ${
+                          isActive
+                            ? "is-active text-brand-blue"
+                            : "text-slate-600 hover:text-brand-blue"
+                        }`
+                      }
+                    >
+                      {item.label}
+                    </NavLink>
+                    <span className="nav-dropdown-indicator" aria-hidden="true">
+                      v
+                    </span>
+                    <div className="nav-dropdown">
+                      {aboutLinks.map((link) => (
+                        <a key={link.href} href={link.href}>
+                          {link.label}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
                   <NavLink
+                    key={item.path}
                     to={item.path}
                     className={({ isActive }) =>
                       `nav-link ${linkBase} ${
@@ -78,30 +102,8 @@ const Layout = () => {
                   >
                     {item.label}
                   </NavLink>
-                  <div className="nav-dropdown">
-                    {aboutLinks.map((link) => (
-                      <a key={link.href} href={link.href}>
-                        {link.label}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <NavLink
-                  key={item.path}
-                  to={item.path}
-                  className={({ isActive }) =>
-                    `nav-link ${linkBase} ${
-                      isActive
-                        ? "is-active text-brand-blue"
-                        : "text-slate-600 hover:text-brand-blue"
-                    }`
-                  }
-                >
-                  {item.label}
-                </NavLink>
-              )
-            )}
+                )
+              )}
           </nav>
           <div className="flex items-center gap-4">
             <NavLink
