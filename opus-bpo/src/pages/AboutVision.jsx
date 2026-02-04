@@ -53,11 +53,13 @@ const AboutVision = () => (
       <div className="mx-auto w-full max-w-6xl px-6 py-20">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center">
           <div className="grid gap-6">
-            <img
-              src="/about-6.jpg"
-              alt="RCM collaboration"
-              className="h-56 w-full rounded-3xl object-cover shadow-subtle"
-            />
+            <div className="card-metal rounded-3xl p-6">
+              <img
+                src="/about-6.jpg"
+                alt="RCM collaboration"
+                className="h-full w-full rounded-2xl object-cover"
+              />
+            </div>
           </div>
           <div className="space-y-6">
             <h2 className="text-3xl font-semibold text-brand-slate">
@@ -119,7 +121,7 @@ const AboutVision = () => (
           </div>
           <div className="card-metal rounded-3xl p-6">
             <img
-              src="https://images.pexels.com/photos/3182811/pexels-photo-3182811.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              src="/about-8.jpg"
               alt="Healthcare leadership alignment"
               className="h-full w-full rounded-2xl object-cover"
             />
