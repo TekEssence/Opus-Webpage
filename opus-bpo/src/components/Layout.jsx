@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { NavLink, Outlet, useLocation } from "react-router-dom"
 import { navItems } from "../data/content.js"
+import RevenueCalculatorPopup from "./RevenueCalculatorPopup.jsx"
 
 const linkBase =
   "text-xs font-semibold uppercase tracking-[0.12em] transition-colors"
@@ -166,6 +167,7 @@ const Layout = () => {
         <Outlet />
       </main>
 
+      <RevenueCalculatorPopup />
       <footer className="border-t border-brand-blue/20 bg-[#2596be] text-white">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-6 py-10 text-sm text-white/90 md:flex-row md:items-center md:justify-between">
           <div>
