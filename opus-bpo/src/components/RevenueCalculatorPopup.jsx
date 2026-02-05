@@ -4,7 +4,7 @@ const metricDefinitions = [
   {
     id: "daysInAr",
     title: "Days In AR",
-    formula: "Total AR ÷ Avg Daily Charges",
+    formula: "",
     description: "Measure how quickly the team converts charges into cash.",
     fields: [
       { name: "totalAr", label: "Total AR", placeholder: "e.g. 1,250,000" },
@@ -18,7 +18,7 @@ const metricDefinitions = [
   {
     id: "denialRate",
     title: "Denial Rate",
-    formula: "Denied Claims ÷ Submitted Claims × 100",
+    formula: "",
     description: "Keep denials low to protect cash flow and reduce rework.",
     fields: [
       { name: "deniedClaims", label: "Denied Claims", placeholder: "e.g. 1,100" },
@@ -32,7 +32,7 @@ const metricDefinitions = [
   {
     id: "grossCollectionRate",
     title: "Gross Collection Rate",
-    formula: "Total Payments ÷ Total Charges × 100",
+    formula: "",
     description: "Shows how much of billed value was collected before adjustments.",
     fields: [
       { name: "payments", label: "Total Payments", placeholder: "e.g. 470,000" },
@@ -45,13 +45,41 @@ const metricDefinitions = [
   {
     id: "netCollectionRate",
     title: "Net Collection Rate",
-    formula: "(Payments − Adjustments) ÷ Total Charges × 100",
+    formula: "",
     description: "Reflects collections after write-offs and contractual discounts.",
     fields: [
       { name: "netPayments", label: "Payments − Adjustments", placeholder: "e.g. 450,000" },
       { name: "charges", label: "Total Charges", placeholder: "e.g. 500,000" },
     ],
     calculate: ({ netPayments, charges }) => (charges ? (netPayments / charges) * 100 : null),
+    unit: "%",
+    precision: 1,
+  },
+  {
+    id: "arOver90",
+    title: "AR > 90 Days",
+    formula: "",
+    description: "Highlight the portion of receivables that need rapid attention.",
+    fields: [
+      { name: "over90", label: "AR Balance > 90 Days", placeholder: "e.g. 120,000" },
+      { name: "totalBalance", label: "Total AR Balance", placeholder: "e.g. 600,000" },
+    ],
+    calculate: ({ over90, totalBalance }) =>
+      totalBalance ? (over90 / totalBalance) * 100 : null,
+    unit: "%",
+    precision: 1,
+  },
+  {
+    id: "firstPassResolutionRate",
+    title: "First Pass Resolution Rate",
+    formula: "",
+    description: "Track how many claims clear on the first pass.",
+    fields: [
+      { name: "paidOnFirst", label: "Claims Paid on 1st Submission", placeholder: "e.g. 18,000" },
+      { name: "totalClaims", label: "Total Claims Submitted", placeholder: "e.g. 20,000" },
+    ],
+    calculate: ({ paidOnFirst, totalClaims }) =>
+      totalClaims ? (paidOnFirst / totalClaims) * 100 : null,
     unit: "%",
     precision: 1,
   },
