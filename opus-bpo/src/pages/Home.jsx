@@ -149,7 +149,8 @@ const serviceBlocks = [
       "Charge capture & demographic accuracy",
       "Prior authorization tracking",
     ],
-    image: null,
+    image:
+      "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80",
     icon: serviceIcons[0],
     tagAccentStart: "#f87171",
     tagAccentEnd: "#dc2626",
@@ -165,7 +166,8 @@ const serviceBlocks = [
       "Denial prevention monitoring",
       "Electronic submission & tracking",
     ],
-    image: null,
+    image:
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80",
     icon: serviceIcons[1],
     tagAccentStart: "#f87171",
     tagAccentEnd: "#dc2626",
@@ -181,7 +183,8 @@ const serviceBlocks = [
       "Denial management & appeals",
       "Strategic reporting for executive governance",
     ],
-    image: null,
+    image:
+      "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=900&q=80",
     icon: serviceIcons[2],
     tagAccentStart: "#f87171",
     tagAccentEnd: "#dc2626",
@@ -344,10 +347,10 @@ const Home = () => {
             loop
             playsInline
             className="hero-video hero-video-stack hero-video-1"
-            poster="https://images.pexels.com/photos/8460035/pexels-photo-8460035.jpeg?auto=compress&cs=tinysrgb&w=1600"
+            poster="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80"
           >
             <source
-              src="https://cdn.coverr.co/videos/coverr-doctors-using-tablet-9155/1080p.mp4"
+              src="https://cdn.coverr.co/videos/coverr-business-office-team-1114/1080p.mp4"
               type="video/mp4"
             />
           </video>
@@ -357,10 +360,10 @@ const Home = () => {
             loop
             playsInline
             className="hero-video hero-video-stack hero-video-2"
-            poster="https://images.pexels.com/photos/7108157/pexels-photo-7108157.jpeg?auto=compress&cs=tinysrgb&w=1600"
+            poster="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1600&q=80"
           >
             <source
-              src="https://cdn.coverr.co/videos/coverr-hospital-hallway-5177/1080p.mp4"
+              src="https://cdn.coverr.co/videos/coverr-office-team-brainstorming-1416/1080p.mp4"
               type="video/mp4"
             />
           </video>
@@ -370,10 +373,10 @@ const Home = () => {
             loop
             playsInline
             className="hero-video hero-video-stack hero-video-3"
-            poster="https://images.pexels.com/photos/6291290/pexels-photo-6291290.jpeg?auto=compress&cs=tinysrgb&w=1600"
+            poster="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80"
           >
             <source
-              src="https://cdn.coverr.co/videos/coverr-nurses-preparing-medication-7605/1080p.mp4"
+              src="https://cdn.coverr.co/videos/coverr-finance-office-1460/1080p.mp4"
               type="video/mp4"
             />
           </video>
@@ -387,7 +390,7 @@ const Home = () => {
               </h1>
               <p className="text-lg leading-relaxed text-slate-100/90">
                 OPUS BPO delivers disciplined medical billing, coding, and AR performance for healthcare
-                hospitals, clinics, and physician groupsâ€”anchored to HIPAA requirements, payer
+                hospitals, clinics, and physician groups anchored to HIPAA requirements, payer
                 accuracy, and measurable cash flow outcomes.
               </p>
             </div>
