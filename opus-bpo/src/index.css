@@ -254,6 +254,27 @@ a {
   box-shadow: 0 10px 20px -12px rgba(0, 0, 0, 0.55);
 }
 
+.progress-shell {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.12);
+  overflow: hidden;
+  margin-top: 0.35rem;
+}
+
+.progress-fill {
+  position: absolute;
+  inset: 0;
+  width: var(--target-width, 0);
+  max-width: 100%;
+  background: linear-gradient(90deg, #2596be, #ffd413, #db4425);
+  border-radius: inherit;
+  transition: width 0.9s ease;
+  box-shadow: 0 8px 18px -10px rgba(37, 150, 190, 0.6);
+}
+
 .section-divider {
   position: relative;
 }

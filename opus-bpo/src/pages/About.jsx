@@ -40,12 +40,12 @@ const About = () => (
         <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center">
           <div className="grid gap-6">
             <img
-              src="/about-6.jpg"
+              src="/about-2.jpg"
               alt="RCM analysts collaborating"
               className="h-56 w-full rounded-3xl object-cover shadow-subtle"
             />
             <img
-              src="/about-6.jpg"
+              src="/about-3.jpg"
               alt="Healthcare finance review"
               className="h-56 w-full rounded-3xl object-cover shadow-subtle"
             />
