@@ -433,13 +433,13 @@ const Home = () => {
             title="RCM programs engineered for accuracy, speed, and stability."
             description="Our team supports healthcare providers with timely, accurate claim submission and end-to-end revenue cycle execution."
           />
-          <div className="space-y-4 text-sm leading-relaxed text-slate-600">
-            <p>
+          <div className="max-w-3xl space-y-6 text-left text-slate-600 md:space-y-8 lg:text-left">
+            <p className="text-lg leading-[1.6] md:text-l">
               OPUS BPO delivers modern revenue cycle management that streamlines billing, maximizes
               reimbursements, and reduces denials through automated workflows and analytics-driven
               decisions.
             </p>
-            <p>
+            <p className="text-lg leading-[1.6] md:text-l">
               We align people, process, and technology to improve operational efficiency and compliance,
               giving your organization consistent performance without added burden.
             </p>
