@@ -41,9 +41,29 @@ a {
   padding: 4px 0;
 }
 
+.nav-dropdown-indicator {
+  font-size: 0.45rem;
+  color: var(--opus-ink);
+  display: inline-flex;
+  align-items: center;
+  opacity: 0.8;
+  transition: transform 220ms ease;
+}
+
+.nav-group:hover .nav-dropdown-indicator,
+.nav-group:focus-within .nav-dropdown-indicator {
+  transform: translateY(0) rotate(180deg);
+}
+
+.nav-group {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
 .nav-dropdown {
   position: absolute;
-  top: calc(100% + 12px);
+  top: 100%;
   left: 0;
   min-width: 220px;
   background: #ffffff;
@@ -52,9 +72,9 @@ a {
   box-shadow: 0 20px 50px -30px rgba(37, 150, 190, 0.35);
   padding: 10px;
   opacity: 0;
-  transform: translateY(6px);
+  transform: translateY(12px);
   pointer-events: none;
-  transition: opacity 180ms ease, transform 180ms ease;
+  transition: opacity 220ms ease, transform 220ms ease;
   z-index: 60;
 }
 

@@ -79,20 +79,23 @@ const Layout = () => {
               {navItems.map((item) =>
                 item.label === "About" ? (
                   <div key={item.path} className="nav-group relative flex items-center gap-1">
-                    <NavLink
-                      to={item.path}
-                      className={({ isActive }) =>
-                        `nav-link ${linkBase} ${
-                          isActive
-                            ? "is-active text-brand-blue"
-                            : "text-slate-600 hover:text-brand-blue"
-                        }`
-                      }
+                  <NavLink
+                    to={item.path}
+                    className={({ isActive }) =>
+                      `nav-link ${linkBase} ${
+                        isActive
+                          ? "is-active text-brand-blue"
+                          : "text-slate-600 hover:text-brand-blue"
+                      }`
+                    }
+                  >
+                    {item.label}
+                  </NavLink>
+                    <span
+                      className="nav-dropdown-indicator"
+                      aria-hidden="true"
                     >
-                      {item.label}
-                    </NavLink>
-                    <span className="nav-dropdown-indicator" aria-hidden="true">
-                      v
+                      ▼
                     </span>
                     <div className="nav-dropdown">
                       {aboutLinks.map((link) => (
