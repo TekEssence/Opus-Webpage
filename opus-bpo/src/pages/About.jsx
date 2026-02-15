@@ -19,7 +19,7 @@ const About = () => (
               Your revenue cycle is our highest operational priority.
             </h1>
             <p className="max-w-3xl text-lg leading-relaxed text-white/90">
-              We partner with hospitals, clinics, and physician groups to deliver disciplined, compliant
+              We partner with hospitals, clinics, billing companies, and physician groups to deliver disciplined, compliant
               revenue cycle execution with governance-level visibility.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">

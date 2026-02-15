@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { NavLink, Outlet, useLocation } from "react-router-dom"
+import { practiceMetrics } from "../data/practiceHealthCheck.js"
 import { navItems } from "../data/content.js"
-import RevenueCalculatorPopup from "./RevenueCalculatorPopup.jsx"
 
 const linkBase =
   "text-xs font-semibold uppercase tracking-[0.12em] transition-colors"
 
 const Layout = () => {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [practiceMenuOpen, setPracticeMenuOpen] = useState(false)
   const location = useLocation()
+  const practiceMenuRef = useRef(null)
   const aboutLinks = [
     { label: "Vision & Mission", href: "/about/vision-mission" },
     { label: "Pillars Of Opus", href: "/about/pillars" },
@@ -39,6 +41,17 @@ const Layout = () => {
     return () => observer.disconnect()
   }, [location.pathname])
 
+  useEffect(() => {
+    if (!practiceMenuOpen) return
+    const handleClickOutside = (event) => {
+      if (practiceMenuRef.current && !practiceMenuRef.current.contains(event.target)) {
+        setPracticeMenuOpen(false)
+      }
+    }
+    document.addEventListener("pointerdown", handleClickOutside)
+    return () => document.removeEventListener("pointerdown", handleClickOutside)
+  }, [practiceMenuOpen])
+
   return (
     <div className="min-h-screen bg-white text-ink-700">
       <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur">
@@ -49,7 +62,7 @@ const Layout = () => {
           </div>
         </div>
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             <img
               src="/opus-logo.png"
               alt="OPUS BPO logo"
@@ -106,12 +119,40 @@ const Layout = () => {
                 )
               )}
           </nav>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
+            <div className="practice-menu-wrapper hidden lg:block">
+              <button
+                type="button"
+                className="practice-menu-button"
+                onClick={() => setPracticeMenuOpen((prev) => !prev)}
+                aria-expanded={practiceMenuOpen}
+                aria-controls="practice-health-check-menu"
+              >
+                Practice Health Check
+              </button>
+              {practiceMenuOpen && (
+                <div
+                  id="practice-health-check-menu"
+                  ref={practiceMenuRef}
+                  className="practice-menu-panel"
+                >
+                  {practiceMetrics.map((metric) => (
+                    <a
+                      key={metric.id}
+                      href={`/practice-health-check?metric=${metric.id}`}
+                      onClick={() => setPracticeMenuOpen(false)}
+                    >
+                      {metric.title}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
             <NavLink
               to="/contact"
-              className="hidden rounded-full bg-brand-red px-6 py-2 text-sm font-semibold text-white transition hover:bg-red-700 lg:inline-flex"
+              className="hidden rounded-full bg-brand-red px-6 py-2 text-sm font-semibold text-white transition hover:bg-red-700 lg:inline-flex whitespace-nowrap"
             >
-              Request Consultation
+              Schedule a Call
             </NavLink>
             <button
               type="button"
@@ -151,12 +192,26 @@ const Layout = () => {
                   {link.label}
                 </a>
               ))}
+              <div className="practice-menu-mobile">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+                  Practice Health Check
+                </p>
+                {practiceMetrics.map((metric) => (
+                  <a
+                    key={metric.id}
+                    href={`/practice-health-check?metric=${metric.id}`}
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {metric.title}
+                  </a>
+                ))}
+              </div>
               <NavLink
                 to="/contact"
                 onClick={() => setMenuOpen(false)}
-                className="rounded-full bg-brand-red px-5 py-2 text-center text-sm font-semibold text-white transition hover:bg-red-700"
+                className="rounded-full bg-brand-red px-5 py-2 text-center text-sm font-semibold text-white transition hover:bg-red-700 whitespace-nowrap"
               >
-                Request Consultation
+                Schedule a Call
               </NavLink>
             </div>
           </div>
@@ -167,7 +222,6 @@ const Layout = () => {
         <Outlet />
       </main>
 
-      <RevenueCalculatorPopup />
       <footer className="border-t border-brand-blue/20 bg-[#2596be] text-white">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-6 py-10 text-sm text-white/90 md:flex-row md:items-center md:justify-between">
           <div>

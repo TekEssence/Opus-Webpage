@@ -13,7 +13,7 @@ const metrics = [
   },
   {
     number: "2",
-    value: "80%",
+    value: "95%",
     label: "FIRST PASS ACCEPT RATE",
     position: "bottom",
     gradientStart: "#4dd5f3",
@@ -399,7 +399,7 @@ const Home = () => {
                 to="/contact"
                 className="rounded-full bg-brand-red px-6 py-3 text-sm font-semibold text-white transition hover:bg-red-700"
               >
-                Schedule a Consultation
+                Schedule a Call
               </Link>
               <Link
                 to="/services"
@@ -719,12 +719,12 @@ const Home = () => {
         </div>
         <div className="mt-10 grid gap-6 grid-cols-1 md:grid-cols-3">
           {[
-            {
-              title: "Multi-specialty Clinic",
-              stat: "Down 22% denials",
-              detail:
-                "Eligibility checks and coding QA reduced avoidable rejections over two quarters.",
-            },
+              {
+                title: "Multi-specialty Clinic",
+                stat: "Down 8% denials",
+                detail:
+                  "Eligibility checks and coding QA reduced avoidable rejections over two quarters.",
+              },
             {
               title: "Hospital Outpatient",
               stat: "Up 18% cash velocity",

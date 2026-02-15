@@ -9,6 +9,7 @@ import Compliance from "./pages/Compliance.jsx"
 import Contact from "./pages/Contact.jsx"
 import Home from "./pages/Home.jsx"
 import Services from "./pages/Services.jsx"
+import PracticeHealthCheck from "./pages/PracticeHealthCheck.jsx"
 
 const App = () => (
   <BrowserRouter>
@@ -21,6 +22,10 @@ const App = () => (
         <Route path="about/why-opus" element={<AboutWhy />} />
         <Route path="about/certification" element={<AboutCertification />} />
         <Route path="services" element={<Services />} />
+        <Route
+          path="practice-health-check"
+          element={<PracticeHealthCheck />}
+        />
         <Route path="compliance" element={<Compliance />} />
         <Route path="contact" element={<Contact />} />
       </Route>

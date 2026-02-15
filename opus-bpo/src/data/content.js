@@ -30,8 +30,7 @@ export const services = [
     title: "Credentialing Services",
     description:
       "Provider credentialing support with payer enrollment tracking and documentation oversight.",
-    image:
-      "https://images.unsplash.com/photo-1580281657521-d5d3b7c2637c?auto=format&fit=crop&w=900&q=80",
+    image: "/credentialing-9.jpg",
     points: [
       "Enrollment trackers that surface missing paperwork and status updates.",
       "Document collection and verification workflows for every payer.",
