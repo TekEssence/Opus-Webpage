@@ -43,6 +43,10 @@ const Layout = () => {
   }, [location.pathname])
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" })
+  }, [location.pathname])
+
+  useEffect(() => {
     if (!practiceMenuOpen) return
     const handleClickOutside = (event) => {
       if (practiceMenuRef.current && !practiceMenuRef.current.contains(event.target)) {
