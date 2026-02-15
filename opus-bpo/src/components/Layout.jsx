@@ -11,6 +11,7 @@ const Layout = () => {
   const [practiceMenuOpen, setPracticeMenuOpen] = useState(false)
   const location = useLocation()
   const practiceMenuRef = useRef(null)
+  const practiceHoverTimer = useRef(null)
   const aboutLinks = [
     { label: "Vision & Mission", href: "/about/vision-mission" },
     { label: "Pillars Of Opus", href: "/about/pillars" },
@@ -51,6 +52,32 @@ const Layout = () => {
     document.addEventListener("pointerdown", handleClickOutside)
     return () => document.removeEventListener("pointerdown", handleClickOutside)
   }, [practiceMenuOpen])
+
+  useEffect(() => {
+    return () => {
+      if (practiceHoverTimer.current) {
+        clearTimeout(practiceHoverTimer.current)
+      }
+    }
+  }, [])
+
+  const openPracticeMenuHover = () => {
+    if (practiceHoverTimer.current) {
+      clearTimeout(practiceHoverTimer.current)
+      practiceHoverTimer.current = null
+    }
+    setPracticeMenuOpen(true)
+  }
+
+  const closePracticeMenuHover = () => {
+    if (practiceHoverTimer.current) {
+      clearTimeout(practiceHoverTimer.current)
+    }
+    practiceHoverTimer.current = window.setTimeout(() => {
+      setPracticeMenuOpen(false)
+      practiceHoverTimer.current = null
+    }, 200)
+  }
 
   return (
     <div className="min-h-screen bg-white text-ink-700">
@@ -123,11 +150,17 @@ const Layout = () => {
               )}
           </nav>
           <div className="flex items-center gap-3">
-            <div className="practice-menu-wrapper hidden lg:block">
+            <div
+              className="practice-menu-wrapper hidden lg:block"
+              onMouseEnter={openPracticeMenuHover}
+              onMouseLeave={closePracticeMenuHover}
+            >
               <button
                 type="button"
                 className="practice-menu-button"
                 onClick={() => setPracticeMenuOpen((prev) => !prev)}
+                onMouseEnter={openPracticeMenuHover}
+                onMouseLeave={closePracticeMenuHover}
                 aria-expanded={practiceMenuOpen}
                 aria-controls="practice-health-check-menu"
               >
@@ -138,6 +171,8 @@ const Layout = () => {
                   id="practice-health-check-menu"
                   ref={practiceMenuRef}
                   className="practice-menu-panel"
+                  onMouseEnter={openPracticeMenuHover}
+                  onMouseLeave={closePracticeMenuHover}
                 >
                   {practiceMetrics.map((metric) => (
                     <a
