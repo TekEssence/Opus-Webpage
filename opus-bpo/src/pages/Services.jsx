@@ -4,6 +4,7 @@ import { services } from "../data/content.js"
 export default function Services() {
   const [activeIndex, setActiveIndex] = useState(0)
   const cardRefs = useRef([])
+  const timelineRefs = useRef([])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -27,6 +28,11 @@ export default function Services() {
     return () => observer.disconnect()
   }, [])
 
+  useEffect(() => {
+    const target = timelineRefs.current[activeIndex]
+    target?.scrollIntoView({ behavior: "smooth", block: "nearest" })
+  }, [activeIndex])
+
   return (
     <main className="services-page-template services-alt-view">
       <section className="services-hero">
@@ -43,10 +49,11 @@ export default function Services() {
         <div className="services-timeline-column">
           <div className="services-timeline-list">
             {services.map((service, index) => (
-              <button
-                key={service.title}
-                type="button"
-                className={`services-time-chip ${activeIndex === index ? "is-active" : ""}`}
+            <button
+              key={service.title}
+              type="button"
+              ref={(node) => (timelineRefs.current[index] = node)}
+              className={`services-time-chip ${activeIndex === index ? "is-active" : ""}`}
                 onClick={() => {
                   cardRefs.current[index]?.scrollIntoView({ behavior: "smooth", block: "center" })
                 }}
