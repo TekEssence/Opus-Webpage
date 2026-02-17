@@ -40,19 +40,34 @@ const AboutPillars = () => (
                 so finance teams get predictable, audit-ready results.
               </p>
             </div>
-            <div className="mt-6 space-y-3">
-              {[
-                "Finance alignment with KPI ownership and executive reporting.",
-                "Payer-specific edits, policy governance, and denial prevention.",
-                "Operational QA with variance analysis and accountability.",
-                "Security discipline with HIPAA-aligned access controls.",
-              ].map((item) => (
-                <div key={item} className="flex items-start gap-3">
-                  <span className="mt-2 h-2 w-2 rounded-full bg-brand-gold"></span>
-                  <p className="text-sm text-slate-600">{item}</p>
-                </div>
-              ))}
-            </div>
+            <div className="mt-6 space-y-4">
+  {[
+    "Finance alignment with KPI ownership and executive reporting.",
+    "Payer-specific edits, policy governance, and denial prevention.",
+    "Operational QA with variance analysis and accountability.",
+    "Security discipline with HIPAA-aligned access controls.",
+  ].map((item) => (
+    <div key={item} className="flex items-start gap-3">
+      <svg
+        className="mt-1 h-4 w-4 text-indigo-600"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M5 13l4 4L19 7"
+        />
+      </svg>
+
+      <p className="text-sm text-slate-600 leading-relaxed">
+        {item}
+      </p>
+    </div>
+  ))}
+</div>
           </div>
           <div className="card-metal overflow-hidden rounded-3xl">
             <div className="relative h-80 md:h-[360px]">
@@ -88,7 +103,7 @@ const AboutPillars = () => (
           <div className="card-metal overflow-hidden rounded-3xl">
             <div className="relative h-80 md:h-[360px]">
               <img
-                src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1400"
+                src="/pillars-7.png"
                 alt="Healthcare operations planning"
                 className="h-full w-full object-cover"
               />
