@@ -64,19 +64,19 @@ const serviceHighlights = services.slice(0, 6).map((service, index) => ({
 
 const serviceIcons = [
   (
-    <svg viewBox="0 0 32 32" className="h-8 w-8">
+    <svg viewBox="0 0 32 32" className="h-4 w-4">
       <rect x="8" y="8" width="16" height="16" rx="3" stroke="currentColor" strokeWidth="2" fill="none" />
       <path d="M10 14h12M10 18h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     </svg>
   ),
   (
-    <svg viewBox="0 0 32 32" className="h-8 w-8">
+    <svg viewBox="0 0 32 32" className="h-4 w-4">
       <circle cx="16" cy="12" r="4" stroke="currentColor" strokeWidth="2" fill="none" />
       <path d="M10 24c2-3 4-4 6-4s4 1 6 4" stroke="currentColor" strokeWidth="1.5" fill="none" />
     </svg>
   ),
   (
-    <svg viewBox="0 0 32 32" className="h-8 w-8">
+    <svg viewBox="0 0 32 32" className="h-4 w-4">
       <path d="M16 10v6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
       <path d="M12 18h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
       <path d="M11 16l5-6 5 6" stroke="currentColor" strokeWidth="1.4" fill="none" />
