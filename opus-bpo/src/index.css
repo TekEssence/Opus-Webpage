@@ -367,6 +367,35 @@ a {
   filter: saturate(0.8) contrast(1.05);
 }
 
+.vision-hero {
+  min-height: clamp(260px, 32vw, 430px);
+  max-height: 450px;
+  height: clamp(260px, 32vw, 430px);
+}
+
+.vision-hero .relative {
+  height: 100%;
+}
+
+.vision-hero .space-y-6,
+.vision-hero .grid {
+  min-height: 100%;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+.vision-hero {
+  min-height: 320px;
+  max-height: 360px;
+}
+}
+
+@media (max-width: 767px) {
+.vision-hero {
+  min-height: 240px;
+  max-height: 280px;
+}
+}
+
 .hero-media::after {
   content: "";
   position: absolute;
