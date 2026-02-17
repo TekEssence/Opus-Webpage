@@ -57,7 +57,7 @@ const AboutPillars = () => (
           <div className="card-metal overflow-hidden rounded-3xl">
             <div className="relative h-80 md:h-[360px]">
               <img
-                src="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=1400"
+                src="/pillars-23.png"
                 alt="Operations leadership discussion"
                 className="h-full w-full object-cover"
               />
