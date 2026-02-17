@@ -310,6 +310,65 @@ a {
   transform: translateX(-50%);
 }
 
+.pillar-divider {
+  position: relative;
+  height: 1.75px;
+  border-radius: 999px;
+  background: linear-gradient(
+    0deg,
+    #f97316,
+    #fb7185,
+    #a855f7,
+    #6366f1,
+    #22d3ee,
+    #14b8a6,
+    #84cc16,
+    #fb7185
+  );
+  background-size: 400% 100%;
+  box-shadow: 0 0 18px rgba(245, 114, 182, 0.45), 0 0 10px rgba(59, 130, 246, 0.35);
+  animation: pillar-gradient-flow 3.8s ease-in-out infinite;
+  overflow: hidden;
+}
+
+.pillar-divider::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
+  opacity: 0.6;
+  mix-blend-mode: screen;
+  filter: blur(12px);
+  animation: pillar-shimmer 3.4s ease-in-out infinite;
+}
+
+@keyframes pillar-gradient-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 200% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes pillar-shimmer {
+  0% {
+    transform: translateX(-120%);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateX(60%);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(140%);
+    opacity: 0;
+  }
+}
+
 .page-shell {
   background-color: #ffffff;
   background-image: radial-gradient(circle at 8% 6%, rgba(37, 150, 190, 0.45), transparent 46%),
@@ -1355,6 +1414,76 @@ a {
   margin-top: 0.35rem;
   display: inline-flex;
   flex-shrink: 0;
+}
+
+/* Gradient bullets used on the About Why page */
+.gradient-bullet {
+  position: relative;
+  padding-left: 1.4rem;
+  min-height: 1.2rem;
+}
+
+.gradient-bullet::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.08rem;
+  width: 5px;
+  height: 26px;
+  border-radius: 999px;
+  background: linear-gradient(
+    0deg,
+    #f97316,
+    #fb7185,
+    #a855f7,
+    #6366f1,
+    #22d3ee,
+    #14b8a6,
+    #84cc16
+  );
+  background-size: 300% 300%;
+  box-shadow: 0 0 18px rgba(251, 113, 133, 0.6), 0 0 10px rgba(59, 130, 246, 0.45);
+  animation: bullet-gradient-flow 3.4s ease-in-out infinite;
+}
+
+.gradient-bullet::after {
+  content: "";
+  position: absolute;
+  left: -0.1rem;
+  top: 0;
+  width: 8px;
+  height: 32px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0));
+  filter: blur(8px);
+  opacity: 0.4;
+  animation: bullet-shimmer 3.6s linear infinite;
+}
+
+@keyframes bullet-shimmer {
+  0% {
+    transform: translateY(-40%);
+  }
+  50% {
+    transform: translateY(40%);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-40%);
+    opacity: 0.4;
+  }
+}
+
+@keyframes bullet-gradient-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 200% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @media (hover: none) {

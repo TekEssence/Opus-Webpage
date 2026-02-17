@@ -96,7 +96,7 @@ export const services = [
     title: "AR Follow-ups",
     description:
       "Structured follow-ups with payers and patients to accelerate aging resolution.",
-    image: "/ar-follow-ups-18.jpg",
+    image: "/ar-follow-ups-18.png",
     points: [
       "Aging segmentation and prioritization for every AR bucket.",
       "Daily outreach cadence to payers and patients.",

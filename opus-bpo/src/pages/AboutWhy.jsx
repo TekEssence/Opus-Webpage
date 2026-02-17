@@ -130,30 +130,15 @@ const AboutWhy = () => {
                   {section.body}
                 </p>
 
-               {/* SHINING GRADIENT BULLETS */}
-<div className="mt-6 space-y-5">
-  {section.bullets.map((bullet) => (
-    <div key={bullet} className="relative pl-6">
-
-      {/* Individual Gradient Line */}
-      <div
-  className="absolute left-0 top-1 bottom-1 w-1.5 rounded-full
-             bg-gradient-to-b
-             from-indigo-500
-             via-blue-500
-             to-cyan-400
-             shadow-[0_0_10px_rgba(59,130,246,0.5)]"
-/>
-
-
-      <p className="text-sm text-slate-600 leading-relaxed">
-        {bullet}
-      </p>
-
-    </div>
-  ))}
-</div>
-               </div>
+                {/* SHINING GRADIENT BULLETS */}
+                <div className="mt-6 space-y-5">
+                  {section.bullets.map((bullet) => (
+                    <div key={bullet} className="gradient-bullet">
+                      <p className="text-sm text-slate-600 leading-relaxed">{bullet}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
 
               {/* IMAGE SIDE */}

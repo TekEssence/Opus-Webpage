@@ -92,10 +92,13 @@ const AboutPillars = () => (
               description="Clear operational standards that keep revenue performance consistent."
             />
             <div className="mt-6 space-y-6">
-              {pillars.map((pillar) => (
-                <div key={pillar.title} className="border-b border-slate-200 pb-6 last:border-b-0 last:pb-0">
+              {pillars.map((pillar, index) => (
+                <div key={pillar.title} className="pb-3 last:pb-0">
                   <p className="text-base font-semibold text-brand-slate">{pillar.title}</p>
                   <p className="mt-2 text-sm leading-relaxed text-slate-600">{pillar.detail}</p>
+                  {index < pillars.length - 1 && (
+                    <div className="mt-3 pillar-divider" aria-hidden="true"></div>
+                  )}
                 </div>
               ))}
             </div>
