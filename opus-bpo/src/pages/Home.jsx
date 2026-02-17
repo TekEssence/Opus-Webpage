@@ -598,10 +598,10 @@ const Home = () => {
               key={block.title}
               className="rounded-full border px-4 py-2 text-slate-600 shadow-sm"
               style={{
-                borderColor: "rgba(255,255,255,0.5)",
+                borderColor: "rgba(155, 8, 8, 0.5)",
                 background: block.tagAccentStart
                   ? `linear-gradient(180deg, ${block.tagAccentStart}, ${block.tagAccentEnd})`
-                  : "rgba(255,255,255,0.6)",
+                  : "rgba(142, 41, 41, 0.6)",
                 color: block.tagAccentStart ? "#fff" : "#475569",
               }}
             >
@@ -650,13 +650,13 @@ const Home = () => {
                   <p className="service-pill-summary">{block.summary}</p>
                   <ul className="service-pill-bullets">
                     {block.bullets.map((item) => (
-                      <li key={item}>
+                      <li key={item} className="text-slate-800 font-medium">
                         <span
-                          className="service-pill-bullet"
-                          style={{
-                            background: `linear-gradient(135deg, ${block.accentStart}, ${block.accentEnd})`,
-                          }}
-                        />
+  className="service-pill-bullet shadow-md"
+  style={{
+    background: `linear-gradient(135deg, ${block.tagAccentStart}, ${block.tagAccentEnd})`,
+  }}
+/>
                         {item}
                       </li>
                     ))}
