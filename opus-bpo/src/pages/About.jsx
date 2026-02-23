@@ -12,8 +12,8 @@ const About = () => (
             <span className="about-hero-particle" style={{ bottom: "16%", left: "24%" }}></span>
           </div>
           <div className="flex flex-col gap-4">
-            <div className="inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white/80 shadow-glow">
-              About OPUS BPO
+            <div className="about-hero-label">
+              <span>About OPUS BPO</span>
             </div>
             <h1 className="max-w-4xl font-heading text-4xl font-bold leading-tight text-white md:text-5xl">
               Your revenue cycle is our highest operational priority.

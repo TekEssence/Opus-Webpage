@@ -1862,6 +1862,24 @@ a {
   animation: about-hero-slide 1.2s cubic-bezier(0.23, 1, 0.36, 1) forwards;
 }
 
+.about-hero-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  border-radius: 999px;
+  padding: 0.35rem 1.25rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.05));
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.4);
+  color: #fdf5ea;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
 .about-hero::after {
   content: "";
   position: absolute;

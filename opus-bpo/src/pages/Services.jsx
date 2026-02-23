@@ -5,15 +5,31 @@ export default function Services() {
   const [activeIndex, setActiveIndex] = useState(0)
   const cardRefs = useRef([])
   const timelineRefs = useRef([])
+  const pendingIndex = useRef(0)
+  const frameRef = useRef(null)
+  const currentIndexRef = useRef(activeIndex)
 
   useEffect(() => {
+    currentIndexRef.current = activeIndex
+  }, [activeIndex])
+
+  useEffect(() => {
+    const updateActiveIndex = () => {
+      frameRef.current = null
+      if (pendingIndex.current === currentIndexRef.current) return
+      setActiveIndex(pendingIndex.current)
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveIndex(Number(entry.target.dataset.index))
-          }
+          if (!entry.isIntersecting) return
+          pendingIndex.current = Number(entry.target.dataset.index)
         })
+
+        if (frameRef.current === null) {
+          frameRef.current = window.requestAnimationFrame(updateActiveIndex)
+        }
       },
       {
         rootMargin: "-30% 0px -40% 0px",
@@ -25,12 +41,15 @@ export default function Services() {
       if (node) observer.observe(node)
     })
 
-    return () => observer.disconnect()
+    return () => {
+      observer.disconnect()
+      if (frameRef.current !== null) window.cancelAnimationFrame(frameRef.current)
+    }
   }, [])
 
   useEffect(() => {
     const target = timelineRefs.current[activeIndex]
-    target?.scrollIntoView({ behavior: "smooth", block: "nearest" })
+    target?.scrollIntoView({ behavior: "auto", block: "nearest" })
   }, [activeIndex])
 
   return (
@@ -55,7 +74,7 @@ export default function Services() {
               ref={(node) => (timelineRefs.current[index] = node)}
               className={`services-time-chip ${activeIndex === index ? "is-active" : ""}`}
                 onClick={() => {
-                  cardRefs.current[index]?.scrollIntoView({ behavior: "smooth", block: "center" })
+                  cardRefs.current[index]?.scrollIntoView({ behavior: "auto", block: "center" })
                 }}
               >
                 <span className="services-time-chip-step">{String(index + 1).padStart(2, "0")}</span>
