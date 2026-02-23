@@ -3,6 +3,7 @@ import { NavLink, Outlet, useLocation } from "react-router-dom"
 import FloatingHealthCheck from "./FloatingHealthCheck.jsx"
 import { practiceMetrics } from "../data/practiceHealthCheck.js"
 import { navItems } from "../data/content.js"
+import { socialIcons, socialLinks } from "../data/socialLinks.jsx"
 
 const linkBase =
   "text-xs font-semibold uppercase tracking-[0.12em] transition-colors"
@@ -92,6 +93,20 @@ const Layout = () => {
 
   return (
     <div className="min-h-screen bg-white text-ink-700">
+      <aside className="social-sidebar" aria-label="Social media links">
+        {socialLinks.map((item) => (
+          <a
+            key={item.label}
+            href={item.href}
+            target="_blank"
+            rel="noreferrer"
+            className="social-link"
+            aria-label={item.label}
+          >
+            <span className="social-link-icon">{socialIcons[item.icon]}</span>
+          </a>
+        ))}
+      </aside>
       <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur">
         <div className="border-b border-brand-blue/30 bg-[#2596be]">
           <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/90">
