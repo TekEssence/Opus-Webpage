@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { NavLink, Outlet, useLocation } from "react-router-dom"
+import FloatingHealthCheck from "./FloatingHealthCheck.jsx"
 import { practiceMetrics } from "../data/practiceHealthCheck.js"
 import { navItems } from "../data/content.js"
 
@@ -11,6 +12,7 @@ const Layout = () => {
   const [practiceMenuOpen, setPracticeMenuOpen] = useState(false)
   const location = useLocation()
   const practiceMenuRef = useRef(null)
+  const practiceButtonRef = useRef(null)
   const practiceHoverTimer = useRef(null)
   const aboutLinks = [
     { label: "Vision & Mission", href: "/about/vision-mission" },
@@ -81,6 +83,11 @@ const Layout = () => {
       setPracticeMenuOpen(false)
       practiceHoverTimer.current = null
     }, 200)
+  }
+
+  const handleFloatingPracticeClick = () => {
+    setPracticeMenuOpen(true)
+    practiceButtonRef.current?.scrollIntoView({ behavior: "smooth", block: "center" })
   }
 
   return (
@@ -167,6 +174,7 @@ const Layout = () => {
                 onMouseLeave={closePracticeMenuHover}
                 aria-expanded={practiceMenuOpen}
                 aria-controls="practice-health-check-menu"
+                ref={practiceButtonRef}
               >
                 Practice Health Check
               </button>
@@ -284,6 +292,7 @@ const Layout = () => {
           <p>© 2024 OPUS BPO. All rights reserved.</p>
         </div>
       </footer>
+      <FloatingHealthCheck onActivate={handleFloatingPracticeClick} />
     </div>
   )
 }
