@@ -10,4 +10,3 @@ To get the previous code
 git log --oneline    
 git reset --hard HEAD
 
-animation: about-hero-slide 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;

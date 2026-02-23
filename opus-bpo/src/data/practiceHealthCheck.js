@@ -42,23 +42,10 @@ const metricDefinitions = [
     title: "Net Collection Rate",
     description: "Reflects collections after write-offs and contractual discounts.",
     fields: [
-      { name: "netPayments", label: "Payments − Adjustments", placeholder: "e.g. 450,000" },
+      { name: "netPayments", label: "Payments - Adjustments", placeholder: "e.g. 450,000" },
       { name: "charges", label: "Total Charges", placeholder: "e.g. 500,000" },
     ],
     calculate: ({ netPayments, charges }) => (charges ? (netPayments / charges) * 100 : null),
-    unit: "%",
-    precision: 1,
-  },
-  {
-    id: "arOver90",
-    title: "AR > 90 Days",
-    description: "Highlight the portion of receivables that need rapid attention.",
-    fields: [
-      { name: "over90", label: "AR Balance > 90 Days", placeholder: "e.g. 120,000" },
-      { name: "totalBalance", label: "Total AR Balance", placeholder: "e.g. 600,000" },
-    ],
-    calculate: ({ over90, totalBalance }) =>
-      totalBalance ? (over90 / totalBalance) * 100 : null,
     unit: "%",
     precision: 1,
   },
