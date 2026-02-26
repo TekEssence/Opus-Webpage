@@ -397,7 +397,7 @@ const Home = () => {
               giving your organization consistent performance without added burden.
             </p>
           </div>
-          <div className="mt-10 px-8 py-8">
+          <div className="mt-10 px-0 py-8">
             <style>{`
               @keyframes spin {
                 from {
@@ -411,70 +411,137 @@ const Home = () => {
                 animation: spin 3s linear infinite;
               }
             `}</style>
-            <div className="relative flex items-center justify-center" style={{ gap: "-15px" }}>
-              {metrics.map((metric, index) => (
-                <div
-                  key={metric.number}
-                  className={`relative ${metric.position === "top" ? "-mt-12" : "mt-12"} transition-all duration-300`}
-                  style={{
-                    zIndex: 5 - Math.abs(2 - index),
-                    marginLeft: index > 0 ? "-15px" : "0",
-                  }}
-                >
-                  <div className="relative w-36 h-36">
-                    <svg className="absolute inset-0 w-full h-full transform -rotate-90">
-                      <defs>
-                        <linearGradient id={`hero-gradient-${metric.number}`} x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stopColor={metric.gradientStart} stopOpacity="1" />
-                          <stop offset="100%" stopColor={metric.gradientEnd} stopOpacity="1" />
-                        </linearGradient>
-                      </defs>
-                      <circle
-                        cx="72"
-                        cy="72"
-                        r={ringRadius}
-                        stroke="#e5e7eb"
-                        strokeWidth="6"
-                        fill="none"
-                      />
-                      <circle
-                        className="spinning-ring"
-                        cx="72"
-                        cy="72"
-                        r={ringRadius}
-                        stroke={`url(#hero-gradient-${metric.number})`}
-                        strokeWidth="6"
-                        fill="none"
-                        strokeDasharray={ringCircumference}
-                        strokeDashoffset={ringCircumference * 0.25}
-                        strokeLinecap="round"
-                        style={{ transformOrigin: "72px 72px" }}
-                      />
-                    </svg>
-                    <div className="absolute inset-3 bg-white rounded-full shadow-xl flex flex-col items-center justify-center border-2 border-gray-100">
-                      <div
-                        className="absolute -top-3 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shadow-lg"
-                        style={{
-                          background: `linear-gradient(135deg, ${metric.gradientStart}, ${metric.gradientEnd})`,
-                          color: "#1f2937",
-                        }}
-                      >
-                        {metric.number}
-                      </div>
-                      <div className="text-3xl font-bold text-gray-900 mb-0.5">{metric.value}</div>
-                      <div className="text-[10px] text-gray-500 uppercase tracking-[0.4em] text-center px-4 leading-tight font-medium">
-                        {metric.label}
+            <div className="ring-wrapper relative overflow-visible">
+              <div className="hidden md:flex relative items-center justify-center" style={{ gap: "-15px" }}>
+                {metrics.map((metric, index) => (
+                  <div
+                    key={metric.number}
+                    className={`relative ${metric.position === "top" ? "-mt-12" : "mt-12"} transition-all duration-300`}
+                    style={{
+                      zIndex: 5 - Math.abs(2 - index),
+                      marginLeft: index > 0 ? "-15px" : "0",
+                    }}
+                  >
+                    <div className="relative w-36 h-36">
+                      <svg className="absolute inset-0 w-full h-full transform -rotate-90">
+                        <defs>
+                          <linearGradient id={`hero-gradient-${metric.number}`} x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor={metric.gradientStart} stopOpacity="1" />
+                            <stop offset="100%" stopColor={metric.gradientEnd} stopOpacity="1" />
+                          </linearGradient>
+                        </defs>
+                        <circle
+                          cx="72"
+                          cy="72"
+                          r={ringRadius}
+                          stroke="#e5e7eb"
+                          strokeWidth="6"
+                          fill="none"
+                        />
+                        <circle
+                          className="spinning-ring"
+                          cx="72"
+                          cy="72"
+                          r={ringRadius}
+                          stroke={`url(#hero-gradient-${metric.number})`}
+                          strokeWidth="6"
+                          fill="none"
+                          strokeDasharray={ringCircumference}
+                          strokeDashoffset={ringCircumference * 0.25}
+                          strokeLinecap="round"
+                          style={{ transformOrigin: "72px 72px" }}
+                        />
+                      </svg>
+                      <div className="absolute inset-3 bg-white rounded-full shadow-xl flex flex-col items-center justify-center border-2 border-gray-100">
+                        <div
+                          className="absolute -top-3 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shadow-lg"
+                          style={{
+                            background: `linear-gradient(135deg, ${metric.gradientStart}, ${metric.gradientEnd})`,
+                            color: "#1f2937",
+                          }}
+                        >
+                          {metric.number}
+                        </div>
+                        <div className="text-3xl font-bold text-gray-900 mb-0.5">{metric.value}</div>
+                        <div className="text-[10px] text-gray-500 uppercase tracking-[0.4em] text-center px-4 leading-tight font-medium">
+                          {metric.label}
+                        </div>
                       </div>
                     </div>
-                  </div>
                     {index < metrics.length - 1 && (
                       <div
                         className="absolute top-1/2 -right-4 w-8 h-1 z-0"
-                      style={{ backgroundColor: "#ff9a00", transform: "translateY(-50%)" }}
+                        style={{ backgroundColor: "#ff9a00", transform: "translateY(-50%)" }}
                       />
                     )}
-                </div>
-              ))}
+                  </div>
+                ))}
+              </div>
+              <div className="ring-track md:hidden flex w-full flex-nowrap items-center justify-start gap-6 overflow-x-auto px-4 py-6 snap-x snap-mandatory scroll-smooth scrollbar-hidden">
+                {metrics.map((metric) => (
+                  <div
+                    key={metric.number}
+                    className="flex-shrink-0 snap-center transition-all duration-300"
+                  >
+                    <div className="relative w-[clamp(200px,22vw,260px)] min-w-[clamp(200px,22vw,260px)] aspect-square">
+                      <svg
+                        className="absolute inset-0 w-full h-full transform -rotate-90"
+                        viewBox="0 0 144 144"
+                        role="presentation"
+                      >
+                        <defs>
+                          <linearGradient
+                            id={`hero-gradient-${metric.number}`}
+                            x1="0%"
+                            y1="0%"
+                            x2="100%"
+                            y2="100%"
+                          >
+                            <stop offset="0%" stopColor={metric.gradientStart} stopOpacity="1" />
+                            <stop offset="100%" stopColor={metric.gradientEnd} stopOpacity="1" />
+                          </linearGradient>
+                        </defs>
+                        <circle
+                          cx="72"
+                          cy="72"
+                          r={ringRadius}
+                          stroke="#e5e7eb"
+                          strokeWidth="6"
+                          fill="none"
+                        />
+                        <circle
+                          className="spinning-ring"
+                          cx="72"
+                          cy="72"
+                          r={ringRadius}
+                          stroke={`url(#hero-gradient-${metric.number})`}
+                          strokeWidth="6"
+                          fill="none"
+                          strokeDasharray={ringCircumference}
+                          strokeDashoffset={ringCircumference * 0.25}
+                          strokeLinecap="round"
+                          style={{ transformOrigin: "72px 72px" }}
+                        />
+                      </svg>
+                      <div className="absolute inset-3 bg-white rounded-full shadow-xl flex flex-col items-center justify-center border-2 border-gray-100">
+                        <div
+                          className="absolute -top-3 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shadow-lg"
+                          style={{
+                            background: `linear-gradient(135deg, ${metric.gradientStart}, ${metric.gradientEnd})`,
+                            color: "#1f2937",
+                          }}
+                        >
+                          {metric.number}
+                        </div>
+                        <div className="text-3xl font-bold text-gray-900 mb-0.5">{metric.value}</div>
+                        <div className="text-[10px] text-gray-500 uppercase tracking-[0.4em] text-center px-4 leading-tight font-medium">
+                          {metric.label}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
           <div className="rounded-2xl border border-brand-blue/20 bg-white/90 p-6 shadow-sm">
