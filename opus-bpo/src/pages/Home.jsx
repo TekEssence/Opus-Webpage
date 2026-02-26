@@ -687,11 +687,23 @@ const Home = () => {
           ))}
         </div>
         <div className="mt-8 space-y-4 md:hidden">
-          {serviceBlocks.map((block) => (
-            <article
-              key={`${block.title}-mobile`}
-              className="flex flex-col gap-4 rounded-3xl border border-slate-200 bg-white/90 p-5 shadow-[0_20px_45px_-25px_rgba(15,23,42,0.9)] backdrop-blur"
-            >
+          {serviceBlocks.map((block, index) => {
+            const mobileGradients = [
+              "linear-gradient(145deg, #447def, #07255f)",
+              "linear-gradient(145deg, #447def, #07255f)",
+              "linear-gradient(145deg, #447def, #07255f)",
+              "linear-gradient(145deg, #facc15, #f97316)",
+              "linear-gradient(145deg, #8b5cf6, #ec4899)",
+            ];
+            const cardGradient = mobileGradients[index % mobileGradients.length];
+            return (
+              <article
+                key={`${block.title}-mobile`}
+                className="flex flex-col gap-4 rounded-3xl border border-white/30 p-5 shadow-[0_20px_45px_-25px_rgba(15,23,42,0.9)] font-heading"
+                style={{
+                  background: cardGradient,
+                }}
+              >
               <div
                 className="h-1 rounded-full"
                 style={{
@@ -700,25 +712,26 @@ const Home = () => {
                     : `linear-gradient(90deg, ${block.accentStart}, ${block.accentEnd})`,
                 }}
               />
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-400">
+              <div className="text-white">
+                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-white/70">
                   Core capability
                 </p>
-                <h3 className="text-lg font-semibold text-slate-900">{block.title}</h3>
+                <h3 className="text-lg font-semibold text-white">{block.title}</h3>
               </div>
-              <p className="text-sm text-slate-600">{block.summary}</p>
-              <ul className="flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
-                {block.bullets.slice(0, 3).map((item) => (
+              <p className="text-sm font-sans text-white/90">{block.summary}</p>
+              <ul className="flex flex-col gap-2 text-[0.8rem] font-semibold capitalize tracking-tight text-slate-500">
+                {block.bullets.map((item) => (
                   <li
                     key={item}
-                    className="rounded-full border border-slate-200 px-3 py-1 bg-white/80 shadow-sm"
+                    className="rounded-full border border-white/40 px-3 py-2 bg-white/20 text-white/90 shadow-lg text-center"
                   >
                     {item}
                   </li>
                 ))}
               </ul>
             </article>
-          ))}
+          );
+        })}
         </div>
         <div className="mt-8">
           <Link
