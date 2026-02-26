@@ -629,7 +629,7 @@ const Home = () => {
             </span>
           ))}
         </div>
-        <div className="mt-10 flex flex-col gap-10 lg:flex-row lg:items-stretch lg:justify-center lg:gap-16">
+        <div className="mt-10 hidden flex-col gap-10 lg:flex-row lg:items-stretch lg:justify-center lg:gap-16 md:flex">
           {serviceBlocks.map((block) => (
             <div
               key={block.title}
@@ -684,6 +684,40 @@ const Home = () => {
                 </div>
               </div>
             </div>
+          ))}
+        </div>
+        <div className="mt-8 space-y-4 md:hidden">
+          {serviceBlocks.map((block) => (
+            <article
+              key={`${block.title}-mobile`}
+              className="flex flex-col gap-4 rounded-3xl border border-slate-200 bg-white/90 p-5 shadow-[0_20px_45px_-25px_rgba(15,23,42,0.9)] backdrop-blur"
+            >
+              <div
+                className="h-1 rounded-full"
+                style={{
+                  background: block.tagAccentStart
+                    ? `linear-gradient(90deg, ${block.tagAccentStart}, ${block.tagAccentEnd})`
+                    : `linear-gradient(90deg, ${block.accentStart}, ${block.accentEnd})`,
+                }}
+              />
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-400">
+                  Core capability
+                </p>
+                <h3 className="text-lg font-semibold text-slate-900">{block.title}</h3>
+              </div>
+              <p className="text-sm text-slate-600">{block.summary}</p>
+              <ul className="flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
+                {block.bullets.slice(0, 3).map((item) => (
+                  <li
+                    key={item}
+                    className="rounded-full border border-slate-200 px-3 py-1 bg-white/80 shadow-sm"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </article>
           ))}
         </div>
         <div className="mt-8">
