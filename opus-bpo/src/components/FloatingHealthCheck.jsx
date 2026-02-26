@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { HeartPulse } from "lucide-react"
 
 const PARTICLE_COUNT = 20
@@ -27,6 +27,8 @@ const COLORS = [
 
 const FloatingHealthCheck = ({ onActivate }) => {
   const [particles, setParticles] = useState([])
+  const [showPopup, setShowPopup] = useState(false)
+  const popupTimerRef = useRef(null)
 
   const handleClick = () => {
     const newParticles = Array.from({ length: PARTICLE_COUNT }, (_, index) => {
@@ -44,8 +46,27 @@ const FloatingHealthCheck = ({ onActivate }) => {
 
     setParticles(newParticles)
     onActivate?.()
+    setShowPopup(true)
+
+    if (popupTimerRef.current) {
+      clearTimeout(popupTimerRef.current)
+    }
+
+    popupTimerRef.current = window.setTimeout(() => {
+      setShowPopup(false)
+      popupTimerRef.current = null
+    }, 3200)
+
     setTimeout(() => setParticles([]), 1200)
   }
+
+  useEffect(() => {
+    return () => {
+      if (popupTimerRef.current) {
+        clearTimeout(popupTimerRef.current)
+      }
+    }
+  }, [])
 
   return (
     <>
@@ -75,6 +96,21 @@ const FloatingHealthCheck = ({ onActivate }) => {
           })}
         </div>
       )}
+
+      {showPopup && (
+        <div className="floating-practice-popup" role="status" aria-live="polite">
+          <div className="floating-practice-popup-icon" aria-hidden="true">
+            <HeartPulse size={18} />
+          </div>
+          <div>
+            <p className="floating-practice-popup-title">Try a free health check</p>
+            <p className="floating-practice-popup-subtitle">
+              Let OPUS BPO review your revenue cycle in minutes.
+            </p>
+          </div>
+        </div>
+      )}
+
       <button
         type="button"
         className="floating-practice-trigger"
