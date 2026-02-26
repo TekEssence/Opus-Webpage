@@ -1561,10 +1561,26 @@ a {
   padding: 2rem;
   position: sticky;
   top: 32px;
+  max-height: calc(100vh - 72px);
+  overflow-y: auto;
+  scroll-behavior: smooth;
   box-shadow: 0 40px 60px -45px rgba(15, 23, 42, 0.7);
   text-align: left;
   font-family: inherit;
   border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.services-timeline-column::-webkit-scrollbar {
+  width: 0;
+}
+
+.services-timeline-column::-moz-scrollbar,
+.services-timeline-column::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.services-timeline-column {
+  scrollbar-width: none;
 }
 
 .services-timeline-list {
