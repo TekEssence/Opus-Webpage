@@ -1493,51 +1493,6 @@ a {
   }
 }
 
-.social-sidebar {
-  position: fixed;
-  top: 45%;
-  right: 1.1rem;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  padding: 0.65rem;
-  background: linear-gradient(180deg, #db4425, #a1221c);
-  border-radius: 32px;
-  box-shadow: 0 10px 30px -20px rgba(0, 0, 0, 0.45);
-  z-index: 40;
-}
-
-.social-link {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #f8c607;
-  color: #7c1500;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: transform 220ms ease, background 220ms ease;
-}
-
-.social-link:hover {
-  transform: translateX(6px);
-  background: #fad02c;
-}
-
-.social-link-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.social-link-icon svg {
-  width: 24px;
-  height: 24px;
-  fill: currentColor;
-}
-
 .services-alt-view {
   background: linear-gradient(180deg, #f8fbff 0%, #f3f5fc 45%, #eef2ff 100%);
   font-family: "Manrope", "Inter", system-ui, -apple-system, sans-serif;
@@ -1902,9 +1857,6 @@ a {
     gap: 1.5rem;
   }
 
-  .social-sidebar {
-    display: none;
-  }
 }
 .services-hero {
   max-width: 900px;

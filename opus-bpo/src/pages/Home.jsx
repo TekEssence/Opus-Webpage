@@ -2,7 +2,6 @@ import { Link } from "react-router-dom"
 import { useEffect } from "react"
 import SectionHeader from "../components/SectionHeader.jsx"
 import { services, trustIndicators } from "../data/content.js"
-import { socialLinks, socialIcons } from "../data/socialLinks.jsx"
 const metrics = [
   {
     number: "1",
@@ -277,20 +276,6 @@ const Home = () => {
 
   return (
     <>
-            <aside className="social-sidebar" aria-label="Social media links">
-              {socialLinks.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="social-link"
-                  aria-label={item.label}
-                >
-                  <span className="social-link-icon">{socialIcons[item.icon]}</span>
-                </a>
-              ))}
-            </aside>
       <section className="bg-transparent">
         <div className="mx-auto w-full max-w-none px-0 py-0">
           <div className="hero-media hero-full reveal">
