@@ -13,11 +13,14 @@ const Contact = () => (
           <div className="space-y-4 text-sm text-slate-600">
             <p>
               <span className="font-semibold text-brand-slate">Email:</span>{" "}
-              partnerships@opusbpo.com
+              Scott.nowicki@opusbpo.com
             </p>
             <p>
-              <span className="font-semibold text-brand-slate">Phone:</span> +1 (555)
-              018-2400
+              <span className="font-semibold text-brand-slate">Phone:</span> (630)
+              272 7618
+            </p>
+            <p>
+              <span className="font-semibold text-brand-slate">Address:</span> 6167 Jarvis Ave, Newark, CA 94560, United States
             </p>
             <p>
               <span className="font-semibold text-brand-slate">Headquarters:</span>{" "}
