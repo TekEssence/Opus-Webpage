@@ -1,6 +1,9 @@
+import { useState } from "react"
 import { services } from "../data/content.js"
 
 export default function Services() {
+  const [activeMobileService, setActiveMobileService] = useState(0)
+
   return (
     <main className="relative overflow-hidden bg-[linear-gradient(90deg,_rgba(37,150,190,0.28)_0%,_rgba(244,219,214,0.8)_50%,_rgba(255,212,19,0.32)_100%)]">
       <style>{`
@@ -43,7 +46,68 @@ export default function Services() {
           </div>
         </div>
 
-        <div className="relative">
+        <div className="space-y-4 md:hidden">
+          {services.map((service, index) => {
+            const isActive = activeMobileService === index
+
+            return (
+              <div
+                key={`${service.title}-mobile`}
+                className={`overflow-hidden rounded-[1.75rem] border border-white/80 bg-[linear-gradient(135deg,rgba(255,255,255,0.95),rgba(255,247,206,0.92),rgba(230,245,250,0.9),rgba(255,228,220,0.92))] shadow-[0_20px_40px_-28px_rgba(37,150,190,0.28),0_24px_48px_-30px_rgba(219,68,37,0.16)] transition-all duration-300 ${
+                  isActive ? "scale-[1.01]" : ""
+                }`}
+              >
+                <button
+                  type="button"
+                  onClick={() => setActiveMobileService(index)}
+                  className="flex w-full items-center gap-3 px-4 py-4 text-left"
+                  aria-expanded={isActive}
+                >
+                  <span className="inline-flex min-w-14 justify-center rounded-full bg-[linear-gradient(135deg,#2596be,#ffd413,#db4425)] px-3 py-2 text-sm font-semibold text-white shadow-[0_10px_24px_-14px_rgba(219,68,37,0.4)]">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="flex-1 text-base font-semibold text-[#1e4f86]">
+                    {service.title}
+                  </span>
+                  <span className="text-lg font-semibold text-[#1e4f86]">
+                    {isActive ? "−" : "+"}
+                  </span>
+                </button>
+
+                {isActive && (
+                  <div className="px-4 pb-4">
+                    <div className="overflow-hidden rounded-[1.5rem] border border-white/80 bg-white/70 p-2 shadow-[0_16px_30px_-24px_rgba(15,23,42,0.24)]">
+                      <img
+                        src={service.image}
+                        alt={service.title}
+                        loading="lazy"
+                        className="h-44 w-full rounded-[1.15rem] object-cover"
+                      />
+                    </div>
+                    <div className="mt-4 rounded-[1.5rem] border border-white/60 bg-white/35 p-4 backdrop-blur-[2px]">
+                      <p className="text-sm leading-7 text-slate-800">
+                        {service.description}
+                      </p>
+                      <div className="mt-4 grid gap-3">
+                        {service.points.map((point, pointIndex) => (
+                          <div
+                            key={`${service.title}-mobile-point-${pointIndex}`}
+                            className="flex items-start gap-3 rounded-2xl border border-white/60 bg-white/45 px-4 py-3 text-sm leading-7 text-slate-800"
+                          >
+                            <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-[#db4425]" />
+                            <span>{point}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )
+          })}
+        </div>
+
+        <div className="relative hidden md:block">
           <div className="absolute bottom-0 left-1/2 top-0 hidden w-[2px] -translate-x-1/2 bg-[linear-gradient(180deg,rgba(37,150,190,0.5),rgba(219,68,37,0.32),rgba(255,212,19,0.45))] md:block" />
 
           <div className="space-y-12 md:space-y-16">
@@ -53,7 +117,7 @@ export default function Services() {
               return (
                 <div
                   key={service.title}
-                  className={`relative grid gap-6 md:grid-cols-2 md:items-center ${
+                  className={`relative grid gap-3 md:gap-6 md:grid-cols-2 md:items-center ${
                     isLeft ? "" : "md:[&>div:first-child]:order-2 md:[&>div:last-child]:order-1"
                   }`}
                 >
@@ -99,8 +163,8 @@ export default function Services() {
                     </div>
                   </div>
 
-                  <div className={`${isLeft ? "md:pl-12" : "md:pr-12"}`}>
-                    <div className="group relative p-4">
+                  <div className={`-mt-4 md:mt-0 ${isLeft ? "md:pl-12" : "md:pr-12"}`}>
+                    <div className="group relative rounded-[2.25rem] bg-white/20 px-3 pb-3 pt-0 backdrop-blur-[2px] md:bg-transparent md:px-0 md:pb-0">
                       <div className="relative h-56 w-full rounded-[2rem] border border-white bg-white/80 shadow-[0_24px_60px_-42px_rgba(15,23,42,0.16)] transition-all duration-700 ease-in-out group-hover:mx-auto group-hover:w-56 group-hover:rounded-full md:h-64 md:group-hover:w-64">
                         <div
                           aria-hidden="true"
