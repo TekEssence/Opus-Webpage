@@ -99,8 +99,8 @@ const Layout = () => {
             <span className="hidden sm:inline">Client Support & Governance</span>
           </div>
         </div>
-        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
-          <div className="flex items-center gap-4">
+        <div className="flex w-full items-center px-6 py-4">
+          <div className="flex shrink-0 items-center gap-4">
             <img
               src="/opus-logo.png"
               alt="OPUS BPO logo"
@@ -113,7 +113,7 @@ const Layout = () => {
               </p>
             </div>
           </div>
-          <nav className="hidden items-center gap-8 lg:flex">
+          <nav className="hidden flex-1 items-center justify-center gap-8 px-8 lg:flex">
               {navItems.map((item) =>
                 item.label === "About" ? (
                   <div key={item.path} className="nav-group relative flex items-center gap-1">
@@ -160,7 +160,7 @@ const Layout = () => {
                 )
               )}
           </nav>
-          <div className="flex items-center gap-3">
+          <div className="ml-auto flex shrink-0 items-center gap-3">
             <div
               className="practice-menu-wrapper hidden lg:block"
               onMouseEnter={openPracticeMenuHover}

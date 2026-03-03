@@ -614,12 +614,12 @@ const Home = () => {
             </span>
           ))}
         </div>
-        <div className="mt-10 hidden flex-col gap-10 lg:flex-row lg:items-stretch lg:justify-center lg:gap-16 md:flex">
+        <div className="mt-10 hidden flex-col gap-10 md:flex lg:flex-row lg:items-stretch lg:justify-center lg:gap-6 xl:gap-8">
           {serviceBlocks.map((block) => (
             <div
               key={block.title}
-              className="service-pill group relative flex-1 overflow-hidden rounded-[999px] border border-white/20 shadow-[0_40px_80px_-40px_rgba(15,23,42,0.8)]"
-              style={{ minHeight: "580px", minWidth: "400px" }}
+              className="service-pill group relative flex-1 overflow-hidden rounded-[999px] border border-white/20 shadow-[0_40px_80px_-40px_rgba(15,23,42,0.8)] lg:max-w-[21rem]"
+              style={{ minHeight: "580px", minWidth: "0" }}
             >
               <div
                 className="service-pill-media"
