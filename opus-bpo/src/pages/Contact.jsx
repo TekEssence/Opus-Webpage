@@ -13,11 +13,21 @@ const Contact = () => (
           <div className="space-y-4 text-sm text-slate-600">
             <p>
               <span className="font-semibold text-brand-slate">Email:</span>{" "}
-              Scott.nowicki@opusbpo.com
+              <a
+                href="mailto:Scott.nowicki@opusbpo.com"
+                className="font-medium text-brand-blue underline underline-offset-4 transition hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-200"
+              >
+                Scott.nowicki@opusbpo.com
+              </a>
             </p>
             <p>
-              <span className="font-semibold text-brand-slate">Phone:</span> (630)
-              272 7618
+              <span className="font-semibold text-brand-slate">Phone:</span>{" "}
+              <a
+                href="tel:+16302727618"
+                className="font-medium text-brand-blue underline underline-offset-4 transition hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-200"
+              >
+                (630) 272 7618
+              </a>
             </p>
             <p>
               <span className="font-semibold text-brand-slate">Address:</span> 6167 Jarvis Ave, Newark, CA 94560, United States
@@ -51,6 +61,16 @@ const Contact = () => (
               <input
                 type="email"
                 placeholder="name@healthsystem.org"
+                className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-brand-blue focus:outline-none focus:ring-2 focus:ring-blue-100"
+              />
+            </div>
+            <div>
+              <label className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+                Contact Number
+              </label>
+              <input
+                type="tel"
+                placeholder="(555) 123 4567"
                 className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-brand-blue focus:outline-none focus:ring-2 focus:ring-blue-100"
               />
             </div>

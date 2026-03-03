@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react"
-import { Link, useLocation } from "react-router-dom"
+import { useLocation } from "react-router-dom"
 import SectionHeader from "../components/SectionHeader.jsx"
 import {
   practiceMetrics,
@@ -24,13 +24,8 @@ const PracticeHealthCheck = () => {
   const [results, setResults] = useState({})
 
   useEffect(() => {
-    if (!focusedMetric) return
-    const timer = setTimeout(() => {
-      const element = document.getElementById(focusedMetric.id)
-      element?.scrollIntoView({ behavior: "smooth", block: "start" })
-    }, 0)
-    return () => clearTimeout(timer)
-  }, [focusedMetric])
+    window.scrollTo({ top: 0, behavior: "auto" })
+  }, [location.search])
 
   const handleInputChange = (metricId, fieldName, value) => {
     setInputs((prev) => ({
