@@ -12,6 +12,15 @@ export default function Services() {
             transform: translateX(320%) skewX(-18deg);
           }
         }
+
+        @keyframes service-image-ring {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
       `}</style>
       <section className="relative mx-auto w-full max-w-6xl px-6 pb-20 pt-16">
         <div className="mb-14 text-center">
@@ -91,14 +100,30 @@ export default function Services() {
                   </div>
 
                   <div className={`${isLeft ? "md:pl-12" : "md:pr-12"}`}>
-                    <div className="group relative rounded-[2rem] border border-white bg-white/80 p-4 shadow-[0_24px_60px_-42px_rgba(15,23,42,0.16)]">
-                      <div className="absolute inset-6 rounded-[1.75rem] border border-slate-100 transition-all duration-700 ease-in-out group-hover:inset-8 group-hover:rounded-full" />
-                      <img
-                        src={service.image}
-                        alt={service.title}
-                        loading="lazy"
-                        className="relative h-56 w-full rounded-[1.5rem] object-cover transition-all duration-700 ease-in-out group-hover:rounded-full md:h-64"
-                      />
+                    <div className="group relative p-4">
+                      <div className="relative h-56 w-full rounded-[2rem] border border-white bg-white/80 shadow-[0_24px_60px_-42px_rgba(15,23,42,0.16)] transition-all duration-700 ease-in-out group-hover:mx-auto group-hover:w-56 group-hover:rounded-full md:h-64 md:group-hover:w-64">
+                        <div
+                          aria-hidden="true"
+                          className="pointer-events-none absolute inset-[-6px] rounded-[1.9rem] opacity-0 transition-all duration-700 ease-in-out group-hover:rounded-full group-hover:opacity-100"
+                        >
+                          <div
+                            className="absolute inset-0 rounded-[inherit]"
+                            style={{
+                              background:
+                                "conic-gradient(from 0deg, rgba(249,115,22,0) 0deg, rgba(249,115,22,0) 48deg, rgba(249,115,22,0.95) 85deg, rgba(251,191,36,0.9) 132deg, rgba(249,115,22,0) 170deg, rgba(249,115,22,0) 228deg, rgba(249,115,22,0.95) 275deg, rgba(251,191,36,0.9) 320deg, rgba(249,115,22,0) 360deg)",
+                              animation: "service-image-ring 2.4s linear infinite",
+                            }}
+                          />
+                          <div className="absolute inset-[4px] rounded-[inherit] bg-white/90" />
+                        </div>
+                        <div className="absolute inset-6 rounded-[1.75rem] border border-slate-100 transition-all duration-700 ease-in-out group-hover:inset-2 group-hover:rounded-full" />
+                        <img
+                          src={service.image}
+                          alt={service.title}
+                          loading="lazy"
+                          className="relative h-56 w-full rounded-[1.5rem] object-cover transition-all duration-700 ease-in-out group-hover:h-full group-hover:rounded-full md:h-64"
+                        />
+                      </div>
                     </div>
                   </div>
 
