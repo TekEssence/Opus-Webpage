@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import SectionHeader from "../components/SectionHeader.jsx"
 import { services, trustIndicators } from "../data/content.js"
 const metrics = [
@@ -212,6 +212,33 @@ const StepCard = ({ id, title, description, icon }) => (
   </article>
 )
 
+const faqItems = [
+  {
+    q: "How do you protect PHI and HIPAA obligations?",
+    a: "We follow role-based access controls, confidentiality agreements, and audit-ready workflows aligned to HIPAA requirements.",
+  },
+  {
+    q: "What reporting cadence do you provide?",
+    a: "Weekly operational updates and monthly governance reviews tied to KPIs and denial trends.",
+  },
+  {
+    q: "Can you work within our existing EHR or PM system?",
+    a: "Yes. We align to your tools and workflows with documented SOPs and onboarding checklists.",
+  },
+  {
+    q: "What turnaround times can we expect?",
+    a: "Charge entry within 24\u201348 hours and daily payment posting, depending on volume and scope.",
+  },
+  {
+    q: "Do you support only full-service engagements?",
+    a: "No. We can support specific service lines such as coding, eligibility, claims follow-up, payment posting, or a broader end-to-end RCM scope.",
+  },
+  {
+    q: "How do you handle denials and appeals?",
+    a: "We combine denial trend analysis, root-cause review, appeal package preparation, and prevention feedback loops to reduce repeat rejections.",
+  },
+]
+
 const WorkflowInfographic = () => {
   const leftSteps = [workflowSteps[0], workflowSteps[2]]
   const rightSteps = [workflowSteps[1], workflowSteps[3]]
@@ -253,6 +280,8 @@ const WorkflowInfographic = () => {
 }
 
 const Home = () => {
+  const [openFaq, setOpenFaq] = useState(0)
+
   useEffect(() => {
     const revealElements = document.querySelectorAll(".reveal")
     if (!revealElements.length) return undefined
@@ -806,37 +835,70 @@ const Home = () => {
 
     <section className="section-tint section-divider">
       <div className="mx-auto w-full max-w-6xl px-6 py-20">
-        <div className="reveal flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-          <SectionHeader
-            label="FAQ"
-            title="Direct answers for healthcare finance leaders."
-            description="Operational clarity before engagement."
-          />
+        <div className="reveal mb-10 max-w-6xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-blue">
+            FAQ
+          </p>
+          <h2 className="mt-4 font-heading text-3xl font-semibold text-brand-slate md:text-4xl md:leading-tight">
+            Direct answers for healthcare finance leaders.
+          </h2>
+          <p className="mt-3 text-base text-slate-600 md:text-lg">
+            Operational clarity before engagement.
+          </p>
         </div>
-        <div className="mt-10 grid gap-6 lg:grid-cols-2">
-          {[
-            {
-              q: "How do you protect PHI and HIPAA obligations?",
-              a: "We follow role-based access controls, confidentiality agreements, and audit-ready workflows aligned to HIPAA requirements.",
-            },
-            {
-              q: "What reporting cadence do you provide?",
-              a: "Weekly operational updates and monthly governance reviews tied to KPIs and denial trends.",
-            },
-            {
-              q: "Can you work within our existing EHR or PM system?",
-              a: "Yes. We align to your tools and workflows with documented SOPs and onboarding checklists.",
-            },
-            {
-              q: "What turnaround times can we expect?",
-              a: "Charge entry within 24\u201348 hours and daily payment posting, depending on volume and scope.",
-            },
-          ].map((item) => (
-            <div key={item.q} className="card-metal reveal rounded-2xl p-6">
-              <p className="text-sm font-semibold text-brand-slate">{item.q}</p>
-              <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.a}</p>
+
+        <div className="mx-auto max-w-4xl overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white shadow-[0_24px_48px_-30px_rgba(15,23,42,0.22)]">
+          <div className="h-1.5 w-full bg-[linear-gradient(90deg,#2596be,#ffd413,#db4425)]" />
+          <div className="px-6 py-5 md:px-8 md:py-6">
+            <div className="mb-3 rounded-2xl bg-[linear-gradient(90deg,rgba(37,150,190,0.08),rgba(255,212,19,0.08),rgba(219,68,37,0.08))] px-4 py-3">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-blue">
+                Quick help
+              </p>
+              <p className="mt-1 text-sm leading-relaxed text-slate-600 md:text-base">
+                Frequently asked questions
+              </p>
             </div>
-          ))}
+
+            <div className="space-y-1">
+              {faqItems.map((item, index) => {
+                const isOpen = openFaq === index
+
+                return (
+                  <div
+                    key={item.q}
+                    className="reveal border-b border-slate-200/80 last:border-b-0"
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setOpenFaq(isOpen ? -1 : index)}
+                      aria-expanded={isOpen}
+                      aria-label={`${isOpen ? "Collapse" : "Expand"} FAQ: ${item.q}`}
+                      className="flex w-full items-center justify-between gap-4 py-4 text-left"
+                    >
+                      <span className="pr-4 text-sm font-semibold text-brand-slate md:text-base">
+                        {item.q}
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        className={`inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-100 text-base font-bold leading-none text-brand-blue transition-transform duration-300 ${
+                          isOpen ? "rotate-180 bg-blue-50" : ""
+                        }`}
+                      >
+                        ˅
+                      </span>
+                    </button>
+                    {isOpen && (
+                      <div className="pb-4">
+                        <p className="rounded-xl bg-slate-50 px-4 py-3 text-sm leading-relaxed text-slate-700 md:text-base">
+                          {item.a}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -36,6 +36,11 @@ const Contact = () => (
               <span className="font-semibold text-brand-slate">Headquarters:</span>{" "}
               Delivery teams supporting national coverage
             </p>
+            <p>
+              <span className="font-semibold text-brand-slate">Response Time:</span>{" "}
+              Initial replies within one business day. Discovery calls typically scheduled within
+              2–3 business days.
+            </p>
           </div>
           <div className="rounded-2xl border border-blue-100 bg-blue-50 p-6 text-sm text-slate-600">
             We respond to consultation requests within one business day and provide a structured
@@ -43,7 +48,7 @@ const Contact = () => (
           </div>
         </div>
         <div className="card-metal reveal rounded-3xl p-8">
-          <form className="space-y-4">
+          <form id="contact-form" className="space-y-4">
             <div>
               <label className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
                 Full Name
