@@ -14,7 +14,7 @@ const metrics = [
   {
     number: "2",
     value: "95%",
-    label: "FIRST PASS ACCEPT RATE",
+    label: "FIRST-PASS ACCEPT RATE",
     position: "bottom",
     gradientStart: "#4dd5f3",
     gradientEnd: "#16a34a",
@@ -96,10 +96,10 @@ const serviceBlocks = [
     summary:
       "Patient access, eligibility, and pre-registration workflows keep your front desk efficient and denials minimal.",
     bullets: [
-      "Eligibility verification & benefit confirmation",
-      "Appointment scheduling & pre-visit intake",
-      "Charge capture & demographic accuracy",
-      "Prior authorization tracking",
+      "Eligibility verification & benefit confirmation.",
+      "Appointment scheduling & pre-visit intake.",
+      "Charge capture & demographic accuracy.",
+      "Prior authorization tracking.",
     ],
     image:
       "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80",
@@ -111,12 +111,12 @@ const serviceBlocks = [
   {
     title: "Claims Preparation & Submission",
     summary:
-      "Clean claim preparation, payer edits, and smart routing ensure your claims stay compliant and timely.",
+      "Clean-claim preparation, payer edits, and smart routing ensure your claims stay compliant and timely.",
     bullets: [
-      "Medical coding with QA sampling",
-      "Claim scrub & payer-specific edits",
-      "Denial prevention monitoring",
-      "Electronic submission & tracking",
+      "Medical coding with QA sampling.",
+      "Claim scrub & payer-specific edits.",
+      "Denial prevention monitoring.",
+      "Electronic submission & tracking.",
     ],
     image:
       "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80",
@@ -130,10 +130,10 @@ const serviceBlocks = [
     summary:
       "AR follow-up, denial resolution, and reporting deliver the financial clarity your leadership expects.",
     bullets: [
-      "AR follow-ups & payer outreach",
-      "Payment posting & reconciliation",
-      "Denial management & appeals",
-      "Strategic reporting for executive governance",
+      "AR follow-ups & payer outreach.",
+      "Payment posting & reconciliation.",
+      "Denial management & appeals.",
+      "Strategic reporting for executive governance.",
     ],
     image:
       "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=900&q=80",
@@ -829,7 +829,7 @@ const Home = () => {
             },
             {
               q: "What turnaround times can we expect?",
-              a: "Charge entry within 24–48 hours and daily payment posting, depending on volume and scope.",
+              a: "Charge entry within 24\u201348 hours and daily payment posting, depending on volume and scope.",
             },
           ].map((item) => (
             <div key={item.q} className="card-metal reveal rounded-2xl p-6">
@@ -846,3 +846,4 @@ const Home = () => {
 }
 
 export default Home
+

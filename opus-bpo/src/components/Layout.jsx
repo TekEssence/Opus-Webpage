@@ -300,7 +300,7 @@ const Layout = () => {
               </NavLink>
             ))}
           </div>
-          <p>© 2024 OPUS BPO. All rights reserved.</p>
+          <p>© 2026 OPUS BPO. All rights reserved.</p>
         </div>
       </footer>
       <FloatingHealthCheck onActivate={handleFloatingPracticeClick} />

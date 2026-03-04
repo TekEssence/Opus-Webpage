@@ -51,8 +51,8 @@ const metricDefinitions = [
   },
   {
     id: "firstPassResolutionRate",
-    title: "First Pass Resolution Rate",
-    description: "Track how many claims clear on the first pass.",
+    title: "First-Pass Resolution Rate",
+    description: "Track how many claims clear on the first-pass review.",
     fields: [
       { name: "paidOnFirst", label: "Claims Paid on 1st Submission", placeholder: "e.g. 18,000" },
       { name: "totalClaims", label: "Total Claims Submitted", placeholder: "e.g. 20,000" },
@@ -88,3 +88,4 @@ export const formatMetricValue = (value, precision = 1) => {
     maximumFractionDigits: precision,
   })
 }
+

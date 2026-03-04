@@ -72,10 +72,10 @@ const AboutVision = () => (
             </p>
             <div className="grid gap-4 md:grid-cols-2">
               {[
-                "HIPAA-aligned workflows",
-                "Dedicated QA sampling",
-                "Structured AR escalation",
-                "Monthly governance reviews",
+                "HIPAA-aligned workflows.",
+                "Dedicated QA sampling.",
+                "Structured AR escalation.",
+                "Monthly governance reviews.",
               ].map((item) => (
                 <div
                   key={item}
@@ -107,7 +107,7 @@ const AboutVision = () => (
             <div className="grid gap-4 md:grid-cols-3">
               {[
                 { label: "Accuracy", value: "98%+" },
-                { label: "AR Velocity", value: "15–20 days" },
+                { label: "AR Velocity", value: "15\u201320 days" },
                 { label: "Compliance", value: "HIPAA-ready" },
               ].map((item) => (
                 <div key={item.label} className="card-metal rounded-2xl p-5 text-center">
@@ -133,3 +133,4 @@ const AboutVision = () => (
 )
 
 export default AboutVision
+

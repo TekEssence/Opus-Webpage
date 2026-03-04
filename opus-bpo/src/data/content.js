@@ -8,7 +8,7 @@ export const navItems = [
 
 export const stats = [
   { value: 98, suffix: "%", label: "Clean-claim accuracy target" },
-  { value: 24, suffix: "-48h", label: "Charge entry turnaround" },
+  { value: 24, suffix: "\u201348h", label: "Charge entry turnaround" },
   { value: 20, suffix: "+", label: "Years of RCM leadership" },
   { value: 7, suffix: "M+", label: "Claims supported annually" },
 ]
@@ -196,9 +196,9 @@ export const trustIndicators = [
 ]
 
 export const complianceItems = [
-  "HIPAA-aligned workflows with role-based access controls",
-  "Secure data handling with audit-ready documentation",
-  "Confidentiality agreements across all delivery teams",
-  "Multi-step quality checks and variance reporting",
-  "Business continuity and incident response readiness",
+  "HIPAA-aligned workflows with role-based access controls.",
+  "Secure data handling with audit-ready documentation.",
+  "Confidentiality agreements across all delivery teams.",
+  "Multi-step quality checks and variance reporting.",
+  "Business continuity and incident response readiness.",
 ]
