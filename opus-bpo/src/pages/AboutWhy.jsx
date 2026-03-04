@@ -97,11 +97,17 @@ const AboutWhy = () => {
   return (
     <section className="bg-transparent">
       <div className="mx-auto w-full max-w-6xl px-6 py-20">
-        <SectionHeader
-          label="Why OPUS BPO"
-          title="Operational performance, designed for healthcare finance teams."
-          description="Purpose-built capabilities that align people, process, and technology to deliver reliable results."
-        />
+        <div className="flex flex-col gap-4">
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue">
+            Why OPUS BPO
+          </p>
+          <h2 className="font-heading text-3xl font-semibold leading-tight text-brand-slate md:text-4xl">
+            Operational performance, designed for healthcare finance teams.
+          </h2>
+          <p className="text-lg font-medium leading-relaxed text-slate-700">
+            Purpose-built capabilities that align people, process, and technology to deliver reliable results.
+          </p>
+        </div>
 
         <div className="mt-14 space-y-16">
           {sections.map((section, index) => (
@@ -126,7 +132,7 @@ const AboutWhy = () => {
                   {section.title}
                 </h3>
 
-                <p className="mt-4 text-sm leading-relaxed text-slate-600">
+                <p className="mt-4 text-base font-medium leading-relaxed text-slate-700">
                   {section.body}
                 </p>
 
@@ -134,7 +140,7 @@ const AboutWhy = () => {
                 <div className="mt-6 space-y-5">
                   {section.bullets.map((bullet) => (
                     <div key={bullet} className="gradient-bullet">
-                      <p className="text-sm text-slate-600 leading-relaxed">{bullet}</p>
+                      <p className="text-base font-medium leading-relaxed text-slate-700">{bullet}</p>
                     </div>
                   ))}
                 </div>

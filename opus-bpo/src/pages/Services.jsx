@@ -27,13 +27,13 @@ export default function Services() {
       `}</style>
       <section className="relative mx-auto w-full max-w-6xl px-6 pb-20 pt-16">
         <div className="mb-14 text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#2596be]">
+          <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#2596be]">
             Service Lines
           </p>
           <h1 className="mt-4 font-heading text-4xl text-slate-800 md:text-5xl">
             Built to Support Healthcare. Designed to Deliver Results.
           </h1>
-          <p className="mx-auto mt-4 max-w-3xl text-base leading-8 text-slate-500 md:text-lg">
+          <p className="mx-auto mt-4 max-w-3xl text-base font-medium leading-8 text-slate-600 md:text-lg">
             Delivering reliable medical billing and revenue cycle services built on
             accuracy, compliance, and measurable outcomes.
           </p>

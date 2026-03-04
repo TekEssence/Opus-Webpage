@@ -582,21 +582,27 @@ const Home = () => {
     <section className="section-tint section-divider">
       <div className="mx-auto w-full max-w-6xl px-6 py-20">
         <div className="reveal grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-start">
-          <SectionHeader
-            label="Governance-Led Delivery"
-            title="Operate your revenue cycle with board-level visibility."
-            description="We combine payer-specific workflows with disciplined QA, AR escalation, and monthly governance reporting."
-          />
+          <div className="flex flex-col gap-4">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue">
+              Governance-Led Delivery
+            </p>
+            <h2 className="font-heading text-3xl font-semibold leading-tight text-brand-slate md:text-4xl">
+              Operate your revenue cycle with board-level visibility.
+            </h2>
+            <p className="text-lg font-medium leading-relaxed text-slate-700">
+              We combine payer-specific workflows with disciplined QA, AR escalation, and monthly governance reporting.
+            </p>
+          </div>
           <div className="grid gap-4 md:grid-cols-2">
             {trustIndicators.map((item) => (
               <div key={item.title} className="card-metal reveal rounded-2xl p-6">
-                <p className="text-sm font-semibold text-brand-slate">{item.title}</p>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.description}</p>
+                <p className="text-sm font-bold text-brand-slate">{item.title}</p>
+                <p className="mt-3 text-sm font-medium leading-relaxed text-slate-700">{item.description}</p>
               </div>
             ))}
             <div className="card-metal reveal rounded-2xl p-6">
-              <p className="text-sm font-semibold text-brand-slate">Operational Visibility</p>
-              <p className="mt-3 text-sm leading-relaxed text-slate-600">
+              <p className="text-sm font-bold text-brand-slate">Operational Visibility</p>
+              <p className="mt-3 text-sm font-medium leading-relaxed text-slate-700">
                 Dashboards and monthly reviews aligned to denial trends, cash acceleration, and
                 compliance KPIs.
               </p>
@@ -608,13 +614,19 @@ const Home = () => {
 
     <section className="bg-transparent section-divider">
       <div className="mx-auto w-full max-w-6xl px-6 py-20">
-        <div className="reveal flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <SectionHeader
-            label="Operational Blueprint"
-            title="A structured workflow for reliable collections."
-            description="Four mapped phases that make performance predictable, auditable, and scalable."
-          />
-          <div className="max-w-xl text-base leading-relaxed text-slate-600">
+        <div className="reveal flex flex-col gap-6">
+          <div className="flex flex-col gap-4">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue">
+              Operational Blueprint
+            </p>
+            <h2 className="font-heading text-3xl font-semibold leading-tight text-brand-slate md:text-4xl">
+              A structured workflow for reliable collections.
+            </h2>
+            <p className="text-lg font-medium leading-relaxed text-slate-700">
+              Four mapped phases that make performance predictable, auditable, and scalable.
+            </p>
+          </div>
+          <div className="text-lg font-medium leading-relaxed text-slate-700 lg:whitespace-nowrap">
             Each step has defined inputs, QA controls, and outputs to reduce rework and ensure clean
             claims.
           </div>
@@ -628,11 +640,17 @@ const Home = () => {
     <section className="section-tint section-divider">
       <div className="mx-auto w-full max-w-6xl px-6 py-20">
         <div className="reveal flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-          <SectionHeader
-            label="Core Capabilities"
-            title="Specialized RCM services aligned to your payer mix."
-            description="Select individual service lines or engage end-to-end delivery."
-          />
+          <div className="flex flex-col gap-4">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue">
+              Core Capabilities
+            </p>
+            <h2 className="font-heading text-3xl font-semibold leading-tight text-brand-slate md:text-4xl">
+              Specialized RCM services aligned to your payer mix.
+            </h2>
+            <p className="text-lg font-medium leading-relaxed text-slate-700">
+              Select individual service lines or engage end-to-end delivery.
+            </p>
+          </div>
         </div>
         <div className="mt-4 flex flex-wrap gap-4 text-sm font-semibold tracking-[0.4em] text-slate-500">
           {serviceBlocks.map((block) => (
@@ -769,11 +787,17 @@ const Home = () => {
     <section className="section-tint section-divider">
       <div className="mx-auto w-full max-w-6xl px-6 py-20">
         <div className="reveal flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <SectionHeader
-            label="Compliance Stack"
-            title="Security and confidentiality embedded in every workflow."
-            description="Controls designed for healthcare privacy expectations."
-          />
+          <div className="flex flex-col gap-4">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue">
+              Compliance Stack
+            </p>
+            <h2 className="font-heading text-3xl font-semibold leading-tight text-brand-slate md:text-4xl">
+              Security and confidentiality embedded in every workflow.
+            </h2>
+            <p className="text-lg font-medium leading-relaxed text-slate-700">
+              Controls designed for healthcare privacy expectations.
+            </p>
+          </div>
         </div>
         <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {[
@@ -800,11 +824,17 @@ const Home = () => {
     <section className="bg-transparent section-divider">
       <div className="mx-auto w-full max-w-6xl px-6 py-20">
         <div className="reveal flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <SectionHeader
-            label="Client Signals"
-            title="Measured results without exaggerated promises."
-            description="Representative performance signals from comparable provider groups."
-          />
+          <div className="flex flex-col gap-4">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue">
+              Client Signals
+            </p>
+            <h2 className="font-heading text-3xl font-semibold leading-tight text-brand-slate md:text-4xl">
+              Measured results without exaggerated promises.
+            </h2>
+            <p className="text-lg font-medium leading-relaxed text-slate-700">
+              Representative performance signals from comparable provider groups.
+            </p>
+          </div>
         </div>
         <div className="mt-10 grid gap-6 grid-cols-1 md:grid-cols-3">
           {[
@@ -842,13 +872,13 @@ const Home = () => {
     <section className="section-tint section-divider">
       <div className="mx-auto w-full max-w-6xl px-6 py-20">
         <div className="reveal mb-10 max-w-6xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-blue">
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue">
             FAQ
           </p>
           <h2 className="mt-4 font-heading text-3xl font-semibold text-brand-slate md:text-4xl md:leading-tight">
             Direct answers for healthcare finance leaders.
           </h2>
-          <p className="mt-3 text-base text-slate-600 md:text-lg">
+          <p className="mt-3 text-base font-medium text-slate-800 md:text-lg">
             Operational clarity before engagement.
           </p>
         </div>

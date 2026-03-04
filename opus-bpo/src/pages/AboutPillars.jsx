@@ -25,12 +25,18 @@ const AboutPillars = () => (
       <div className="mx-auto w-full max-w-6xl px-6 py-20">
         <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
-            <SectionHeader
-              label="Company Overview"
-              title="Built for accuracy, compliance, and measurable cash outcomes."
-              description="OPUS BPO supports hospitals and physician groups with disciplined RCM execution and governance-led reporting."
-            />
-            <div className="mt-6 space-y-4 text-sm leading-relaxed text-slate-600">
+            <div className="flex flex-col gap-4">
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue">
+                Company Overview
+              </p>
+              <h2 className="font-heading text-3xl font-semibold leading-tight text-brand-slate md:text-4xl">
+                Built for accuracy, compliance, and measurable cash outcomes.
+              </h2>
+              <p className="text-lg font-medium leading-relaxed text-slate-700">
+                OPUS BPO supports hospitals and physician groups with disciplined RCM execution and governance-led reporting.
+              </p>
+            </div>
+            <div className="mt-8 space-y-4 text-medium font-medium leading-relaxed text-slate-700">
               <p>
                 We act as an extension of your revenue cycle leadership, aligning people, process, and performance
                 to protect reimbursement and reduce avoidable denials.
@@ -49,7 +55,7 @@ const AboutPillars = () => (
   ].map((item) => (
     <div key={item} className="flex items-start gap-3">
       <svg
-        className="mt-1 h-4 w-4 text-indigo-600"
+        className="mt-1 h-5 w-5 text-indigo-600"
         fill="none"
         stroke="currentColor"
         strokeWidth="2"
@@ -64,7 +70,7 @@ const AboutPillars = () => (
         />
       </svg>
 
-      <p className="text-sm text-slate-600 leading-relaxed">
+      <p className="text-base font-medium leading-relaxed text-slate-700">
         {item}
       </p>
     </div>
@@ -88,18 +94,24 @@ const AboutPillars = () => (
       <div className="mx-auto w-full max-w-6xl px-6 py-20">
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
-            <SectionHeader
-              label="Pillars of OPUS"
-              title="Principles that guide every engagement."
-              description="Clear operational standards that keep revenue performance consistent."
-            />
-            <div className="mt-6 space-y-6">
+            <div className="flex flex-col gap-4">
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue">
+                Pillars of OPUS
+              </p>
+              <h2 className="font-heading text-3xl font-semibold leading-tight text-brand-slate md:text-4xl">
+                Principles that guide every engagement.
+              </h2>
+              <p className="text-lg font-medium leading-relaxed text-slate-700">
+                Clear operational standards that keep revenue performance consistent.
+              </p>
+            </div>
+            <div className="mt-6 space-y-3">
               {pillars.map((pillar, index) => (
-                <div key={pillar.title} className="pb-3 last:pb-0">
+                <div key={pillar.title} className="pb-1 last:pb-0">
                   <p className="text-base font-semibold text-brand-slate">{pillar.title}</p>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600">{pillar.detail}</p>
+                  <p className="mt-1 text-base font-small leading-relaxed text-slate-700">{pillar.detail}</p>
                   {index < pillars.length - 1 && (
-                    <div className="mt-3 pillar-divider" aria-hidden="true"></div>
+                    <div className="mt-1.5 pillar-divider" aria-hidden="true"></div>
                   )}
                 </div>
               ))}
@@ -124,7 +136,6 @@ const AboutPillars = () => (
           <SectionHeader
             label="Leadership & Partners"
             title="Partners of OPUS BPO"
-            description="Add CEO, leadership, and partner photos here."
           />
         </div>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

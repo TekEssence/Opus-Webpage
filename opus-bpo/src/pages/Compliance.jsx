@@ -9,17 +9,17 @@ const Compliance = () => (
             <p className="text-sm font-bold uppercase tracking-[0.24em] text-brand-blue">
               Compliance & Security
             </p>
-            <h2 className="font-heading text-4xl font-bold leading-tight text-brand-slate md:text-5xl">
+            <h2 className="font-heading text-3xl font-bold leading-tight text-brand-slate md:text-4xl">
               Governance aligned with healthcare expectations.
             </h2>
-            <p className="text-xl font-medium leading-relaxed text-slate-800">
+            <p className="text-lg font-medium leading-relaxed text-slate-700">
               We prioritize privacy, security, and accountability in every workflow. Our compliance
               standards support HIPAA obligations, payer requirements, and internal audit readiness.
             </p>
           </div>
           <div className="card-metal rounded-3xl bg-white p-7 shadow-[0_20px_44px_-24px_rgba(15,23,42,0.28)]">
             <p className="text-lg font-bold text-brand-slate">Confidentiality Standard</p>
-            <p className="mt-3 text-lg font-medium leading-relaxed text-slate-900">
+            <p className="mt-3 text-m font-medium leading-relaxed text-slate-800">
               Every client engagement is governed by formal confidentiality terms, controlled access
               protocols, and documented data retention practices.
             </p>

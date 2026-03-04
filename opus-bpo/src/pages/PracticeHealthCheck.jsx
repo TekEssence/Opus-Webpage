@@ -73,14 +73,20 @@ const PracticeHealthCheck = () => {
   return (
     <section className="section-tint">
       <div className="mx-auto w-full max-w-6xl px-6 py-20">
-        <SectionHeader
-          label="Practice Health Check"
-          title="Data-driven metrics that spotlight operational gaps."
-          description="Run quick diagnostics across your receivables, denials, and collections to see where the team can improve."
-        />
+        <div className="flex flex-col gap-4">
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue">
+            Practice Health Check
+          </p>
+          <h2 className="font-heading text-3xl font-semibold leading-tight text-brand-slate md:text-4xl">
+            Data-driven metrics that spotlight operational gaps.
+          </h2>
+          <p className="text-lg font-medium leading-relaxed text-slate-700">
+            Run quick diagnostics across your receivables, denials, and collections to see where the team can improve.
+          </p>
+        </div>
         <p className="mt-4 max-w-3xl text-sm font-medium text-slate-600">
-          Example values are preloaded below so each calculator shows a sample result immediately.
-          Replace them with your own numbers for a live estimate.
+          Start with the sample benchmarks below, see how each metric performs, then swap in your
+          own numbers to uncover where revenue is leaking and where collections can improve.
         </p>
         <div className="practice-grid">
           {visibleMetrics.map((metric) => {

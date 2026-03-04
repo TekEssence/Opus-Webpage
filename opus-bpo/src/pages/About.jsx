@@ -59,11 +59,17 @@ const About = () => (
             />
           </div>
           <div>
-            <SectionHeader
-              label="Our Skills"
-              title="We bring deep RCM expertise with measurable accountability."
-              description="Our teams serve every major segment of the revenue cycle and align with healthcare finance leadership expectations."
-            />
+            <div className="flex flex-col gap-4">
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue">
+                Our Skills
+              </p>
+              <h2 className="font-heading text-3xl font-semibold leading-tight text-brand-slate md:text-4xl">
+                We bring deep RCM expertise with measurable accountability.
+              </h2>
+              <p className="text-lg font-medium leading-relaxed text-slate-700">
+                Our teams serve every major segment of the revenue cycle and align with healthcare finance leadership expectations.
+              </p>
+            </div>
             <div className="mt-8 space-y-5">
               {[
                 { label: "Revenue Integrity Programs", value: "99%" },
@@ -93,13 +99,13 @@ const About = () => (
       <div className="mx-auto w-full max-w-6xl px-6 py-20">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div className="card-metal rounded-3xl p-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-blue">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-blue">
               Why Choose OPUS
             </p>
             <h2 className="mt-4 text-2xl font-semibold text-brand-slate">
               Enterprise delivery with transparent performance reporting.
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-slate-600">
+            <p className="mt-4 text-sm font-medium leading-relaxed text-slate-700">
               OPUS BPO combines disciplined workflows, payer-specific expertise, and dedicated
               client success coverage to protect revenue performance.
             </p>
@@ -126,8 +132,8 @@ const About = () => (
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-blue">
                   {String(index + 1).padStart(2, "0")}
                 </p>
-                <p className="mt-3 text-sm font-semibold text-brand-slate">{item.title}</p>
-                <p className="mt-2 text-sm text-slate-600">{item.detail}</p>
+                <p className="mt-3 text-base font-bold text-brand-slate">{item.title}</p>
+                <p className="mt-2 text-base font-medium leading-relaxed text-slate-700">{item.detail}</p>
               </div>
             ))}
           </div>
@@ -138,11 +144,17 @@ const About = () => (
     <section className="section-tint section-divider">
       <div className="mx-auto w-full max-w-6xl px-6 py-20">
         <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
-          <SectionHeader
-            label="Our Achievement"
-            title="Operational improvements that matter to revenue leaders."
-            description="Representative outcomes from disciplined, compliance-first execution."
-          />
+          <div className="flex flex-col gap-4">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue">
+              Our Achievement
+            </p>
+            <h2 className="font-heading text-3xl font-semibold leading-tight text-brand-slate md:text-4xl">
+              Operational improvements that matter to revenue leaders.
+            </h2>
+            <p className="text-lg font-medium leading-relaxed text-slate-700">
+              Representative outcomes from disciplined, compliance-first execution.
+            </p>
+          </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {[
               { value: "4%", label: "Reduction in denial rate" },

@@ -8,10 +8,10 @@ const Contact = () => (
               Contact
             </p>
             <h2 className="font-heading text-2xl font-bold leading-tight text-brand-slate sm:text-3xl md:text-[2.6rem] lg:text-[2.85rem]">
-              <span className="mb-1 block whitespace-nowrap">Start a compliant, efficient</span>
-              <span className="block whitespace-nowrap">RCM partnership.</span>
+              <span className="font-heading text-3xl font-semibold leading-tight text-brand-slate md:text-4xl">Start a compliant, efficient <br></br></span>
+              <span className="font-heading text-3xl font-semibold leading-tight text-brand-slate md:text-4xl">RCM partnership.</span>
             </h2>
-            <p className="text-lg font-medium leading-9 text-slate-700">
+            <p className="text-lg font-medium leading-8 text-slate-700">
               Schedule a discovery call to discuss your operational priorities, payer mix, and revenue integrity goals. Our team will outline a structured engagement plan aligned to your compliance posture.
             </p>
           </div>
@@ -52,7 +52,7 @@ const Contact = () => (
             discovery checklist to align on scope, data access, and compliance requirements.
           </div>
         </div>
-        <div className="card-metal reveal w-full max-w-[430px] rounded-3xl p-5 sm:p-8 lg:justify-self-end">
+        <div className="card-metal reveal w-full max-w-[700px] rounded-3xl p-5 sm:p-8 lg:justify-self-end">
           <form id="contact-form" className="space-y-4">
             <div>
               <label className="text-xs font-bold uppercase tracking-[0.16em] text-slate-600 sm:text-sm sm:tracking-[0.2em]">
