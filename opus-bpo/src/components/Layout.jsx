@@ -103,7 +103,7 @@ const Layout = () => {
           <div className="flex shrink-0 items-center gap-4">
             <img
               src="/opus-logo.png"
-              alt="OPUS BPO logo"
+              alt="OPUS BPO Medical Billing and Revenue Cycle Management logo"
               className="h-12 w-auto"
             />
             <div>
@@ -173,6 +173,7 @@ const Layout = () => {
               <button
                 type="button"
                 className="practice-menu-button"
+                aria-label="Open Practice Health Check options"
                 onClick={() => setPracticeMenuOpen((prev) => !prev)}
                 onMouseEnter={openPracticeMenuHover}
                 onMouseLeave={closePracticeMenuHover}
@@ -204,6 +205,7 @@ const Layout = () => {
             </div>
             <NavLink
               to="/contact"
+              aria-label="Schedule a call with our team"
               className="hidden rounded-full bg-brand-red px-6 py-2 text-sm font-semibold text-white transition hover:bg-red-700 lg:inline-flex whitespace-nowrap"
             >
               Schedule a Call
@@ -267,6 +269,7 @@ const Layout = () => {
               <NavLink
                 to="/contact"
                 onClick={() => setMenuOpen(false)}
+                aria-label="Schedule a call with our team"
                 className="rounded-full bg-brand-red px-5 py-2 text-center text-sm font-semibold text-white transition hover:bg-red-700 whitespace-nowrap"
               >
                 Schedule a Call

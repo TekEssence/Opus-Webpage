@@ -23,10 +23,18 @@ const About = () => (
               revenue cycle execution with governance-level visibility.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <NavLink to="/about/pillars" className="about-hero-cta">
+              <NavLink
+                to="/about/pillars"
+                aria-label="View the OPUS BPO team and company pillars"
+                className="about-hero-cta"
+              >
                 Meet the team
               </NavLink>
-              <NavLink to="/services" className="about-hero-ghost">
+              <NavLink
+                to="/services"
+                aria-label="Explore OPUS BPO services"
+                className="about-hero-ghost"
+              >
                 Explore our services
               </NavLink>
             </div>

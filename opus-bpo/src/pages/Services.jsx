@@ -61,6 +61,7 @@ export default function Services() {
                   type="button"
                   onClick={() => setActiveMobileService(index)}
                   className="flex w-full items-center gap-3 px-4 py-4 text-left"
+                  aria-label={`${isActive ? "Collapse" : "Expand"} details for ${service.title}`}
                   aria-expanded={isActive}
                 >
                   <span className="inline-flex min-w-14 justify-center rounded-full bg-[linear-gradient(135deg,#2596be,#ffd413,#db4425)] px-3 py-2 text-sm font-semibold text-white shadow-[0_10px_24px_-14px_rgba(219,68,37,0.4)]">
@@ -69,7 +70,7 @@ export default function Services() {
                   <span className="flex-1 text-base font-semibold text-[#1e4f86]">
                     {service.title}
                   </span>
-                  <span className="text-lg font-semibold text-[#1e4f86]">
+                  <span className="text-lg font-semibold text-[#1e4f86]" aria-hidden="true">
                     {isActive ? "−" : "+"}
                   </span>
                 </button>

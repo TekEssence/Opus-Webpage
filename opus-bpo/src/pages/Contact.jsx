@@ -98,6 +98,7 @@ const Contact = () => (
             </div>
             <button
               type="submit"
+              aria-label="Schedule a call with our team"
               className="w-full rounded-full bg-brand-red px-6 py-3 text-sm font-semibold text-white transition hover:bg-red-700"
             >
               Schedule a Call

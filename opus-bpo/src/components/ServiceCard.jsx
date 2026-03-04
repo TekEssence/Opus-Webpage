@@ -30,6 +30,7 @@ const ServiceCard = ({ title, description, variant = "grid", onClick }) => {
                   onClick()
                 }}
                 className="mt-4 rounded-full border border-brand-blue px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-brand-blue transition hover:bg-blue-50"
+                aria-label={`View details for ${title}`}
               >
                 View Details
               </button>
@@ -53,6 +54,8 @@ const ServiceCard = ({ title, description, variant = "grid", onClick }) => {
           stroke="currentColor"
           strokeWidth="1.5"
           className="h-5 w-5"
+          aria-hidden="true"
+          focusable="false"
         >
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />
         </svg>

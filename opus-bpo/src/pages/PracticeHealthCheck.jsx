@@ -117,6 +117,7 @@ const PracticeHealthCheck = () => {
                 <button
                   type="button"
                   className="practice-card-button"
+                  aria-label={`Calculate ${metric.title}`}
                   onClick={() => handleCalculate(metric)}
                 >
                   Calculate

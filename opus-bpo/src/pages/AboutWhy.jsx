@@ -14,7 +14,7 @@ const sections = [
     ],
     image: "/aboutwhy-28.jpg",
     icon: (
-      <svg viewBox="0 0 24 24" className="h-5 w-5 text-brand-gold" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <svg viewBox="0 0 24 24" className="h-5 w-5 text-brand-gold" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true" focusable="false">
         <path d="M4 20V10m6 10V4m6 16v-7m4 7V8" />
       </svg>
     ),
@@ -32,7 +32,7 @@ const sections = [
     ],
     image: "/aboutwhy-24.png",
     icon: (
-      <svg viewBox="0 0 24 24" className="h-5 w-5 text-brand-gold" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <svg viewBox="0 0 24 24" className="h-5 w-5 text-brand-gold" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true" focusable="false">
         <path d="M3 6h18M6 10h12M6 14h8M6 18h6" />
       </svg>
     ),
@@ -50,7 +50,7 @@ const sections = [
     ],
     image: "/aboutwhy-25.jpg",
     icon: (
-      <svg viewBox="0 0 24 24" className="h-5 w-5 text-brand-gold" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <svg viewBox="0 0 24 24" className="h-5 w-5 text-brand-gold" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true" focusable="false">
         <path d="M9 12h6m-6 4h6M7 4h10l3 3v13H4V7l3-3z" />
       </svg>
     ),
@@ -68,7 +68,7 @@ const sections = [
     ],
     image: "/aboutwhy-26.png",
     icon: (
-      <svg viewBox="0 0 24 24" className="h-5 w-5 text-brand-gold" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <svg viewBox="0 0 24 24" className="h-5 w-5 text-brand-gold" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true" focusable="false">
         <path d="M8 7h8m-8 4h5m-2 9a7 7 0 1 1 0-14 7 7 0 0 1 0 14z" />
       </svg>
     ),
@@ -86,7 +86,7 @@ const sections = [
     ],
     image: "/aboutwhy-27.png",
     icon: (
-      <svg viewBox="0 0 24 24" className="h-5 w-5 text-brand-gold" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <svg viewBox="0 0 24 24" className="h-5 w-5 text-brand-gold" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true" focusable="false">
         <path d="M12 3v18m7-7H5m3-6h8m-8 12h8" />
       </svg>
     ),
