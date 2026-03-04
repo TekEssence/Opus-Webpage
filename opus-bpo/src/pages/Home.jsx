@@ -318,7 +318,7 @@ const Home = () => {
               type="video/mp4"
             />
           </video>
-          <div className="space-y-8 px-8 py-16 md:px-12 lg:px-16 lg:py-24">
+          <div className="hero-content-shell space-y-8 px-8 py-16 md:px-12 lg:px-16 lg:py-24">
             <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/80">
               Healthcare Revenue Cycle Management
             </div>
