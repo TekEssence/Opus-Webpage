@@ -397,18 +397,24 @@ const Home = () => {
     <section className="section-tint section-divider">
       <div className="mx-auto w-full max-w-6xl px-6 py-20">
         <div className="reveal space-y-10">
-          <SectionHeader
-            label="Maximizing Revenue. Minimizing Stress."
-            title="RCM programs engineered for accuracy, speed, and stability."
-            description="Our team supports healthcare providers with timely, accurate claim submission and end-to-end revenue cycle execution."
-          />
-          <div className="max-w-3xl space-y-6 text-left text-slate-600 md:space-y-8 lg:text-left">
-            <p className="text-lg leading-[1.5] md:text-s">
+          <div className="flex flex-col gap-4">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue">
+              Maximizing Revenue. Minimizing Stress.
+            </p>
+            <h2 className="font-heading text-3xl font-semibold leading-tight text-brand-slate md:text-4xl">
+              RCM programs engineered for accuracy, speed, and stability.
+            </h2>
+            <p className="text-base font-medium leading-relaxed text-slate-700">
+              Our team supports healthcare providers with timely, accurate claim submission and end-to-end revenue cycle execution.
+            </p>
+          </div>
+          <div className="max-w-5xl space-y-6 text-left text-slate-700 md:space-y-8 lg:max-w-[70rem] lg:text-left">
+            <p className="text-lg font-medium leading-[1.5] md:text-s">
               OPUS BPO delivers modern revenue cycle management that streamlines billing, maximizes
               reimbursements, and reduces denials through automated workflows and analytics-driven
               decisions.
             </p>
-            <p className="text-lg leading-[1.5] md:text-s">
+            <p className="text-lg font-medium leading-[1.5] md:text-s">
               We align people, process, and technology to improve operational efficiency and compliance,
               giving your organization consistent performance without added burden.
             </p>
@@ -561,10 +567,10 @@ const Home = () => {
             </div>
           </div>
           <div className="rounded-2xl border border-brand-blue/20 bg-white/90 p-6 shadow-sm">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-blue">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-blue">
               Where We Lead in Excellence
             </p>
-            <p className="mt-3 text-sm leading-relaxed text-slate-600">
+            <p className="mt-3 text-base font-medium leading-relaxed text-slate-700">
               Every engagement is tailored to your practice goals, ensuring reliable billing operations
               and stronger financial outcomes so you can focus on patient care.
             </p>
