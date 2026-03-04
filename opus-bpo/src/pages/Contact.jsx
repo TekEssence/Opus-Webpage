@@ -47,7 +47,7 @@ const Contact = () => (
               2–3 business days.
             </p>
           </div>
-          <div className="rounded-2xl border border-blue-100 bg-blue-50 p-6 text-base font-medium leading-8 text-slate-700">
+          <div className="rounded-2xl border border-blue-300 bg-gradient-to-r from-blue-200 via-sky-100 to-blue-50 p-6 text-base font-medium leading-8 text-brand-slate shadow-[0_12px_30px_rgba(37,99,235,0.1)]">
             We respond to consultation requests within one business day and provide a structured
             discovery checklist to align on scope, data access, and compliance requirements.
           </div>
