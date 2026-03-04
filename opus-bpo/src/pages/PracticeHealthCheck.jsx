@@ -4,8 +4,9 @@ import SectionHeader from "../components/SectionHeader.jsx"
 import {
   practiceMetrics,
   buildPracticeInputs,
+  buildMetricResult,
+  buildPracticeResults,
   parseMetricEntry,
-  formatMetricValue,
 } from "../data/practiceHealthCheck.js"
 
 const PracticeHealthCheck = () => {
@@ -21,7 +22,7 @@ const PracticeHealthCheck = () => {
   const visibleMetrics = focusedMetric ? [focusedMetric] : practiceMetrics
 
   const [inputs, setInputs] = useState(buildPracticeInputs)
-  const [results, setResults] = useState({})
+  const [results, setResults] = useState(buildPracticeResults)
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "auto" })
@@ -63,14 +64,9 @@ const PracticeHealthCheck = () => {
       }))
       return
     }
-
-    const displayValue = formatMetricValue(computed, metric.precision ?? 1)
     setResults((prev) => ({
       ...prev,
-      [metric.id]: {
-        text: `${displayValue}${metric.unit ? ` ${metric.unit}` : ""}`,
-        isError: false,
-      },
+      [metric.id]: buildMetricResult(metric, computed),
     }))
   }
 
@@ -82,6 +78,10 @@ const PracticeHealthCheck = () => {
           title="Data-driven metrics that spotlight operational gaps."
           description="Run quick diagnostics across your receivables, denials, and collections to see where the team can improve."
         />
+        <p className="mt-4 max-w-3xl text-sm font-medium text-slate-600">
+          Example values are preloaded below so each calculator shows a sample result immediately.
+          Replace them with your own numbers for a live estimate.
+        </p>
         <div className="practice-grid">
           {visibleMetrics.map((metric) => {
             const result = results[metric.id]
@@ -129,6 +129,18 @@ const PracticeHealthCheck = () => {
                 >
                   {result?.text ?? "Awaiting data..."}
                 </p>
+                {result?.benchmark && (
+                  <div className="practice-card-benchmark">
+                    <span
+                      className={`practice-card-indicator is-${result.benchmark.tone}`}
+                    >
+                      {result.benchmark.label}
+                    </span>
+                    <span className="practice-card-guidance">
+                      {result.benchmark.guidance}
+                    </span>
+                  </div>
+                )}
               </article>
             )
           })}
