@@ -137,9 +137,13 @@ const Layout = () => {
                     </span>
                     <div className="nav-dropdown">
                       {aboutLinks.map((link) => (
-                        <a key={link.href} href={link.href}>
+                        <NavLink
+                          key={link.href}
+                          to={link.href}
+                          className={({ isActive }) => (isActive ? "is-active" : "")}
+                        >
                           {link.label}
-                        </a>
+                        </NavLink>
                       ))}
                     </div>
                   </div>
@@ -233,14 +237,18 @@ const Layout = () => {
                 About Sections
               </div>
               {aboutLinks.map((link) => (
-                <a
+                <NavLink
                   key={link.href}
-                  href={link.href}
+                  to={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600"
+                  className={({ isActive }) =>
+                    `text-xs font-semibold uppercase tracking-[0.2em] ${
+                      isActive ? "text-brand-blue" : "text-slate-600"
+                    }`
+                  }
                 >
                   {link.label}
-                </a>
+                </NavLink>
               ))}
               <div className="practice-menu-mobile">
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
