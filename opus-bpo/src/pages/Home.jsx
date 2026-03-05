@@ -13,7 +13,7 @@ const metrics = [
   },
   {
     number: "2",
-    value: "95%",
+    value: "90%",
     label: "FIRST-PASS ACCEPT RATE",
     position: "bottom",
     gradientStart: "#4dd5f3",
@@ -21,7 +21,7 @@ const metrics = [
   },
   {
     number: "3",
-    value: "95%",
+    value: "98%",
     label: "CODING ACCURACY",
     position: "top",
     gradientStart: "#4dd5f3",
@@ -159,7 +159,7 @@ const workflowSteps = [
   {
     id: "01",
     title: "Capture",
-    description: "Demographics, charges, and coding validated with QA checkpoints.",
+    description: "Coding, demographics and charges validated with QA checkpoints.",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="#2596be" strokeWidth="2" aria-hidden="true" focusable="false">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -183,7 +183,7 @@ const workflowSteps = [
   {
     id: "03",
     title: "Collect",
-    description: "ERA/EOB posting, AR follow-ups, and appeals support.",
+    description: "ERA/EOB posting, Denials/AR follow-ups, and appeals support.",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="#2596be" strokeWidth="2" aria-hidden="true" focusable="false">
         <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />

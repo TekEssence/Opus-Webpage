@@ -37,13 +37,13 @@ export const services = [
     ],
   },
   {
-    title: "Charge & Demographic Entry",
+    title: "Demographic Entry",
     description:
       "Accurate capture of patient demographics and charges to minimize downstream rework.",
     image:
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80",
     points: [
-      "Validated data entry aligned to scheduling systems and EHRs.",
+      "Validated data entry aligns with scheduling systems and EHRs.",
       "Auto-detection of duplicate or mismatched demographics.",
       "Charge capture summaries prepared for QA review.",
     ],
@@ -93,7 +93,7 @@ export const services = [
     ],
   },
   {
-    title: "AR Follow-ups",
+    title: "Patient AR Follow-ups",
     description:
       "Structured follow-ups with payers and patients to accelerate aging resolution.",
     image: "/ar-follow-ups-18.png",
