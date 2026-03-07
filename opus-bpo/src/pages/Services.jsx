@@ -74,13 +74,6 @@ export default function Services() {
             Delivering reliable medical billing and revenue cycle services built on
             accuracy, compliance, and measurable outcomes.
           </p>
-          <div className="mt-8 flex items-center justify-center gap-4">
-            <span className="h-[2px] w-16 bg-[linear-gradient(90deg,rgba(37,150,190,0.7),rgba(255,212,19,0.5))]" />
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[linear-gradient(135deg,#2596be,#ffd413,#db4425)] text-sm font-semibold text-white shadow-[0_12px_28px_-12px_rgba(219,68,37,0.45)]">
-              14
-            </span>
-            <span className="h-[2px] w-16 bg-[linear-gradient(90deg,rgba(255,212,19,0.5),rgba(219,68,37,0.7))]" />
-          </div>
         </div>
 
         <div className="space-y-4 md:hidden">
