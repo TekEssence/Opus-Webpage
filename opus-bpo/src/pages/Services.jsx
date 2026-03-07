@@ -1,8 +1,45 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useLocation } from "react-router-dom"
 import { services } from "../data/content.js"
+
+const serviceId = (title) =>
+  title
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
 
 export default function Services() {
   const [activeMobileService, setActiveMobileService] = useState(0)
+  const location = useLocation()
+
+  useEffect(() => {
+    if (!location.hash) return
+
+    const targetId = location.hash.slice(1)
+    const matchingElements = Array.from(
+      document.querySelectorAll(`[data-service-anchor="${targetId}"]`)
+    )
+    const visibleTarget = matchingElements.find((element) => element.offsetParent !== null)
+
+    if (!visibleTarget) return
+
+    window.requestAnimationFrame(() => {
+      const header = document.querySelector("header")
+      const headerOffset = header ? header.getBoundingClientRect().height + 24 : 140
+      const targetTop = visibleTarget.getBoundingClientRect().top + window.scrollY - headerOffset
+
+      window.scrollTo({
+        top: Math.max(targetTop, 0),
+        behavior: "smooth",
+      })
+    })
+
+    const mobileIndex = services.findIndex((service) => serviceId(service.title) === targetId)
+    if (mobileIndex >= 0) {
+      setActiveMobileService(mobileIndex)
+    }
+  }, [location.hash])
 
   return (
     <main className="relative overflow-hidden bg-[linear-gradient(90deg,_rgba(37,150,190,0.28)_0%,_rgba(244,219,214,0.8)_50%,_rgba(255,212,19,0.32)_100%)]">
@@ -53,6 +90,7 @@ export default function Services() {
             return (
               <div
                 key={`${service.title}-mobile`}
+                data-service-anchor={serviceId(service.title)}
                 className={`overflow-hidden rounded-[1.75rem] border border-white/80 bg-[linear-gradient(135deg,rgba(255,255,255,0.95),rgba(255,247,206,0.92),rgba(230,245,250,0.9),rgba(255,228,220,0.92))] shadow-[0_20px_40px_-28px_rgba(37,150,190,0.28),0_24px_48px_-30px_rgba(219,68,37,0.16)] transition-all duration-300 ${
                   isActive ? "scale-[1.01]" : ""
                 }`}
@@ -95,7 +133,7 @@ export default function Services() {
                             key={`${service.title}-mobile-point-${pointIndex}`}
                             className="flex items-start gap-3 rounded-2xl border border-white/60 bg-white/45 px-4 py-3 text-sm leading-7 text-slate-800"
                           >
-                            <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-[#db4425]" />
+                            <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-[#2596be]" />
                             <span>{point}</span>
                           </div>
                         ))}
@@ -118,6 +156,7 @@ export default function Services() {
               return (
                 <div
                   key={service.title}
+                  data-service-anchor={serviceId(service.title)}
                   className={`relative grid gap-3 md:gap-6 md:grid-cols-2 md:items-center ${
                     isLeft ? "" : "md:[&>div:first-child]:order-2 md:[&>div:last-child]:order-1"
                   }`}
@@ -156,7 +195,7 @@ export default function Services() {
                             key={`${service.title}-point-${pointIndex}`}
                             className="flex items-start gap-3 rounded-2xl border border-white/60 bg-white/45 px-4 py-3 text-sm leading-7 text-slate-800 backdrop-blur-[2px]"
                           >
-                            <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-[#db4425]" />
+                            <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-[#2596be]" />
                             <span>{point}</span>
                           </div>
                         ))}

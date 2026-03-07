@@ -15,17 +15,6 @@ export const stats = [
 
 export const services = [
   {
-    title: "Medical Coding",
-    description:
-      "Certified coders aligned to ICD-10-CM, CPT, and HCPCS guidelines with disciplined QA workflows.",
-    image: "/medical-coding-22.png",
-    points: [
-      "Specialty-trained coders with payer- and service-line focus.",
-      "Multi-step QA and variance reporting before submission.",
-      "Payer rule validation and clean-claim readiness coaching.",
-    ],
-  },
-  {
     title: "Credentialing Services",
     description:
       "Provider credentialing support with payer enrollment tracking and documentation oversight.",
@@ -34,6 +23,17 @@ export const services = [
       "Enrollment trackers that surface missing paperwork and status updates.",
       "Document collection and verification workflows for every payer.",
       "Renewals, re-credentialing, and updates managed through one portal.",
+    ],
+  },
+  {
+    title: "Appointment Scheduling",
+    description:
+      "Efficient patient scheduling and appointment management to reduce no-shows and keep clinics aligned.",
+    image: "/appointment-scheduling-11.jpg",
+    points: [
+      "24/7 online scheduling plus patient self-booking.",
+      "Smart reminder flows that reduce no-shows and conflicts.",
+      "Real-time calendar sync across clinics and teams.",
     ],
   },
   {
@@ -60,14 +60,40 @@ export const services = [
     ],
   },
   {
-    title: "Document Scanning",
+    title: "Authorization of Services",
     description:
-      "Secure indexing and scanning for medical records, EOBs, and payer correspondence.",
-    image: "/document-scanning-12.png",
+      "Streamlined prior authorization management to accelerate approvals and reduce administrative load.",
+    image: "/authorization-of-services-21.jpg",
     points: [
-      "OCR-enabled indexing aligned to your naming conventions.",
-      "HIPAA-aware handling with secure access controls.",
-      "Daily upload routines that deliver audit-ready logs.",
+      "Fast electronic submissions to reduce manual paperwork.",
+      "Real-time status updates for approvals, denials, and follow-ups.",
+      "Secure, centralized documentation for payer requirements.",
+      "Guided workflows aligned to payer-specific needs.",
+      "Reporting that identifies bottlenecks and optimizes throughput.",
+    ],
+  },
+  {
+    title: "Medical Coding",
+    description:
+      "Certified coders aligned to ICD-10-CM, CPT, and HCPCS guidelines with disciplined QA workflows.",
+    image: "/medical-coding-22.png",
+    points: [
+      "Specialty-trained coders with payer- and service-line focus.",
+      "Multi-step QA and variance reporting before submission.",
+      "Payer rule validation and clean-claim readiness coaching.",
+    ],
+  },
+  {
+    title: "Charge Posting & Claims Scrutiny",
+    description:
+      "Accurate charge posting with pre-submission claim scrutiny to protect revenue integrity and reduce denials.",
+    image: "/charge-posting-15.png",
+    points: [
+      "Validated charge capture aligned to fee schedules and coding.",
+      "Exception handling for missing or mismatched charges.",
+      "Payer-rule validation and edit scrubs before submission.",
+      "Centralized documentation checks for completeness.",
+      "Reporting that surfaces bottlenecks and prevents repeat errors.",
     ],
   },
   {
@@ -93,6 +119,30 @@ export const services = [
     ],
   },
   {
+    title: "Receivables Processing & Reconciliation",
+    description:
+      "Streamlined remittance processing and reconciliation to keep cash flow accurate and predictable.",
+    image: "/receivables-16.jpg",
+    points: [
+      "Automated remittance posting and payment matching.",
+      "Reconciliation against invoices, claims, and bank feeds.",
+      "Discrepancy detection plus resolution workflows.",
+      "Payment-status reporting for leaders and clients.",
+      "Controlled, HIPAA-ready handling for sensitive remits.",
+    ],
+  },
+  {
+    title: "Denial Management",
+    description:
+      "Root-cause analysis, appeals support, and prevention strategies to lift net collections.",
+    image: "/denial-management-14.png",
+    points: [
+      "Denial trend analytics to expose repeat edits.",
+      "Appeal packages prepped with payer-specific narratives.",
+      "Prevention insights delivered back to coding and claims teams.",
+    ],
+  },
+  {
     title: "Patient AR Follow-ups",
     description:
       "Structured follow-ups with payers and patients to accelerate aging resolution.",
@@ -112,67 +162,6 @@ export const services = [
       "Professional statements with itemized charges and clear totals.",
       "Automated reminders plus flexible payment plan guidance.",
       "Self-pay analytics that highlight trending balances.",
-    ],
-  },
-  {
-    title: "Denial Management",
-    description:
-      "Root-cause analysis, appeals support, and prevention strategies to lift net collections.",
-    image: "/denial-management-14.png",
-    points: [
-      "Denial trend analytics to expose repeat edits.",
-      "Appeal packages prepped with payer-specific narratives.",
-      "Prevention insights delivered back to coding and claims teams.",
-    ],
-  },
-  {
-    title: "Appointment Scheduling",
-    description:
-      "Efficient patient scheduling and appointment management to reduce no-shows and keep clinics aligned.",
-    image: "/appointment-scheduling-11.jpg",
-    points: [
-      "24/7 online scheduling plus patient self-booking.",
-      "Smart reminder flows that reduce no-shows and conflicts.",
-      "Real-time calendar sync across clinics and teams.",
-    ],
-  },
-  {
-    title: "Authorization of Services",
-    description:
-      "Streamlined prior authorization management to accelerate approvals and reduce administrative load.",
-    image: "/authorization-of-services-21.jpg",
-    points: [
-      "Fast electronic submissions to reduce manual paperwork.",
-      "Real-time status updates for approvals, denials, and follow-ups.",
-      "Secure, centralized documentation for payer requirements.",
-      "Guided workflows aligned to payer-specific needs.",
-      "Reporting that identifies bottlenecks and optimizes throughput.",
-    ],
-  },
-  {
-    title: "Charge Posting & Claims Scrutiny",
-    description:
-      "Accurate charge posting with pre-submission claim scrutiny to protect revenue integrity and reduce denials.",
-    image: "/charge-posting-15.png",
-    points: [
-      "Validated charge capture aligned to fee schedules and coding.",
-      "Exception handling for missing or mismatched charges.",
-      "Payer-rule validation and edit scrubs before submission.",
-      "Centralized documentation checks for completeness.",
-      "Reporting that surfaces bottlenecks and prevents repeat errors.",
-    ],
-  },
-  {
-    title: "Receivables Processing & Reconciliation",
-    description:
-      "Streamlined remittance processing and reconciliation to keep cash flow accurate and predictable.",
-    image: "/receivables-16.jpg",
-    points: [
-      "Automated remittance posting and payment matching.",
-      "Reconciliation against invoices, claims, and bank feeds.",
-      "Discrepancy detection plus resolution workflows.",
-      "Payment-status reporting for leaders and clients.",
-      "Controlled, HIPAA-ready handling for sensitive remits.",
     ],
   },
 ]

@@ -104,8 +104,8 @@ const serviceBlocks = [
     image:
       "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80",
     icon: serviceIcons[0],
-    tagAccentStart: "#f87171",
-    tagAccentEnd: "#dc2626",
+    tagAccentStart: "#2596be",
+    tagAccentEnd: "#4dd5f3",
     ...unifiedAccent,
   },
   {
@@ -121,8 +121,8 @@ const serviceBlocks = [
     image:
       "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80",
     icon: serviceIcons[1],
-    tagAccentStart: "#f87171",
-    tagAccentEnd: "#dc2626",
+    tagAccentStart: "#2596be",
+    tagAccentEnd: "#4dd5f3",
     ...unifiedAccent,
   },
   {
@@ -138,8 +138,8 @@ const serviceBlocks = [
     image:
       "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=900&q=80",
     icon: serviceIcons[2],
-    tagAccentStart: "#f87171",
-    tagAccentEnd: "#dc2626",
+    tagAccentStart: "#2596be",
+    tagAccentEnd: "#4dd5f3",
     ...unifiedAccent,
   },
 ]

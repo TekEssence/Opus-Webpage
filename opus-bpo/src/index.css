@@ -111,6 +111,34 @@ a {
   font-weight: 800;
 }
 
+.nav-dropdown-services {
+  min-width: 640px;
+  max-height: none;
+  overflow: visible;
+  padding: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.nav-dropdown-services .nav-dropdown-service-link {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.35;
+  color: var(--opus-ink);
+  transition: background 150ms ease, color 150ms ease;
+}
+
+.nav-dropdown-services .nav-dropdown-service-link:hover {
+  background: rgba(37, 150, 190, 0.12);
+  color: var(--opus-blue);
+}
+
 .nav-link::after {
   content: "";
   position: absolute;
@@ -2072,7 +2100,7 @@ a {
 
 .practice-menu-button {
   border: none;
-  background: linear-gradient(135deg, #f97316, #fb7185, #6366f1);
+  background: linear-gradient(135deg, #3aa3c6 0%, #f4cf2f 48%, #e56a2e 100%);
   color: #fff;
   border-radius: 999px;
   padding: 0.5rem 1.3rem;
@@ -2087,7 +2115,7 @@ a {
   text-align: center;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 15px 35px rgba(249, 115, 22, 0.4), 0 6px 12px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 15px 35px rgba(58, 163, 198, 0.24), 0 8px 18px rgba(229, 106, 46, 0.16);
 }
 
 .practice-menu-button::after {
@@ -2114,21 +2142,21 @@ a {
   bottom: clamp(1rem, 2vw, 1.75rem);
   width: clamp(60px, 3.5vw, 68px);
   height: clamp(60px, 3.5vw, 68px);
-  background: linear-gradient(135deg, #f97316, #ed5ea7, #7c3aed, #3b82f6);
+  background: linear-gradient(135deg, #3aa3c6 0%, #f4cf2f 48%, #e56a2e 100%);
   border-radius: 20px;
   border: none;
   display: grid;
   place-items: center;
   padding: 0;
   cursor: pointer;
-  box-shadow: 0 28px 60px -30px rgba(15, 23, 42, 0.9), 0 16px 25px -10px rgba(0, 0, 0, 0.65);
+  box-shadow: 0 28px 60px -30px rgba(58, 163, 198, 0.42), 0 16px 25px -10px rgba(229, 106, 46, 0.28);
   z-index: 80;
   transition: transform 220ms ease, box-shadow 220ms ease;
 }
 
 .floating-practice-trigger:hover {
   transform: translateY(-3px);
-  box-shadow: 0 35px 55px -25px rgba(15, 23, 42, 0.9), 0 18px 28px -10px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 35px 55px -25px rgba(58, 163, 198, 0.46), 0 18px 28px -10px rgba(229, 106, 46, 0.34);
 }
 
 .floating-practice-icon {

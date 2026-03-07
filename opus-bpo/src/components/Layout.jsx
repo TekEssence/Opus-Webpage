@@ -1,11 +1,18 @@
 import { useEffect, useRef, useState } from "react"
-import { NavLink, Outlet, useLocation } from "react-router-dom"
+import { Link, NavLink, Outlet, useLocation } from "react-router-dom"
 import FloatingHealthCheck from "./FloatingHealthCheck.jsx"
 import { practiceMetrics } from "../data/practiceHealthCheck.js"
-import { navItems } from "../data/content.js"
+import { navItems, services } from "../data/content.js"
 
-const linkBase =
-  "text-xs font-semibold uppercase tracking-[0.12em] transition-colors"
+const linkBase = "text-xs font-semibold uppercase tracking-[0.12em] transition-colors"
+const dropdownArrow = "▼"
+
+const serviceHref = (title) =>
+  `/services#${title
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")}`
 
 const Layout = () => {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -14,17 +21,25 @@ const Layout = () => {
   const practiceMenuRef = useRef(null)
   const practiceButtonRef = useRef(null)
   const practiceHoverTimer = useRef(null)
+
   const aboutLinks = [
     { label: "Vision & Mission", href: "/about/vision-mission" },
     { label: "Pillars Of Opus", href: "/about/pillars" },
     { label: "Why Opus", href: "/about/why-opus" },
   ]
 
+  const serviceLinks = services.map((service) => ({
+    label: service.title,
+    href: serviceHref(service.title),
+  }))
+
   useEffect(() => {
     if (!menuOpen) return
+
     const closeOnEscape = (event) => {
       if (event.key === "Escape") setMenuOpen(false)
     }
+
     window.addEventListener("keydown", closeOnEscape)
     return () => window.removeEventListener("keydown", closeOnEscape)
   }, [menuOpen])
@@ -40,7 +55,7 @@ const Layout = () => {
       { threshold: 0.15 }
     )
 
-    elements.forEach((el) => observer.observe(el))
+    elements.forEach((element) => observer.observe(element))
     return () => observer.disconnect()
   }, [location.pathname])
 
@@ -50,11 +65,13 @@ const Layout = () => {
 
   useEffect(() => {
     if (!practiceMenuOpen) return
+
     const handleClickOutside = (event) => {
       if (practiceMenuRef.current && !practiceMenuRef.current.contains(event.target)) {
         setPracticeMenuOpen(false)
       }
     }
+
     document.addEventListener("pointerdown", handleClickOutside)
     return () => document.removeEventListener("pointerdown", handleClickOutside)
   }, [practiceMenuOpen])
@@ -79,6 +96,7 @@ const Layout = () => {
     if (practiceHoverTimer.current) {
       clearTimeout(practiceHoverTimer.current)
     }
+
     practiceHoverTimer.current = window.setTimeout(() => {
       setPracticeMenuOpen(false)
       practiceHoverTimer.current = null
@@ -113,10 +131,11 @@ const Layout = () => {
               </p>
             </div>
           </div>
+
           <nav className="hidden flex-1 items-center justify-center gap-8 px-8 lg:flex">
-              {navItems.map((item) =>
-                item.label === "About" ? (
-                  <div key={item.path} className="nav-group relative flex items-center gap-1">
+            {navItems.map((item) =>
+              item.label === "About" ? (
+                <div key={item.path} className="nav-group relative flex items-center gap-1">
                   <NavLink
                     to={item.path}
                     className={({ isActive }) =>
@@ -129,27 +148,24 @@ const Layout = () => {
                   >
                     {item.label}
                   </NavLink>
-                    <span
-                      className="nav-dropdown-indicator"
-                      aria-hidden="true"
-                    >
-                      ▼
-                    </span>
-                    <div className="nav-dropdown">
-                      {aboutLinks.map((link) => (
-                        <NavLink
-                          key={link.href}
-                          to={link.href}
-                          className={({ isActive }) => (isActive ? "is-active" : "")}
-                        >
-                          {link.label}
-                        </NavLink>
-                      ))}
-                    </div>
+                  <span className="nav-dropdown-indicator" aria-hidden="true">
+                    {dropdownArrow}
+                  </span>
+                  <div className="nav-dropdown">
+                    {aboutLinks.map((link) => (
+                      <NavLink
+                        key={link.href}
+                        to={link.href}
+                        className={({ isActive }) => (isActive ? "is-active" : "")}
+                      >
+                        {link.label}
+                      </NavLink>
+                    ))}
                   </div>
-                ) : (
+                </div>
+              ) : item.label === "Services" ? (
+                <div key={item.path} className="nav-group relative flex items-center gap-1">
                   <NavLink
-                    key={item.path}
                     to={item.path}
                     className={({ isActive }) =>
                       `nav-link ${linkBase} ${
@@ -161,9 +177,35 @@ const Layout = () => {
                   >
                     {item.label}
                   </NavLink>
-                )
-              )}
+                  <span className="nav-dropdown-indicator" aria-hidden="true">
+                    {dropdownArrow}
+                  </span>
+                  <div className="nav-dropdown nav-dropdown-services">
+                    {serviceLinks.map((link) => (
+                      <Link key={link.href} to={link.href} className="nav-dropdown-service-link">
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <NavLink
+                  key={item.path}
+                  to={item.path}
+                  className={({ isActive }) =>
+                    `nav-link ${linkBase} ${
+                      isActive
+                        ? "is-active text-brand-blue"
+                        : "text-slate-600 hover:text-brand-blue"
+                    }`
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              )
+            )}
           </nav>
+
           <div className="ml-auto flex shrink-0 items-center gap-3">
             <div
               className="practice-menu-wrapper hidden lg:block"
@@ -203,13 +245,15 @@ const Layout = () => {
                 </div>
               )}
             </div>
+
             <NavLink
               to="/contact"
               aria-label="Schedule a call with our team"
-              className="hidden rounded-full bg-brand-red px-6 py-2 text-sm font-semibold text-white transition hover:bg-red-700 lg:inline-flex whitespace-nowrap"
+              className="hidden whitespace-nowrap rounded-full bg-brand-red px-6 py-2 text-sm font-semibold text-white transition hover:bg-red-700 lg:inline-flex"
             >
               Schedule a Call
             </NavLink>
+
             <button
               type="button"
               onClick={() => setMenuOpen((prev) => !prev)}
@@ -220,6 +264,7 @@ const Layout = () => {
             </button>
           </div>
         </div>
+
         {menuOpen && (
           <div className="border-t border-slate-100 bg-white px-6 py-4 lg:hidden">
             <div className="flex flex-col gap-4">
@@ -235,6 +280,7 @@ const Layout = () => {
                   {item.label}
                 </NavLink>
               ))}
+
               <div className="rounded-2xl border border-slate-100 bg-slate-50/80 p-4 text-xs uppercase tracking-[0.2em] text-slate-500">
                 About Sections
               </div>
@@ -252,6 +298,25 @@ const Layout = () => {
                   {link.label}
                 </NavLink>
               ))}
+
+              <div className="rounded-2xl border border-slate-100 bg-slate-50/80 p-4 text-xs uppercase tracking-[0.2em] text-slate-500">
+                Services
+              </div>
+              {serviceLinks.map((link) => (
+                <NavLink
+                  key={link.href}
+                  to={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className={({ isActive }) =>
+                    `text-xs font-semibold uppercase tracking-[0.2em] ${
+                      isActive ? "text-brand-blue" : "text-slate-600"
+                    }`
+                  }
+                >
+                  {link.label}
+                </NavLink>
+              ))}
+
               <div className="practice-menu-mobile">
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
                   Practice Health Check
@@ -266,11 +331,12 @@ const Layout = () => {
                   </a>
                 ))}
               </div>
+
               <NavLink
                 to="/contact"
                 onClick={() => setMenuOpen(false)}
                 aria-label="Schedule a call with our team"
-                className="rounded-full bg-brand-red px-5 py-2 text-center text-sm font-semibold text-white transition hover:bg-red-700 whitespace-nowrap"
+                className="whitespace-nowrap rounded-full bg-brand-red px-5 py-2 text-center text-sm font-semibold text-white transition hover:bg-red-700"
               >
                 Schedule a Call
               </NavLink>
@@ -303,6 +369,7 @@ const Layout = () => {
           <p>© 2026 OPUS BPO. All rights reserved.</p>
         </div>
       </footer>
+
       <FloatingHealthCheck onActivate={handleFloatingPracticeClick} />
     </div>
   )
