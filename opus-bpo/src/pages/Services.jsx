@@ -95,7 +95,7 @@ export default function Services() {
                   aria-label={`${isActive ? "Collapse" : "Expand"} details for ${service.title}`}
                   aria-expanded={isActive}
                 >
-                  <span className="inline-flex min-w-14 justify-center rounded-full bg-[linear-gradient(135deg,#2596be,#ffd413,#db4425)] px-3 py-2 text-sm font-semibold text-white shadow-[0_10px_24px_-14px_rgba(219,68,37,0.4)]">
+                  <span className="inline-flex min-w-14 justify-center rounded-full bg-[#2596be] px-3 py-2 text-sm font-semibold text-white shadow-[0_10px_24px_-14px_rgba(37,150,190,0.38)]">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <span className="flex-1 text-base font-semibold text-[#1e4f86]">
@@ -170,7 +170,7 @@ export default function Services() {
                         style={{ animation: "service-card-shine 4.8s ease-in-out infinite" }}
                       />
                       <div className="mb-4 flex items-center justify-between gap-4">
-                        <span className="inline-flex rounded-full bg-[linear-gradient(135deg,#2596be,#ffd413,#db4425)] px-5 py-2 text-sm font-semibold text-white shadow-[0_12px_30px_-18px_rgba(219,68,37,0.45)]">
+                        <span className="inline-flex rounded-full bg-[#2596be] px-5 py-2 text-sm font-semibold text-white shadow-[0_12px_30px_-18px_rgba(37,150,190,0.4)]">
                           {String(index + 1).padStart(2, "0")}
                         </span>
                       </div>

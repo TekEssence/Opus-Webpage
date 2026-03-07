@@ -129,7 +129,7 @@ const About = () => (
               },
             ].map((item, index) => (
               <div key={item.title} className="card-metal rounded-2xl p-6">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-blue">
+                <p className="inline-flex min-w-12 justify-center rounded-full bg-[#2596be] px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white shadow-[0_10px_24px_-14px_rgba(37,150,190,0.38)]">
                   {String(index + 1).padStart(2, "0")}
                 </p>
                 <p className="mt-3 text-base font-bold text-brand-slate">{item.title}</p>

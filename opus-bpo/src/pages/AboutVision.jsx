@@ -72,7 +72,7 @@ const AboutVision = () => (
               Our Mission
             </p>
             <h2 className="text-3xl font-semibold text-brand-slate">
-              Safeguard revenue with compliance and clarity.
+              Optimize revenue with compliance and clarity.
             </h2>
             <p className="text-lg font-medium leading-relaxed text-slate-700">
               We deliver accurate, accountable RCM execution for hospitals and physician groups.
