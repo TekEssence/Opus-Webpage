@@ -644,83 +644,70 @@ const Home = () => {
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue">
               Core Capabilities
             </p>
-            <h2 className="font-heading text-3xl font-semibold leading-tight text-brand-slate md:text-4xl">
-              Specialized RCM services aligned to your payer mix.
-            </h2>
-            <p className="text-lg font-medium leading-relaxed text-slate-700">
-              Select individual service lines or engage end-to-end delivery.
-            </p>
+              <h2 className="font-heading text-3xl font-semibold leading-tight text-brand-slate md:text-4xl">
+                Specialized RCM services aligned to your payer mix.
+              </h2>
+            </div>
           </div>
-        </div>
-        <div className="mt-4 flex flex-wrap gap-4 text-sm font-semibold tracking-[0.4em] text-slate-500">
-          {serviceBlocks.map((block) => (
-            <span
-              key={block.title}
-              className="rounded-full border px-4 py-2 text-slate-600 shadow-sm"
-              style={{
-                borderColor: "rgba(155, 8, 8, 0.5)",
-                background: block.tagAccentStart
-                  ? `linear-gradient(180deg, ${block.tagAccentStart}, ${block.tagAccentEnd})`
-                  : "rgba(142, 41, 41, 0.6)",
-                color: block.tagAccentStart ? "#fff" : "#475569",
-              }}
-            >
-              {block.title}
-            </span>
-          ))}
-        </div>
         <div className="mt-10 hidden flex-col gap-10 md:flex lg:flex-row lg:items-stretch lg:justify-center lg:gap-6 xl:gap-8">
           {serviceBlocks.map((block) => (
-            <div
-              key={block.title}
-              className="service-pill group relative flex-1 overflow-hidden rounded-[999px] border border-white/20 shadow-[0_40px_80px_-40px_rgba(15,23,42,0.8)] lg:max-w-[21rem]"
-              style={{ minHeight: "580px", minWidth: "0" }}
-            >
+            <div key={block.title} className="flex flex-1 flex-col gap-4 lg:max-w-[21rem]">
+              <h3 className="px-4 text-center text-sm font-bold uppercase tracking-[0.22em] text-brand-blue">
+                {block.title}
+              </h3>
               <div
-                className="service-pill-media"
-                style={{
-                  background: block.image
-                    ? `url(${block.image})`
-                    : block.gradientStops
-                    ? `linear-gradient(180deg, ${block.gradientStops.join(", ")})`
-                    : `linear-gradient(180deg, ${block.accentStart}, ${block.accentEnd})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-              />
-              <div
-                className="service-pill-glow service-pill-glow-start"
-                aria-hidden="true"
-                style={{ background: `radial-gradient(circle at 20% 20%, ${block.accentStart}, transparent 55%)` }}
-              />
-              <div
-                className="service-pill-glow service-pill-glow-end"
-                aria-hidden="true"
-                style={{ background: `radial-gradient(circle at 80% 80%, ${block.accentEnd}, transparent 50%)` }}
-              />
-              <div
-                className="service-pill-icon"
-                style={{ background: `linear-gradient(135deg, ${block.accentStart}, ${block.accentEnd})` }}
+                className="service-pill group relative overflow-hidden rounded-[999px] border border-white/20 shadow-[0_40px_80px_-40px_rgba(15,23,42,0.8)]"
+                style={{ minHeight: "580px", minWidth: "0" }}
               >
-                {block.icon}
-              </div>
-              <div className="service-pill-overlay">
-                <div className="service-pill-overlay-inner">
-                  <h3 className="service-pill-title">{block.title}</h3>
-                  <p className="service-pill-summary">{block.summary}</p>
-                  <ul className="service-pill-bullets">
-                    {block.bullets.map((item) => (
-                      <li key={item} className="text-slate-800 font-medium">
-                        <span
-  className="service-pill-bullet shadow-md"
-  style={{
-    background: `linear-gradient(135deg, ${block.tagAccentStart}, ${block.tagAccentEnd})`,
-  }}
-/>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+                <div
+                  className="service-pill-media"
+                  style={{
+                    background: block.image
+                      ? `url(${block.image})`
+                      : block.gradientStops
+                        ? `linear-gradient(180deg, ${block.gradientStops.join(", ")})`
+                        : `linear-gradient(180deg, ${block.accentStart}, ${block.accentEnd})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                />
+                <div
+                  className="service-pill-glow service-pill-glow-start"
+                  aria-hidden="true"
+                  style={{
+                    background: `radial-gradient(circle at 20% 20%, ${block.accentStart}, transparent 55%)`,
+                  }}
+                />
+                <div
+                  className="service-pill-glow service-pill-glow-end"
+                  aria-hidden="true"
+                  style={{
+                    background: `radial-gradient(circle at 80% 80%, ${block.accentEnd}, transparent 50%)`,
+                  }}
+                />
+                <div
+                  className="service-pill-icon"
+                  style={{ background: `linear-gradient(135deg, ${block.accentStart}, ${block.accentEnd})` }}
+                >
+                  {block.icon}
+                </div>
+                <div className="service-pill-overlay">
+                  <div className="service-pill-overlay-inner">
+                    <p className="service-pill-summary">{block.summary}</p>
+                    <ul className="service-pill-bullets">
+                      {block.bullets.map((item) => (
+                        <li key={item} className="text-slate-800 font-medium">
+                          <span
+                            className="service-pill-bullet shadow-md"
+                            style={{
+                              background: `linear-gradient(135deg, ${block.tagAccentStart}, ${block.tagAccentEnd})`,
+                            }}
+                          />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
