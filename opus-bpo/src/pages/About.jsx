@@ -1,4 +1,3 @@
-import SectionHeader from "../components/SectionHeader.jsx"
 import { NavLink } from "react-router-dom"
 
 const About = () => (
@@ -90,52 +89,6 @@ const About = () => (
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section className="bg-transparent section-divider">
-      <div className="mx-auto w-full max-w-6xl px-6 py-20">
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-          <div className="card-metal rounded-3xl p-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-blue">
-              Why Choose OPUS
-            </p>
-            <h2 className="mt-4 text-2xl font-semibold text-brand-slate">
-              Enterprise delivery with transparent performance reporting.
-            </h2>
-            <p className="mt-4 text-sm font-medium leading-relaxed text-slate-700">
-              OPUS BPO combines disciplined workflows, payer-specific expertise, and dedicated
-              client success coverage to protect revenue performance.
-            </p>
-          </div>
-          <div className="space-y-4">
-            {[
-              {
-                title: "Comprehensive Expertise",
-                detail:
-                  "RCM specialists with deep exposure to hospital, physician, and multi-specialty billing.",
-              },
-              {
-                title: "Cutting-Edge Controls",
-                detail:
-                  "Operational dashboards, QA sampling, and denial prevention routines built into every workflow.",
-              },
-              {
-                title: "Custom Strategy",
-                detail:
-                  "Tailored delivery models aligned to payer mix, compliance posture, and internal reporting cadence.",
-              },
-            ].map((item, index) => (
-              <div key={item.title} className="card-metal rounded-2xl p-6">
-                <p className="inline-flex min-w-12 justify-center rounded-full bg-[#2596be] px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white shadow-[0_10px_24px_-14px_rgba(37,150,190,0.38)]">
-                  {String(index + 1).padStart(2, "0")}
-                </p>
-                <p className="mt-3 text-base font-bold text-brand-slate">{item.title}</p>
-                <p className="mt-2 text-base font-medium leading-relaxed text-slate-700">{item.detail}</p>
-              </div>
-            ))}
           </div>
         </div>
       </div>
