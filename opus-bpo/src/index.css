@@ -111,6 +111,12 @@ a {
   font-weight: 800;
 }
 
+.nav-dropdown .nav-dropdown-about-link {
+  text-transform: none;
+  letter-spacing: 0.04em;
+  font-size: 0.95rem;
+}
+
 .nav-dropdown-services {
   min-width: 640px;
   max-height: none;
@@ -125,10 +131,10 @@ a {
   display: block;
   padding: 10px 12px;
   border-radius: 12px;
-  font-size: 0.8rem;
+  font-size: 0.92rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-transform: none;
   line-height: 1.35;
   color: var(--opus-ink);
   transition: background 150ms ease, color 150ms ease;

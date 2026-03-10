@@ -32,6 +32,8 @@ const Layout = () => {
     label: service.title,
     href: serviceHref(service.title),
   }))
+  const activeServiceHref =
+    location.pathname === "/services" && location.hash ? `/services${location.hash}` : ""
 
   useEffect(() => {
     if (!menuOpen) return
@@ -60,8 +62,13 @@ const Layout = () => {
   }, [location.pathname])
 
   useEffect(() => {
+    if (location.pathname === "/services" && !location.hash) {
+      window.scrollTo({ top: 0, behavior: "auto" })
+      return
+    }
+
     window.scrollTo({ top: 0, behavior: "auto" })
-  }, [location.pathname])
+  }, [location.pathname, location.hash])
 
   useEffect(() => {
     if (!practiceMenuOpen) return
@@ -108,6 +115,12 @@ const Layout = () => {
     practiceButtonRef.current?.scrollIntoView({ behavior: "smooth", block: "center" })
   }
 
+  const handleServicesTopClick = () => {
+    if (location.pathname === "/services" && !location.hash) {
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    }
+  }
+
   return (
     <div className="min-h-screen bg-white text-ink-700">
       <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur">
@@ -138,6 +151,7 @@ const Layout = () => {
                 <div key={item.path} className="nav-group relative flex items-center gap-1">
                   <NavLink
                     to={item.path}
+                    onClick={handleServicesTopClick}
                     className={({ isActive }) =>
                       `nav-link ${linkBase} ${
                         isActive
@@ -156,7 +170,9 @@ const Layout = () => {
                       <NavLink
                         key={link.href}
                         to={link.href}
-                        className={({ isActive }) => (isActive ? "is-active" : "")}
+                        className={({ isActive }) =>
+                          `nav-dropdown-about-link ${isActive ? "is-active" : ""}`
+                        }
                       >
                         {link.label}
                       </NavLink>
@@ -182,7 +198,13 @@ const Layout = () => {
                   </span>
                   <div className="nav-dropdown nav-dropdown-services">
                     {serviceLinks.map((link) => (
-                      <Link key={link.href} to={link.href} className="nav-dropdown-service-link">
+                      <Link
+                        key={link.href}
+                        to={link.href}
+                        className={`nav-dropdown-service-link ${
+                          activeServiceHref === link.href ? "is-active" : ""
+                        }`}
+                      >
                         {link.label}
                       </Link>
                     ))}
@@ -272,7 +294,12 @@ const Layout = () => {
                 <NavLink
                   key={item.path}
                   to={item.path}
-                  onClick={() => setMenuOpen(false)}
+                  onClick={() => {
+                    if (item.label === "Services") {
+                      handleServicesTopClick()
+                    }
+                    setMenuOpen(false)
+                  }}
                   className={({ isActive }) =>
                     `${linkBase} ${isActive ? "text-brand-blue" : "text-slate-600"}`
                   }
@@ -303,18 +330,16 @@ const Layout = () => {
                 Services
               </div>
               {serviceLinks.map((link) => (
-                <NavLink
+                <Link
                   key={link.href}
                   to={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className={({ isActive }) =>
-                    `text-xs font-semibold uppercase tracking-[0.2em] ${
-                      isActive ? "text-brand-blue" : "text-slate-600"
-                    }`
-                  }
+                  className={`text-xs font-semibold uppercase tracking-[0.2em] ${
+                    activeServiceHref === link.href ? "text-brand-blue" : "text-slate-600"
+                  }`}
                 >
                   {link.label}
-                </NavLink>
+                </Link>
               ))}
 
               <div className="practice-menu-mobile">
