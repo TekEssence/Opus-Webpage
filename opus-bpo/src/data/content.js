@@ -3,7 +3,6 @@ export const navItems = [
   { label: "Services", path: "/services" },
   { label: "About", path: "/about" },
   { label: "Compliance", path: "/compliance" },
-  { label: "Contact", path: "/contact" },
 ]
 
 export const stats = [

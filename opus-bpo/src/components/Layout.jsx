@@ -4,7 +4,7 @@ import FloatingHealthCheck from "./FloatingHealthCheck.jsx"
 import { practiceMetrics } from "../data/practiceHealthCheck.js"
 import { navItems, services } from "../data/content.js"
 
-const linkBase = "text-xs font-semibold uppercase tracking-[0.12em] transition-colors"
+const linkBase = "text-sm font-semibold uppercase tracking-[0.12em] transition-colors"
 const dropdownArrow = "▼"
 
 const serviceHref = (title) =>
@@ -271,7 +271,7 @@ const Layout = () => {
             <NavLink
               to="/contact"
               aria-label="Schedule a call with our team"
-              className="hidden whitespace-nowrap rounded-full bg-brand-red px-6 py-2 text-sm font-semibold text-white transition hover:bg-red-700 lg:inline-flex"
+              className="hidden whitespace-nowrap rounded-full bg-brand-red px-7 py-3 text-base font-bold text-white shadow-[0_12px_30px_-16px_rgba(219,68,37,0.9)] transition hover:bg-red-700 lg:inline-flex"
             >
               Schedule a Call
             </NavLink>
@@ -361,7 +361,7 @@ const Layout = () => {
                 to="/contact"
                 onClick={() => setMenuOpen(false)}
                 aria-label="Schedule a call with our team"
-                className="whitespace-nowrap rounded-full bg-brand-red px-5 py-2 text-center text-sm font-semibold text-white transition hover:bg-red-700"
+                className="whitespace-nowrap rounded-full bg-brand-red px-6 py-3 text-center text-base font-bold text-white shadow-[0_12px_30px_-16px_rgba(219,68,37,0.9)] transition hover:bg-red-700"
               >
                 Schedule a Call
               </NavLink>

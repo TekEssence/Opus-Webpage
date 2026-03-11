@@ -830,19 +830,19 @@ const Home = () => {
           {[
               {
                 title: "Multi-specialty Clinic",
-                stat: "Down 8% denials",
+                stat: "12% reduction in claim denials",
                 detail:
                   "Eligibility checks and coding QA reduced avoidable rejections over two quarters.",
               },
             {
               title: "Hospital Outpatient",
-              stat: "Up 18% cash velocity",
+              stat: "18% increase in cash velocity",
               detail:
                 "Accelerated charge entry and structured AR follow-ups shortened aging cycles.",
             },
             {
               title: "Physician Group",
-              stat: "Up 15% first-pass",
+              stat: "15% increase in first-pass claim acceptance",
               detail:
                 "Payer edit scrubs and denial prevention improved clean-claim performance.",
             },
