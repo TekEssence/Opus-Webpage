@@ -419,7 +419,10 @@ const Home = () => {
               giving your organization consistent performance without added burden.
             </p>
           </div>
-          <div className="mt-10 px-0 py-8">
+          <div className="mt-10 px-0 py-6">
+            <p className="mb-6 text-center text-sm font-semibold tracking-[0.04em] text-black">
+              Typical outcomes achieved through our RCM optimization programs across recent client engagements.
+            </p>
             <style>{`
               @keyframes spin {
                 from {
