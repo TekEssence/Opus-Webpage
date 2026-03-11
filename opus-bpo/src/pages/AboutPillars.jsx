@@ -37,7 +37,7 @@ const AboutPillars = () => (
         <div className="grid items-start gap-12 lg:grid-cols-[1.2fr_0.8fr]">
           <div className="relative">
             <div className="absolute -left-4 top-14 hidden h-32 w-32 rounded-full border border-white/40 bg-white/20 blur-2xl lg:block"></div>
-            <div className="relative overflow-hidden rounded-[34px] border border-white/60 bg-[linear-gradient(160deg,rgba(255,255,255,0.9),rgba(241,245,249,0.82)_48%,rgba(226,232,240,0.74))] p-8 shadow-[0_30px_80px_-42px_rgba(15,23,42,0.55)] backdrop-blur-sm md:p-10">
+            <div className="relative overflow-hidden rounded-[34px] border border-white/60 bg-[linear-gradient(155deg,rgba(255,255,255,0.92),rgba(234,244,252,0.9)_34%,rgba(228,236,248,0.88)_62%,rgba(244,235,223,0.72))] p-8 shadow-[0_30px_80px_-42px_rgba(15,23,42,0.55)] backdrop-blur-sm md:p-10">
               <div
                 className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,rgba(37,99,235,0.85),rgba(14,165,233,0.6),rgba(250,204,21,0.55))]"
                 aria-hidden="true"
@@ -46,8 +46,10 @@ const AboutPillars = () => (
                 <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue">
                   Company Overview
                 </p>
-                <h2 className="max-w-[16ch] font-heading text-3xl font-semibold leading-tight text-brand-slate md:text-5xl">
-                  Built for accuracy, compliance, and measurable cash outcomes.
+                <h2 className="max-w-[32ch] font-heading text-3xl font-semibold leading-tight text-brand-slate md:text-4xl">
+                  Built for accuracy, compliance,
+                  <br />
+                  and measurable cash outcomes.
                 </h2>
                 <p className="max-w-3xl text-lg font-medium leading-relaxed text-slate-700">
                   OPUS BPO supports hospitals and physician groups with structured revenue cycle execution, payer-aligned billing workflows, and governance-driven reporting.
@@ -62,10 +64,7 @@ const AboutPillars = () => (
                     Our delivery model combines payer policy expertise, standardized claim workflows, and multi-layer quality review so finance teams receive predictable, audit-ready revenue cycle outcomes.
                   </p>
                 </div>
-                <div className="rounded-[28px] border border-slate-200/80 bg-white/80 p-5 shadow-[0_16px_40px_-32px_rgba(15,23,42,0.45)]">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-500">
-                    Above The Surface
-                  </p>
+                <div className="rounded-[28px] border border-sky-100/90 bg-[linear-gradient(160deg,rgba(255,255,255,0.9),rgba(232,245,255,0.88),rgba(238,247,232,0.76))] p-5 shadow-[0_16px_40px_-32px_rgba(15,23,42,0.45)]">
                   <p className="mt-2 text-sm font-medium leading-relaxed text-slate-600">
                     Clients experience cleaner claim submissions, fewer payer rejections, and more stable reimbursement cycles.
                   </p>
@@ -79,7 +78,7 @@ const AboutPillars = () => (
                   </div>
                 </div>
               </div>
-              <div className="relative mt-8 overflow-hidden rounded-[32px] border border-white/60 bg-[linear-gradient(145deg,rgba(255,255,255,0.95),rgba(240,247,252,0.94)_42%,rgba(214,229,239,0.98))] px-6 py-6 shadow-[0_28px_70px_-42px_rgba(15,23,42,0.52)] lg:px-8">
+              <div className="relative mt-8 overflow-hidden rounded-[32px] border border-white/60 bg-[linear-gradient(145deg,rgba(255,255,255,0.96),rgba(236,246,255,0.95)_32%,rgba(225,239,245,0.96)_62%,rgba(246,236,228,0.78))] px-6 py-6 shadow-[0_28px_70px_-42px_rgba(15,23,42,0.52)] lg:px-8">
                 <div
                   className="pointer-events-none absolute right-[-8%] top-[-12%] h-48 w-48 rounded-full bg-[radial-gradient(circle,rgba(37,99,235,0.14),transparent_68%)]"
                   aria-hidden="true"
@@ -99,7 +98,7 @@ const AboutPillars = () => (
                 <div className="relative">
                   <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
                     <div className="flex flex-col">
-                      <div className="mt-4 overflow-hidden rounded-[28px] border border-white/70 bg-[linear-gradient(160deg,rgba(255,255,255,0.78),rgba(226,238,247,0.86))] p-6 shadow-[0_20px_50px_-36px_rgba(15,23,42,0.4)]">
+                      <div className="mt-4 overflow-hidden rounded-[28px] border border-white/70 bg-[linear-gradient(160deg,rgba(255,255,255,0.82),rgba(225,239,255,0.86),rgba(243,247,225,0.68))] p-6 shadow-[0_20px_50px_-36px_rgba(15,23,42,0.4)]">
                         <p className="max-w-[12ch] font-heading text-4xl font-semibold leading-[0.96] text-brand-slate md:text-5xl">
                           Scale beneath every outcome.
                         </p>
@@ -118,12 +117,12 @@ const AboutPillars = () => (
                             key={metric.label}
                             className={`group relative overflow-hidden rounded-[26px] border border-white/75 p-6 shadow-[0_18px_40px_-32px_rgba(15,23,42,0.38)] ${
                               index === 0
-                                ? "bg-[linear-gradient(160deg,rgba(255,255,255,0.92),rgba(229,240,249,0.95))]"
+                                ? "bg-[linear-gradient(160deg,rgba(255,255,255,0.94),rgba(220,238,255,0.96),rgba(236,247,255,0.92))]"
                                 : index === 1
-                                  ? "bg-[linear-gradient(160deg,rgba(255,255,255,0.9),rgba(240,244,255,0.95))]"
+                                  ? "bg-[linear-gradient(160deg,rgba(255,255,255,0.92),rgba(236,241,255,0.96),rgba(244,238,255,0.9))]"
                                 : index === 2
-                                    ? "bg-[linear-gradient(160deg,rgba(255,255,255,0.92),rgba(230,245,245,0.96))]"
-                                    : "bg-[linear-gradient(160deg,rgba(255,255,255,0.92),rgba(241,239,251,0.96))]"
+                                    ? "bg-[linear-gradient(160deg,rgba(255,255,255,0.94),rgba(229,247,240,0.96),rgba(238,251,247,0.9))]"
+                                    : "bg-[linear-gradient(160deg,rgba(255,255,255,0.94),rgba(245,238,255,0.96),rgba(255,243,235,0.88))]"
                             }`}
                           >
                             <div
@@ -152,7 +151,7 @@ const AboutPillars = () => (
           </div>
           <div className="relative lg:pt-6">
             <div className="grid gap-5">
-              <div className="rounded-[30px] border border-white/60 bg-[linear-gradient(145deg,rgba(255,255,255,0.9),rgba(239,246,255,0.82))] p-5 shadow-[0_24px_60px_-40px_rgba(15,23,42,0.45)] backdrop-blur-sm">
+              <div className="rounded-[30px] border border-white/60 bg-[linear-gradient(145deg,rgba(255,255,255,0.92),rgba(233,245,255,0.88),rgba(245,239,224,0.74))] p-5 shadow-[0_24px_60px_-40px_rgba(15,23,42,0.45)] backdrop-blur-sm">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-slate-500">
                   Revenue Cycle Focus
                 </p>
@@ -160,19 +159,19 @@ const AboutPillars = () => (
                   Governance-led delivery backed by scale, control, and reporting discipline.
                 </p>
                 <div className="mt-4 grid gap-4 sm:grid-cols-2">
-                  <div className="rounded-[22px] border border-white/70 bg-white/75 px-5 py-4">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500">
+                  <div className="rounded-[22px] border border-cyan-300/70 bg-[linear-gradient(155deg,#d9f4ff,#bfe8ff_55%,#9fd9ff)] px-5 py-4 shadow-[0_20px_40px_-28px_rgba(14,165,233,0.35)]">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-sky-900/70">
                       Client Confidence
                     </p>
-                    <p className="mt-2 text-sm font-medium leading-relaxed text-slate-700">
+                    <p className="mt-2 text-sm font-medium leading-relaxed text-sky-950/80">
                       Structured workflows and audit-ready reporting that finance teams can rely on.
                     </p>
                   </div>
-                  <div className="rounded-[22px] border border-slate-200/80 bg-slate-950 px-5 py-4 text-white shadow-[0_20px_45px_-34px_rgba(15,23,42,0.9)]">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-300">
+                  <div className="rounded-[22px] border border-cyan-200/40 bg-[linear-gradient(180deg,#0f3f4c,#155e75)] px-5 py-4 text-white shadow-[0_20px_45px_-34px_rgba(21,94,117,0.5)]">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-100/70">
                       Delivery Backbone
                     </p>
-                    <p className="mt-2 text-sm font-medium leading-relaxed text-slate-100">
+                    <p className="mt-2 text-sm font-medium leading-relaxed text-cyan-50">
                       Experienced teams, KPI ownership, and denial prevention processes operating in sync.
                     </p>
                   </div>
@@ -197,24 +196,24 @@ const AboutPillars = () => (
                 </div>
               </div>
               <div className="grid gap-4 lg:grid-cols-2">
-                <div className="rounded-[24px] border border-white/75 bg-white/80 px-5 py-5 shadow-[0_18px_40px_-30px_rgba(15,23,42,0.32)]">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-500">
+                <div className="rounded-[24px] border border-cyan-300/70 bg-[linear-gradient(155deg,#d9f4ff,#bfe8ff_55%,#9fd9ff)] px-5 py-5 shadow-[0_20px_40px_-28px_rgba(14,165,233,0.35)]">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-sky-900/70">
                     Client Outcomes
                   </p>
-                  <p className="mt-2 text-base font-medium leading-relaxed text-slate-700">
+                  <p className="mt-2 text-base font-medium leading-relaxed text-sky-950/80">
                     Faster claim turnaround, cleaner submissions, and consistent revenue cycle reporting.
                   </p>
                 </div>
-                <div className="rounded-[24px] border border-slate-800/80 bg-[linear-gradient(180deg,#071126,#0f1e42)] px-5 py-5 text-white shadow-[0_24px_50px_-34px_rgba(2,6,23,0.9)]">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-300">
+                <div className="rounded-[24px] border border-cyan-200/40 bg-[linear-gradient(180deg,#0f3f4c,#155e75)] px-5 py-5 text-white shadow-[0_20px_45px_-34px_rgba(21,94,117,0.5)]">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-cyan-100/80 ">
                     Operational Foundation
                   </p>
-                  <p className="mt-2 text-base font-medium leading-relaxed text-slate-100">
+                  <p className="mt-2 text-base font-medium leading-relaxed text-cyan-50">
                     Experienced billing specialists, multi-specialty provider support, and sustained claim throughput form the operational foundation behind those outcomes.
                   </p>
                 </div>
               </div>
-              <div className="rounded-[28px] border border-white/65 bg-white/75 px-6 py-5 shadow-[0_18px_45px_-34px_rgba(15,23,42,0.32)]">
+              <div className="rounded-[28px] border border-white/65 bg-[linear-gradient(145deg,rgba(255,255,255,0.9),rgba(243,247,255,0.86),rgba(248,241,233,0.74))] px-6 py-5 shadow-[0_18px_45px_-34px_rgba(15,23,42,0.32)]">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-500">
                   Delivery Priorities
                 </p>
