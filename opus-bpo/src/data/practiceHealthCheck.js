@@ -13,9 +13,11 @@ const metricDefinitions = [
     precision: 0,
     benchmark: {
       goodLabel: "On Target",
-      cautionLabel: "Monitor",
+      cautionLabel: "Needs Review",
       alertLabel: "Action Needed",
-      guidance: "Target: under 40 days. 40-55 days needs attention.",
+      goodGuidance: "Best range: under 40 days.",
+      cautionGuidance: "Between 40 and 55 days needs review.",
+      alertGuidance: "Above 55 days needs improvement.",
       evaluate: (value) => {
         if (value <= 40) return "good"
         if (value <= 55) return "caution"
@@ -37,9 +39,11 @@ const metricDefinitions = [
     precision: 1,
     benchmark: {
       goodLabel: "On Target",
-      cautionLabel: "Monitor",
+      cautionLabel: "Needs Review",
       alertLabel: "Action Needed",
-      guidance: "Target: below 5%. 5-8% suggests preventable leakage.",
+      goodGuidance: "Best range: below 5%.",
+      cautionGuidance: "Between 5% and 8% needs review.",
+      alertGuidance: "Above 8% needs improvement.",
       evaluate: (value) => {
         if (value < 5) return "good"
         if (value <= 8) return "caution"
@@ -60,9 +64,11 @@ const metricDefinitions = [
     precision: 1,
     benchmark: {
       goodLabel: "On Target",
-      cautionLabel: "Monitor",
-      alertLabel: "Below Target",
-      guidance: "Target: above 95%. 90-95% may indicate collection drag.",
+      cautionLabel: "Needs Review",
+      alertLabel: "Needs Improvement",
+      goodGuidance: "Best range: above 95%.",
+      cautionGuidance: "Between 90% and 95% needs review.",
+      alertGuidance: "Below 90% needs improvement.",
       evaluate: (value) => {
         if (value >= 95) return "good"
         if (value >= 90) return "caution"
@@ -83,9 +89,11 @@ const metricDefinitions = [
     precision: 1,
     benchmark: {
       goodLabel: "On Target",
-      cautionLabel: "Monitor",
-      alertLabel: "Below Target",
-      guidance: "Target: above 96%. 92-96% may signal write-off pressure.",
+      cautionLabel: "Needs Review",
+      alertLabel: "Needs Improvement",
+      goodGuidance: "Best range: above 96%.",
+      cautionGuidance: "Between 92% and 96% needs review.",
+      alertGuidance: "Below 92% needs improvement.",
       evaluate: (value) => {
         if (value >= 96) return "good"
         if (value >= 92) return "caution"
@@ -107,9 +115,11 @@ const metricDefinitions = [
     precision: 1,
     benchmark: {
       goodLabel: "On Target",
-      cautionLabel: "Monitor",
-      alertLabel: "Below Target",
-      guidance: "Target: above 90%. 85-90% means rework is building.",
+      cautionLabel: "Needs Review",
+      alertLabel: "Needs Improvement",
+      goodGuidance: "Best range: above 90%.",
+      cautionGuidance: "Between 85% and 90% needs review.",
+      alertGuidance: "Below 85% needs improvement.",
       evaluate: (value) => {
         if (value >= 90) return "good"
         if (value >= 85) return "caution"
@@ -161,7 +171,12 @@ export const buildMetricResult = (metric, computed) => {
     benchmark: {
       tone: statusTone,
       label: statusLabel,
-      guidance: metric.benchmark?.guidance ?? "",
+      guidance:
+        statusTone === "good"
+          ? metric.benchmark?.goodGuidance ?? ""
+          : statusTone === "caution"
+            ? metric.benchmark?.cautionGuidance ?? ""
+            : metric.benchmark?.alertGuidance ?? "",
     },
   }
 }

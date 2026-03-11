@@ -37,7 +37,7 @@ const metrics = [
   },
   {
     number: "5",
-    value: "30",
+    value: "<30",
     label: "AR DAYS",
     position: "top",
     gradientStart: "#4dd5f3",
