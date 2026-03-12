@@ -91,12 +91,54 @@ const sections = [
       </svg>
     ),
   },
+  {
+    tag: "RCM Delivery Excellence",
+    title: "We bring deep RCM expertise with measurable accountability.",
+    body:
+      "Our teams serve every major segment of the revenue cycle and align with healthcare finance leadership expectations.",
+    metrics: [
+      {
+        title: "Clean Claim Rate",
+        value: 99,
+        description: "Percentage of claims submitted without errors and accepted by payers on the first submission.",
+      },
+      {
+        title: "SLA Adherence",
+        value: 98,
+        description: "Operational delivery meeting client service-level agreements across supported workflows.",
+      },
+      {
+        title: "Compliance Audit Readiness",
+        value: 97,
+        description: "Internal and external compliance readiness across supported healthcare billing operations.",
+      },
+    ],
+    images: [
+      {
+        src: "/about-2.jpg",
+        alt: "RCM analysts collaborating",
+      },
+      {
+        src: "/about-3.jpg",
+        alt: "Healthcare finance review",
+      },
+    ],
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-5 w-5 text-brand-gold" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true" focusable="false">
+        <path d="M4 13h4l2-6 4 12 2-6h4" />
+      </svg>
+    ),
+  },
 ]
 
 const AboutWhy = () => {
+  const contentSections = sections.filter((section) => section.tag !== "RCM Delivery Excellence")
+  const rcmSection = sections.find((section) => section.tag === "RCM Delivery Excellence")
+
   return (
-    <section className="bg-transparent">
-      <div className="mx-auto w-full max-w-6xl px-6 py-20">
+    <>
+      <section className="bg-transparent">
+        <div className="mx-auto w-full max-w-6xl px-6 py-20">
         <div className="flex flex-col gap-4">
           <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue">
             Why OPUS BPO
@@ -110,7 +152,7 @@ const AboutWhy = () => {
         </div>
 
         <div className="mt-14 space-y-16">
-          {sections.map((section, index) => (
+          {contentSections.map((section, index) => (
             <div
               key={section.title}
               className={`grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] ${
@@ -136,32 +178,129 @@ const AboutWhy = () => {
                   {section.body}
                 </p>
 
-                {/* SHINING GRADIENT BULLETS */}
-                <div className="mt-6 space-y-5">
-                  {section.bullets.map((bullet) => (
-                    <div key={bullet} className="gradient-bullet">
-                      <p className="text-base font-medium leading-relaxed text-slate-700">{bullet}</p>
-                    </div>
-                  ))}
-                </div>
+                {section.bullets && (
+                  <div className="mt-6 space-y-5">
+                    {section.bullets.map((bullet) => (
+                      <div key={bullet} className="gradient-bullet">
+                        <p className="text-base font-medium leading-relaxed text-slate-700">{bullet}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {section.metrics && (
+                  <div className="mt-8 space-y-5">
+                    {section.metrics.map((item) => (
+                      <div key={item.title}>
+                        <div className="flex items-center justify-between text-sm font-semibold text-brand-slate">
+                          <span>{item.title}</span>
+                          <span className="text-brand-blue">{item.value}%</span>
+                        </div>
+                        <div className="progress-shell mt-2">
+                          <div
+                            className="progress-fill"
+                            style={{ "--target-width": `${item.value}%` }}
+                          ></div>
+                        </div>
+                        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">
+                          {item.description}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
 
 
               {/* IMAGE SIDE */}
               <div className={`${index % 2 === 1 ? "lg:order-1" : ""}`}>
-                <div className="overflow-hidden rounded-3xl shadow-lg">
-                  <img
-                    src={section.image}
-                    alt={section.tag}
-                    className="h-72 w-full object-cover md:h-[360px]"
-                  />
-                </div>
+                {section.images ? (
+                  <div className="grid gap-6">
+                    {section.images.map((image) => (
+                      <img
+                        key={image.src}
+                        src={image.src}
+                        alt={image.alt}
+                        className="h-56 w-full rounded-3xl object-cover shadow-subtle"
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="overflow-hidden rounded-3xl shadow-lg">
+                    <img
+                      src={section.image}
+                      alt={section.tag}
+                      className="h-72 w-full object-cover md:h-[360px]"
+                    />
+                  </div>
+                )}
               </div>
             </div>
           ))}
         </div>
-      </div>
-    </section>
+        </div>
+      </section>
+
+      {rcmSection && (
+        <section className="section-tint section-divider">
+          <div className="mx-auto w-full max-w-6xl px-6 py-20">
+            <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+              <div>
+                <div className="grid gap-6">
+                  {rcmSection.images.map((image) => (
+                    <img
+                      key={image.src}
+                      src={image.src}
+                      alt={image.alt}
+                      className="h-56 w-full rounded-3xl object-cover shadow-subtle"
+                    />
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <div className="flex items-center gap-3">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-50">
+                    {rcmSection.icon}
+                  </span>
+                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-slate">
+                    {rcmSection.tag}
+                  </p>
+                </div>
+
+                <h3 className="mt-5 text-2xl font-semibold text-brand-slate md:text-4xl">
+                  {rcmSection.title}
+                </h3>
+
+                <p className="mt-4 text-base font-medium leading-relaxed text-slate-700 md:text-lg">
+                  {rcmSection.body}
+                </p>
+
+                <div className="mt-8 space-y-5">
+                  {rcmSection.metrics.map((item) => (
+                    <div key={item.title}>
+                      <div className="flex items-center justify-between text-sm font-semibold text-brand-slate">
+                        <span>{item.title}</span>
+                        <span className="text-brand-blue">{item.value}%</span>
+                      </div>
+                      <div className="progress-shell mt-2">
+                        <div
+                          className="progress-fill"
+                          style={{ "--target-width": `${item.value}%` }}
+                        ></div>
+                      </div>
+                      <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">
+                        {item.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+    </>
   )
 }
 

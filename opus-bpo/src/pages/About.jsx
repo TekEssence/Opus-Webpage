@@ -44,58 +44,6 @@ const About = () => (
 
     <section className="section-tint section-divider">
       <div className="mx-auto w-full max-w-6xl px-6 py-20">
-        <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center">
-          <div className="grid gap-6">
-            <img
-              src="/about-2.jpg"
-              alt="RCM analysts collaborating"
-              className="h-56 w-full rounded-3xl object-cover shadow-subtle"
-            />
-            <img
-              src="/about-3.jpg"
-              alt="Healthcare finance review"
-              className="h-56 w-full rounded-3xl object-cover shadow-subtle"
-            />
-          </div>
-          <div>
-            <div className="flex flex-col gap-4">
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue">
-                Our Skills
-              </p>
-              <h2 className="font-heading text-3xl font-semibold leading-tight text-brand-slate md:text-4xl">
-                We bring deep RCM expertise with measurable accountability.
-              </h2>
-              <p className="text-lg font-medium leading-relaxed text-slate-700">
-                Our teams serve every major segment of the revenue cycle and align with healthcare finance leadership expectations.
-              </p>
-            </div>
-            <div className="mt-8 space-y-5">
-              {[
-                { label: "Revenue Integrity Programs", value: "99%" },
-                { label: "Operational Governance", value: "92%" },
-                { label: "Compliance Readiness", value: "97%" },
-              ].map((item) => (
-                <div key={item.label}>
-                  <div className="flex items-center justify-between text-sm font-semibold text-brand-slate">
-                    <span>{item.label}</span>
-                    <span className="text-brand-blue">{item.value}</span>
-                  </div>
-                  <div className="progress-shell mt-2">
-                    <div
-                      className="progress-fill"
-                      style={{ "--target-width": item.value }}
-                    ></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section className="section-tint section-divider">
-      <div className="mx-auto w-full max-w-6xl px-6 py-20">
         <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
           <div className="flex flex-col gap-4">
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue">

@@ -99,7 +99,7 @@ const AboutPillars = () => (
                   <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
                     <div className="flex flex-col">
                       <div className="mt-4 overflow-hidden rounded-[28px] border border-white/70 bg-[linear-gradient(160deg,rgba(255,255,255,0.82),rgba(225,239,255,0.86),rgba(243,247,225,0.68))] p-6 shadow-[0_20px_50px_-36px_rgba(15,23,42,0.4)]">
-                        <p className="max-w-[12ch] font-heading text-4xl font-semibold leading-[0.96] text-brand-slate md:text-5xl">
+                        <p className="max-w-[12ch] font-heading text-4xl font-semibold leading-[0.96] text-brand-slate md:text-4xl">
                           Scale beneath every outcome.
                         </p>
                         <p className="mt-4 max-w-md text-base font-medium leading-relaxed text-slate-600">
@@ -298,6 +298,7 @@ const AboutPillars = () => (
         <div className="text-center">
           <SectionHeader
             label="Leadership & Partners"
+            labelClassName="mx-auto w-[235px] text-[11px] tracking-[0.26em]"
             title="Partners of OPUS BPO"
           />
         </div>
