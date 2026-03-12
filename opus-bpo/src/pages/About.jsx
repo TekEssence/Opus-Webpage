@@ -2,8 +2,8 @@ import { NavLink } from "react-router-dom"
 
 const overviewMetrics = [
   { value: "500+", label: "Employees" },
-  { value: "100+", label: "Healthcare Clients" },
-  { value: "1M+", label: "Claims Processed" },
+  { value: "100+", label: "Clients" },
+  { value: "5M+", label: "Claims Processed" },
   { value: "25+", label: "Years of RCM Experience" },
 ]
 
@@ -49,9 +49,9 @@ const About = () => (
       </div>
     </section>
 
-    <section className="relative overflow-hidden bg-transparent section-divider">
+    <section className="relative overflow-hidden section-divider bg-[linear-gradient(135deg,#fff7ef_0%,#f8efe7_34%,#eef7f2_68%,#e7f3fb_100%)]">
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-full bg-[radial-gradient(circle_at_left_top,rgba(255,255,255,0.6),transparent_38%),radial-gradient(circle_at_85%_25%,rgba(255,255,255,0.28),transparent_24%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_left_top,rgba(255,255,255,0.7),transparent_32%),radial-gradient(circle_at_82%_22%,rgba(255,255,255,0.18),transparent_22%),radial-gradient(circle_at_25%_80%,rgba(255,255,255,0.2),transparent_28%)]"
         aria-hidden="true"
       ></div>
       <div className="mx-auto w-full max-w-[1440px] px-6 py-20">
