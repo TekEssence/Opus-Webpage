@@ -131,6 +131,27 @@ const sections = [
   },
 ]
 
+const clientSignals = [
+  {
+    title: "Multi-specialty Clinic",
+    stat: "12% reduction in claim denials",
+    detail:
+      "Eligibility checks and coding QA reduced avoidable rejections over two quarters.",
+  },
+  {
+    title: "Hospital Outpatient",
+    stat: "18% increase in cash velocity",
+    detail:
+      "Accelerated charge entry and structured AR follow-ups shortened aging cycles.",
+  },
+  {
+    title: "Physician Group",
+    stat: "15% increase in first-pass claim acceptance",
+    detail:
+      "Payer edit scrubs and denial prevention improved clean-claim performance.",
+  },
+]
+
 const AboutWhy = () => {
   const contentSections = sections.filter((section) => section.tag !== "RCM Delivery Excellence")
   const rcmSection = sections.find((section) => section.tag === "RCM Delivery Excellence")
@@ -268,7 +289,7 @@ const AboutWhy = () => {
                   </p>
                 </div>
 
-                <h3 className="mt-5 text-2xl font-semibold text-brand-slate md:text-4xl">
+                <h3 className="mt-5 font-heading text-3xl font-semibold leading-tight text-brand-slate md:text-4xl">
                   {rcmSection.title}
                 </h3>
 
@@ -300,6 +321,34 @@ const AboutWhy = () => {
           </div>
         </section>
       )}
+
+      <section className="bg-transparent section-divider">
+        <div className="mx-auto w-full max-w-6xl px-6 py-20">
+          <div className="flex flex-col gap-4">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue">
+              Client Signals
+            </p>
+            <h2 className="font-heading text-3xl font-semibold leading-tight text-brand-slate md:text-4xl">
+              Measured results without exaggerated promises.
+            </h2>
+            <p className="text-lg font-medium leading-relaxed text-slate-700">
+              Representative performance signals from comparable provider groups.
+            </p>
+          </div>
+
+          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+            {clientSignals.map((item) => (
+              <div key={item.title} className="card-metal rounded-2xl p-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-blue">
+                  {item.title}
+                </p>
+                <h3 className="mt-3 text-2xl font-semibold text-brand-slate">{item.stat}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.detail}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </>
   )
 }

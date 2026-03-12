@@ -811,54 +811,6 @@ const Home = () => {
       </div>
     </section>
 
-    <section className="bg-transparent section-divider">
-      <div className="mx-auto w-full max-w-6xl px-6 py-20">
-        <div className="reveal flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <div className="flex flex-col gap-4">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue">
-              Client Signals
-            </p>
-            <h2 className="font-heading text-3xl font-semibold leading-tight text-brand-slate md:text-4xl">
-              Measured results without exaggerated promises.
-            </h2>
-            <p className="text-lg font-medium leading-relaxed text-slate-700">
-              Representative performance signals from comparable provider groups.
-            </p>
-          </div>
-        </div>
-        <div className="mt-10 grid gap-6 grid-cols-1 md:grid-cols-3">
-          {[
-              {
-                title: "Multi-specialty Clinic",
-                stat: "12% reduction in claim denials",
-                detail:
-                  "Eligibility checks and coding QA reduced avoidable rejections over two quarters.",
-              },
-            {
-              title: "Hospital Outpatient",
-              stat: "18% increase in cash velocity",
-              detail:
-                "Accelerated charge entry and structured AR follow-ups shortened aging cycles.",
-            },
-            {
-              title: "Physician Group",
-              stat: "15% increase in first-pass claim acceptance",
-              detail:
-                "Payer edit scrubs and denial prevention improved clean-claim performance.",
-            },
-          ].map((item) => (
-            <div key={item.title} className="card-metal reveal rounded-2xl p-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-blue">
-                {item.title}
-              </p>
-              <h3 className="mt-3 text-2xl font-semibold text-brand-slate">{item.stat}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.detail}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
     <section className="section-tint section-divider">
       <div className="mx-auto w-full max-w-6xl px-6 py-20">
         <div className="reveal mb-10 max-w-6xl">
