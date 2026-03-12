@@ -28,7 +28,7 @@ const AboutVision = () => (
           <div className="absolute inset-0 bg-slate-900/60"></div>
           <div className="relative space-y-6 px-8 py-20 md:px-12 lg:px-16 lg:py-24">
             <div className="flex flex-col gap-4">
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-blue">
                 Our Core Values
               </p>
               <h2 className="font-heading text-3xl font-semibold leading-tight text-brand-slate md:text-4xl">
