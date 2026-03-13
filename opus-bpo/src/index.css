@@ -606,7 +606,7 @@ a {
 
 .hero-media:has(> img[alt="Healthcare leadership"])::before {
   background: radial-gradient(circle at 15% 20%, rgba(59, 130, 246, 0.4), transparent 50%),
-    radial-gradient(circle at 70% 10%, rgba(240, 222, 232, 0.42), transparent 55%);
+    radial-gradient(circle at 70% 10%, rgba(245, 194, 220, 0.557), transparent 55%);
 }
 
 .hero-media:has(> img[alt="Healthcare leadership"])::after {

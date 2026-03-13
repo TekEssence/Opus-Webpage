@@ -55,7 +55,7 @@ const AboutVision = () => (
       </div>
     </section>
 
-    <section className="section-tint section-divider">
+    <section className="section-divider bg-[linear-gradient(135deg,#eef8ff_0%,#e7f6f1_52%,#fff4e6_100%)]">
       <div className="mx-auto w-full max-w-6xl px-6 py-20">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center">
           <div className="grid gap-6">
@@ -99,7 +99,7 @@ const AboutVision = () => (
       </div>
     </section>
 
-    <section className="bg-transparent section-divider">
+    <section className="section-divider bg-[linear-gradient(135deg,#fff5f7_0%,#fff0ea_45%,#fff8e8_100%)]">
       <div className="mx-auto w-full max-w-6xl px-6 py-20">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div className="space-y-6">
