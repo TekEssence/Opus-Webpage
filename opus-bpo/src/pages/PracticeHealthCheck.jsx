@@ -1,4 +1,6 @@
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
+import html2canvas from "html2canvas"
+import jsPDF from "jspdf"
 import {
   practiceMetrics,
   buildPracticeInputs,
@@ -24,295 +26,20 @@ const reportDateFormatter = new Intl.DateTimeFormat("en-US", {
   timeStyle: "short",
 })
 
-const escapeHtml = (value) =>
-  String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#39;")
-
 const sanitizeFileName = (value) =>
   value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")
-
-const buildDownloadMarkup = ({ report, summary, logoSource }) => {
-  const summaryMarkup = summary
-    .map(
-      (item) => `
-        <div class="summary-card">
-          <strong>${escapeHtml(item.count)}</strong>
-          <span>${escapeHtml(item.label)}</span>
-        </div>
-      `
-    )
-    .join("")
-
-  const metricRows = report.metrics
-    .map(
-      (metric) => `
-        <tr>
-          <td>
-            <div class="metric-name">${escapeHtml(metric.title)}</div>
-            <div class="metric-description">${escapeHtml(metric.description)}</div>
-          </td>
-          <td class="result-cell">${escapeHtml(metric.result.text)}</td>
-          <td>
-            <span class="status-pill status-${escapeHtml(metric.result.benchmark.tone)}">
-              ${escapeHtml(metric.result.benchmark.label)}
-            </span>
-          </td>
-          <td>${escapeHtml(metric.result.benchmark.industryStandard)}</td>
-        </tr>
-      `
-    )
-    .join("")
-
-  return `<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>${escapeHtml(report.client.companyName)} Revenue Cycle Performance Report</title>
-    <style>
-      * { box-sizing: border-box; }
-      body {
-        margin: 0;
-        padding: 28px;
-        background: #eef5fa;
-        font-family: Arial, sans-serif;
-        color: #10253e;
-      }
-      .report {
-        max-width: 1100px;
-        margin: 0 auto;
-        background: #ffffff;
-        border-radius: 28px;
-        overflow: hidden;
-        border: 1px solid #d8e4ee;
-      }
-      .topbar {
-        height: 10px;
-        background: linear-gradient(90deg, #2596be, #ffd413, #db4425);
-      }
-      .header {
-        display: flex;
-        justify-content: space-between;
-        gap: 24px;
-        padding: 28px 32px;
-        border-bottom: 1px solid #dbe6ee;
-      }
-      .brand {
-        display: flex;
-        gap: 18px;
-        align-items: center;
-      }
-      .brand img {
-        width: 88px;
-        height: auto;
-      }
-      .eyebrow {
-        margin: 0 0 8px;
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-        color: #2596be;
-      }
-      .title {
-        margin: 0;
-        font-size: 28px;
-        line-height: 1.1;
-      }
-      .subtitle {
-        margin: 8px 0 0;
-        color: #4d647c;
-        font-size: 14px;
-      }
-      .client-box {
-        min-width: 300px;
-        background: #f4f9fd;
-        border: 1px solid #d8e4ee;
-        border-radius: 20px;
-        padding: 18px 20px;
-      }
-      .client-box p {
-        margin: 0 0 10px;
-        font-size: 14px;
-      }
-      .client-box p:last-child {
-        margin-bottom: 0;
-      }
-      .body {
-        padding: 24px 32px 30px;
-      }
-      .summary {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 16px;
-        margin-bottom: 22px;
-      }
-      .summary-card {
-        border: 1px solid #d8e4ee;
-        border-radius: 20px;
-        background: #f4f9fd;
-        padding: 18px;
-      }
-      .summary-card strong {
-        display: block;
-        font-size: 32px;
-        line-height: 1;
-        margin-bottom: 8px;
-      }
-      .summary-card span {
-        font-size: 12px;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: #5e7488;
-        font-weight: 700;
-      }
-      table {
-        width: 100%;
-        border-collapse: collapse;
-      }
-      th, td {
-        text-align: left;
-        vertical-align: top;
-        padding: 16px 14px;
-        border-bottom: 1px solid #dbe6ee;
-      }
-      th {
-        font-size: 12px;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: #5e7488;
-      }
-      .metric-name {
-        font-weight: 700;
-        font-size: 15px;
-        margin-bottom: 6px;
-      }
-      .metric-description {
-        color: #4d647c;
-        line-height: 1.5;
-      }
-      .result-cell {
-        font-weight: 700;
-        white-space: nowrap;
-      }
-      .status-pill {
-        display: inline-block;
-        border-radius: 999px;
-        padding: 8px 14px;
-        font-size: 11px;
-        font-weight: 800;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-      }
-      .status-good { background: #dff7ec; color: #087857; }
-      .status-caution { background: #fff1d8; color: #b26d00; }
-      .status-alert { background: #fde2e2; color: #b91c1c; }
-      .status-critical { background: #f2dede; color: #7f1d1d; }
-      .footer {
-        display: flex;
-        justify-content: space-between;
-        gap: 24px;
-        padding: 20px 32px 28px;
-        background: #f8fbfd;
-      }
-      .footer p {
-        margin: 0 0 8px;
-        color: #4d647c;
-      }
-      .footer p:last-child {
-        margin-bottom: 0;
-      }
-    </style>
-  </head>
-  <body>
-    <article class="report">
-      <div class="topbar"></div>
-      <header class="header">
-        <div class="brand">
-          <img src="${logoSource}" alt="OPUS BPO logo" />
-          <div>
-            <p class="eyebrow">Practice Health Check</p>
-            <h1 class="title">Revenue Cycle Performance Report</h1>
-            <p class="subtitle">${escapeHtml(opusContact.company)} | ${escapeHtml(opusContact.subtitle)}</p>
-          </div>
-        </div>
-        <div class="client-box">
-          <p><strong>Client Company:</strong> ${escapeHtml(report.client.companyName)}</p>
-          <p><strong>Email Address:</strong> ${escapeHtml(report.client.email)}</p>
-          <p><strong>Generated On:</strong> ${escapeHtml(report.generatedAt)}</p>
-        </div>
-      </header>
-      <section class="body">
-        <div class="summary">${summaryMarkup}</div>
-        <table>
-          <thead>
-            <tr>
-              <th>Metric</th>
-              <th>Result</th>
-              <th>Status</th>
-              <th>Industry Standard</th>
-            </tr>
-          </thead>
-          <tbody>${metricRows}</tbody>
-        </table>
-      </section>
-      <footer class="footer">
-        <div>
-          <p><strong>${escapeHtml(opusContact.company)}</strong></p>
-          <p>${escapeHtml(opusContact.subtitle)}</p>
-        </div>
-        <div>
-          <p><strong>Address:</strong> ${escapeHtml(opusContact.address)}</p>
-          <p><strong>Phone:</strong> ${escapeHtml(opusContact.phone)}</p>
-          <p><strong>Email:</strong> ${escapeHtml(opusContact.email)}</p>
-        </div>
-      </footer>
-    </article>
-  </body>
-</html>`
-}
 
 const PracticeHealthCheck = () => {
   const [clientDetails, setClientDetails] = useState(initialClientDetails)
   const [inputs, setInputs] = useState(buildPracticeInputs)
   const [report, setReport] = useState(null)
   const [errorMessage, setErrorMessage] = useState("")
-  const [logoSource, setLogoSource] = useState("/opus-logo.png")
+  const [isAutoDownloading, setIsAutoDownloading] = useState(false)
+  const reportRef = useRef(null)
+  const pdfExportRef = useRef(null)
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "auto" })
-  }, [])
-
-  useEffect(() => {
-    let isActive = true
-
-    const loadLogo = async () => {
-      try {
-        const response = await fetch("/opus-logo.png")
-        const blob = await response.blob()
-        const reader = new FileReader()
-        reader.onloadend = () => {
-          if (isActive && typeof reader.result === "string") {
-            setLogoSource(reader.result)
-          }
-        }
-        reader.readAsDataURL(blob)
-      } catch {
-        if (isActive) {
-          setLogoSource(`${window.location.origin}/opus-logo.png`)
-        }
-      }
-    }
-
-    loadLogo()
-
-    return () => {
-      isActive = false
-    }
   }, [])
 
   useEffect(() => {
@@ -344,24 +71,46 @@ const PracticeHealthCheck = () => {
     if (!report) return
 
     const downloadTimer = window.setTimeout(() => {
-      const markup = buildDownloadMarkup({
-        report,
-        summary: benchmarkSummary,
-        logoSource,
-      })
-      const blob = new Blob([markup], { type: "text/html;charset=utf-8" })
-      const objectUrl = URL.createObjectURL(blob)
-      const anchor = document.createElement("a")
-      anchor.href = objectUrl
-      anchor.download = `${sanitizeFileName(report.client.companyName || "practice-health-check")}-report.html`
-      document.body.appendChild(anchor)
-      anchor.click()
-      anchor.remove()
-      window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000)
+      const downloadPdf = async () => {
+        if (!pdfExportRef.current) return
+
+        setIsAutoDownloading(true)
+        try {
+          const canvas = await html2canvas(pdfExportRef.current, {
+            scale: 2,
+            useCORS: true,
+            backgroundColor: "#ffffff",
+            scrollY: -window.scrollY,
+            windowWidth: pdfExportRef.current.scrollWidth,
+          })
+
+          const imageData = canvas.toDataURL("image/png")
+          const pdf = new jsPDF("p", "mm", "a4")
+          const pageWidth = pdf.internal.pageSize.getWidth()
+          const pageHeight = pdf.internal.pageSize.getHeight()
+          const margin = 8
+          const maxWidth = pageWidth - margin * 2
+          const maxHeight = pageHeight - margin * 2
+          const scaleRatio = Math.min(maxWidth / canvas.width, maxHeight / canvas.height)
+          const imgWidth = canvas.width * scaleRatio
+          const imgHeight = canvas.height * scaleRatio
+          const x = (pageWidth - imgWidth) / 2
+
+          pdf.addImage(imageData, "PNG", x, margin, imgWidth, imgHeight)
+
+          pdf.save(
+            `${sanitizeFileName(report.client.companyName || "practice-health-check")}-report.pdf`
+          )
+        } finally {
+          setIsAutoDownloading(false)
+        }
+      }
+
+      downloadPdf()
     }, 2500)
 
     return () => window.clearTimeout(downloadTimer)
-  }, [benchmarkSummary, logoSource, report])
+  }, [report])
 
   const handleClientChange = ({ target }) => {
     const { name, value } = target
@@ -514,7 +263,7 @@ const PracticeHealthCheck = () => {
                     Generate Result Report
                   </button>
                   <p className="practice-actions-note">
-                    After generation, the report will replace this form on the same page and download automatically.
+                    After generation, the report will replace this form on the same page and download automatically as a PDF.
                   </p>
                   {errorMessage && (
                     <p className="practice-card-result is-error" aria-live="polite">
@@ -534,6 +283,11 @@ const PracticeHealthCheck = () => {
                 <p className="practice-report-banner-copy">
                   Review the complete five-metric performance summary below.
                 </p>
+                {isAutoDownloading && (
+                  <p className="practice-report-banner-copy">
+                    Downloading PDF report...
+                  </p>
+                )}
               </div>
               <div className="practice-report-actions practice-print-hidden">
                 <button
@@ -544,7 +298,7 @@ const PracticeHealthCheck = () => {
                   Back To Metrics
                 </button>
               </div>
-              <article className="practice-report">
+              <article ref={reportRef} className="practice-report">
                 <div className="practice-report-topbar" />
                 <header className="practice-report-header">
                   <div className="practice-report-brand">
@@ -635,6 +389,100 @@ const PracticeHealthCheck = () => {
                   </div>
                 </footer>
               </article>
+
+              <div className="practice-pdf-export-shell" aria-hidden="true">
+                <article ref={pdfExportRef} className="practice-report practice-report-pdf">
+                  <div className="practice-report-topbar" />
+                  <header className="practice-report-header">
+                    <div className="practice-report-brand">
+                      <img src="/opus-logo.png" alt="OPUS BPO logo" className="practice-report-logo" />
+                      <div>
+                        <p className="practice-report-eyebrow">Practice Health Check</p>
+                        <h2 className="practice-report-title">Revenue Cycle Performance Report</h2>
+                        <p className="practice-report-subtitle">
+                          {opusContact.company} | {opusContact.subtitle}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="practice-report-client">
+                      <p>
+                        <strong>Client Company:</strong> {report.client.companyName}
+                      </p>
+                      <p>
+                        <strong>Email Address:</strong> {report.client.email}
+                      </p>
+                      <p>
+                        <strong>Generated On:</strong> {report.generatedAt}
+                      </p>
+                    </div>
+                  </header>
+
+                  <section className="practice-report-body practice-report-body-pdf">
+                    <div className="practice-report-summary">
+                      {benchmarkSummary.map((item) => (
+                        <div key={`pdf-${item.label}`} className="practice-report-summary-card">
+                          <strong>{item.count}</strong>
+                          <span>{item.label}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="practice-report-table-wrap">
+                      <table className="practice-report-table">
+                        <thead>
+                          <tr>
+                            <th>Metric</th>
+                            <th>Result</th>
+                            <th>Status</th>
+                            <th>Industry Standard</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {report.metrics.map((metric) => (
+                            <tr key={`pdf-${metric.id}`}>
+                              <td>
+                                <div className="practice-report-metric-name">{metric.title}</div>
+                                <div className="practice-report-metric-description">
+                                  {metric.description}
+                                </div>
+                              </td>
+                              <td className="practice-report-result-cell">{metric.result.text}</td>
+                              <td>
+                                <span
+                                  className={`practice-card-indicator is-${metric.result.benchmark.tone}`}
+                                >
+                                  {metric.result.benchmark.label}
+                                </span>
+                              </td>
+                              <td className="practice-report-guidance">
+                                {metric.result.benchmark.industryStandard}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </section>
+
+                  <footer className="practice-report-footer practice-report-footer-pdf">
+                    <div>
+                      <p className="practice-report-footer-title">{opusContact.company}</p>
+                      <p>{opusContact.subtitle}</p>
+                    </div>
+                    <div>
+                      <p>
+                        <strong>Address:</strong> {opusContact.address}
+                      </p>
+                      <p>
+                        <strong>Phone:</strong> {opusContact.phone}
+                      </p>
+                      <p>
+                        <strong>Email:</strong> {opusContact.email}
+                      </p>
+                    </div>
+                  </footer>
+                </article>
+              </div>
             </>
           )}
         </div>

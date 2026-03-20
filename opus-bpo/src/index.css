@@ -2842,6 +2842,32 @@ a {
   color: #0f172a;
 }
 
+.practice-pdf-export-shell {
+  position: fixed;
+  left: -10000px;
+  top: 0;
+  width: 794px;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.practice-report-pdf {
+  width: 794px;
+  min-height: 1123px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.practice-report-body-pdf {
+  flex: 1;
+}
+
+.practice-report-footer-pdf {
+  margin-top: auto;
+}
+
 .practice-card::before {
   content: "";
   position: absolute;
