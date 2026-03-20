@@ -2756,32 +2756,110 @@ a {
 .practice-report-summary {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.9rem;
-  margin-bottom: 1.25rem;
+  justify-content: stretch;
+  align-items: start;
+  gap: 0.75rem;
+  width: 100%;
+  margin-bottom: 1.75rem;
 }
 
 .practice-report-summary-card {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
-  padding: 1rem 1.1rem;
-  border-radius: 20px;
-  background: linear-gradient(180deg, #f8fcff, #edf5fa);
-  border: 1px solid #dbe7ef;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  gap: 1rem;
+  width: 100%;
+  min-height: auto;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  border: none;
+  position: relative;
+  overflow: visible;
 }
 
 .practice-report-summary-card strong {
-  font-size: 1.9rem;
+  font-size: 2.35rem;
   line-height: 1;
   color: #0f172a;
 }
 
-.practice-report-summary-card span {
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
+.practice-report-summary-gauge {
+  position: relative;
+  width: 160px;
+  height: 92px;
+}
+
+.practice-report-summary-svg {
+  width: 160px;
+  height: 92px;
+  display: block;
+}
+
+.practice-report-summary-track,
+.practice-report-summary-progress {
+  fill: none;
+  stroke-width: 18;
+  stroke-linecap: round;
+}
+
+.practice-report-summary-track {
+  stroke: rgba(226, 232, 240, 0.95);
+}
+
+.practice-report-summary-progress {
+  stroke: currentColor;
+}
+
+.practice-report-summary-value {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: currentColor;
+}
+
+.practice-report-summary-label {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: #64748b;
+}
+
+.practice-report-summary-subtext {
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #7b8ca1;
+}
+
+.practice-report-summary-card.is-good {
+  color: #047857;
+}
+
+.practice-report-summary-card.is-caution {
+  color: #c96a00;
+}
+
+.practice-report-summary-card.is-alert {
+  color: #9f0712;
+}
+
+.practice-report-summary-card.is-good .practice-report-summary-label,
+.practice-report-summary-card.is-good .practice-report-summary-subtext,
+.practice-report-summary-card.is-good .practice-report-summary-value,
+.practice-report-summary-card.is-caution .practice-report-summary-label,
+.practice-report-summary-card.is-caution .practice-report-summary-subtext,
+.practice-report-summary-card.is-caution .practice-report-summary-value,
+.practice-report-summary-card.is-alert .practice-report-summary-label,
+.practice-report-summary-card.is-alert .practice-report-summary-value {
+  color: currentColor;
 }
 
 .practice-report-table-wrap {

@@ -26,8 +26,53 @@ const reportDateFormatter = new Intl.DateTimeFormat("en-US", {
   timeStyle: "short",
 })
 
+const gaugePath = "M 16 80 A 64 64 0 0 1 144 80"
+const gaugeLength = Math.PI * 64
+
 const sanitizeFileName = (value) =>
   value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")
+
+const renderSummaryGauge = (count, totalIndicators, animate = false) => {
+  const gaugeRatio = totalIndicators ? count / totalIndicators : 0
+  const gaugeOffset = gaugeLength * (1 - gaugeRatio)
+
+  return (
+    <div className="practice-report-summary-gauge">
+      <svg
+        className="practice-report-summary-svg"
+        viewBox="0 0 160 92"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path
+          d={gaugePath}
+          className="practice-report-summary-track"
+          pathLength={gaugeLength}
+        />
+        <path
+          d={gaugePath}
+          className="practice-report-summary-progress"
+          pathLength={gaugeLength}
+          strokeDasharray={gaugeLength}
+          strokeDashoffset={gaugeOffset}
+        >
+          {animate ? (
+            <animate
+              attributeName="stroke-dashoffset"
+              from={gaugeLength}
+              to={gaugeOffset}
+              dur="1.1s"
+              fill="freeze"
+            />
+          ) : null}
+        </path>
+      </svg>
+      <div className="practice-report-summary-value">
+        {count}/{totalIndicators}
+      </div>
+    </div>
+  )
+}
 
 const PracticeHealthCheck = () => {
   const [clientDetails, setClientDetails] = useState(initialClientDetails)
@@ -66,6 +111,8 @@ const PracticeHealthCheck = () => {
       { label: "Action Needed", count: counts.alert + counts.critical },
     ]
   }, [report])
+
+  const totalIndicators = report?.metrics.length ?? practiceMetrics.length
 
   useEffect(() => {
     if (!report) return
@@ -201,7 +248,7 @@ const PracticeHealthCheck = () => {
                   </div>
                   <div className="practice-client-grid">
                     <label className="practice-card-field">
-                      <span>Company Name</span>
+                      <span>Company Name *</span>
                       <input
                         type="text"
                         name="companyName"
@@ -211,7 +258,7 @@ const PracticeHealthCheck = () => {
                       />
                     </label>
                     <label className="practice-card-field">
-                      <span>Email Address</span>
+                      <span>Email Address *</span>
                       <input
                         type="email"
                         name="email"
@@ -258,7 +305,7 @@ const PracticeHealthCheck = () => {
 
                 <div className="practice-actions">
                   <button type="submit" className="practice-card-button">
-                    Generate Result Report
+                    Generate Result
                   </button>
                   {errorMessage && (
                     <p className="practice-card-result is-error" aria-live="polite">
@@ -321,12 +368,22 @@ const PracticeHealthCheck = () => {
 
                 <section className="practice-report-body">
                   <div className="practice-report-summary">
-                    {benchmarkSummary.map((item) => (
-                      <div key={item.label} className="practice-report-summary-card">
-                        <strong>{item.count}</strong>
-                        <span>{item.label}</span>
+                    {benchmarkSummary.map((item) => {
+                      return (
+                      <div
+                        key={item.label}
+                        className={`practice-report-summary-card ${
+                          item.label === "On Target"
+                            ? "is-good"
+                            : item.label === "Needs Review"
+                              ? "is-caution"
+                              : "is-alert"
+                        }`}
+                      >
+                        {renderSummaryGauge(item.count, totalIndicators, true)}
+                        <span className="practice-report-summary-label">{item.label}</span>
                       </div>
-                    ))}
+                    )})}
                   </div>
 
                   <div className="practice-report-table-wrap">
@@ -344,9 +401,6 @@ const PracticeHealthCheck = () => {
                           <tr key={metric.id}>
                             <td>
                               <div className="practice-report-metric-name">{metric.title}</div>
-                              <div className="practice-report-metric-description">
-                                {metric.description}
-                              </div>
                             </td>
                             <td className="practice-report-result-cell">{metric.result.text}</td>
                             <td>
@@ -414,12 +468,22 @@ const PracticeHealthCheck = () => {
 
                   <section className="practice-report-body practice-report-body-pdf">
                     <div className="practice-report-summary">
-                      {benchmarkSummary.map((item) => (
-                        <div key={`pdf-${item.label}`} className="practice-report-summary-card">
-                          <strong>{item.count}</strong>
-                          <span>{item.label}</span>
+                      {benchmarkSummary.map((item) => {
+                        return (
+                        <div
+                          key={`pdf-${item.label}`}
+                          className={`practice-report-summary-card ${
+                            item.label === "On Target"
+                              ? "is-good"
+                              : item.label === "Needs Review"
+                                ? "is-caution"
+                                : "is-alert"
+                          }`}
+                        >
+                          {renderSummaryGauge(item.count, totalIndicators, false)}
+                          <span className="practice-report-summary-label">{item.label}</span>
                         </div>
-                      ))}
+                      )})}
                     </div>
 
                     <div className="practice-report-table-wrap">
@@ -437,9 +501,6 @@ const PracticeHealthCheck = () => {
                             <tr key={`pdf-${metric.id}`}>
                               <td>
                                 <div className="practice-report-metric-name">{metric.title}</div>
-                                <div className="practice-report-metric-description">
-                                  {metric.description}
-                                </div>
                               </td>
                               <td className="practice-report-result-cell">{metric.result.text}</td>
                               <td>

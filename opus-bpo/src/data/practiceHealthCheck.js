@@ -16,7 +16,7 @@ const metricDefinitions = [
       cautionLabel: "Needs Review",
       alertLabel: "Needs Improvement",
       criticalLabel: "High Risk",
-      goodGuidance: "35 days or less.",
+      goodGuidance: "Best range: Below 35",
       cautionGuidance: "between 36 and 45 days.",
       alertGuidance: "between 46 and 55 days needs improvement.",
       criticalGuidance: "More than 55 days is not good.",
