@@ -190,16 +190,14 @@ const PracticeHealthCheck = () => {
                 <p className="practice-health-eyebrow">Practice Health Check</p>
                 <h1 className="practice-health-title">Generate one complete five-metric report.</h1>
                 <p className="practice-health-copy">
-                  Enter the client company details once, add the metric values, and generate a
-                  blood-report style summary with OPUS branding, benchmark status, and guidance for all
-                  five revenue cycle metrics.
+                  Build a complete, benchmarked report across all five revenue cycle metrics with clarity and precision.
                 </p>
               </div>
               <form className="practice-health-form practice-print-hidden" onSubmit={handleSubmit}>
                 <div className="practice-form-block">
                   <div className="practice-form-block-header">
                     <h2>Client details</h2>
-                    <p>The report header will use this information.</p>
+                    <p>Fill in the details</p>
                   </div>
                   <div className="practice-client-grid">
                     <label className="practice-card-field">
@@ -228,7 +226,7 @@ const PracticeHealthCheck = () => {
                 <div className="practice-form-block">
                   <div className="practice-form-block-header">
                     <h2>Metric inputs</h2>
-                    <p>Use your client&apos;s actual numbers to generate the full report.</p>
+                    <p>Input real data to create an accurate performance report.</p>
                   </div>
                   <div className="practice-metrics-stack">
                     {practiceMetrics.map((metric) => (
@@ -262,9 +260,6 @@ const PracticeHealthCheck = () => {
                   <button type="submit" className="practice-card-button">
                     Generate Result Report
                   </button>
-                  <p className="practice-actions-note">
-                    After generation, the report will replace this form on the same page and download automatically as a PDF.
-                  </p>
                   {errorMessage && (
                     <p className="practice-card-result is-error" aria-live="polite">
                       {errorMessage}
@@ -279,9 +274,9 @@ const PracticeHealthCheck = () => {
             <>
               <div className="practice-report-banner practice-print-hidden">
                 <p className="practice-report-banner-eyebrow">Report Results</p>
-                <h2 className="practice-report-banner-title">Your practice health check is ready.</h2>
+                <h2 className="practice-report-banner-title">Your practice health check report is ready.</h2>
                 <p className="practice-report-banner-copy">
-                  Review the complete five-metric performance summary below.
+                  Dive into your five-metric performance summary.
                 </p>
                 {isAutoDownloading && (
                   <p className="practice-report-banner-copy">

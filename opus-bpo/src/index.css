@@ -2385,7 +2385,7 @@ a {
 }
 
 .practice-health-intro {
-  max-width: 860px;
+  max-width: 1100px;
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
@@ -2403,14 +2403,14 @@ a {
 .practice-health-title {
   margin: 0;
   font-family: "Manrope", system-ui, sans-serif;
-  font-size: clamp(2.3rem, 4vw, 4.2rem);
+  font-size: clamp(2rem, 3.5vw, 3.7rem);
   line-height: 1.02;
   color: #0f172a;
 }
 
 .practice-health-copy {
   margin: 0;
-  max-width: 760px;
+  max-width: 1100px;
   font-size: 1.05rem;
   line-height: 1.7;
   color: #475569;
