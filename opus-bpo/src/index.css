@@ -2366,6 +2366,24 @@ a {
   gap: 2rem;
 }
 
+.practice-health-page {
+  background-color: #d9f1fe;
+  background-image:
+    radial-gradient(circle at 8% 30%, rgba(37, 150, 190, 0.42), transparent 34%),
+    radial-gradient(circle at 48% 24%, rgba(230, 177, 177, 0.82), transparent 22%),
+    radial-gradient(circle at 86% 32%, rgba(255, 212, 19, 0.24), transparent 28%),
+    radial-gradient(circle at 92% 84%, rgba(219, 68, 37, 0.2), transparent 24%);
+}
+
+.practice-health-page-report {
+  background-color: #e7f0f7;
+  background-image:
+    radial-gradient(circle at 10% 34%, rgba(59, 130, 246, 0.28), transparent 32%),
+    radial-gradient(circle at 46% 28%, rgba(255, 255, 255, 0.72), transparent 22%),
+    radial-gradient(circle at 82% 36%, rgba(16, 185, 129, 0.16), transparent 24%),
+    radial-gradient(circle at 92% 82%, rgba(37, 150, 190, 0.2), transparent 22%);
+}
+
 .practice-health-intro {
   max-width: 860px;
   display: flex;
@@ -2588,6 +2606,12 @@ a {
   color: #b91c1c;
 }
 
+.practice-card-indicator.is-critical {
+  background: rgba(127, 29, 29, 0.14);
+  border-color: rgba(127, 29, 29, 0.26);
+  color: #7f1d1d;
+}
+
 .practice-card-guidance {
   font-size: 0.82rem;
   line-height: 1.5;
@@ -2671,6 +2695,62 @@ a {
 
 .practice-report-body {
   padding: 1.5rem 1.7rem 1.8rem;
+}
+
+.practice-report-actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+}
+
+.practice-report-banner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+  padding: 1.35rem 1.5rem;
+  border-radius: 28px;
+  border: 1px solid rgba(37, 150, 190, 0.18);
+  background: radial-gradient(circle at 10% 30%, rgba(37, 150, 190, 0.18), transparent 34%),
+    radial-gradient(circle at 88% 24%, rgba(255, 212, 19, 0.16), transparent 28%),
+    linear-gradient(135deg, rgba(244, 250, 255, 0.96), rgba(255, 247, 236, 0.94));
+  box-shadow: 0 24px 60px -42px rgba(15, 23, 42, 0.35);
+}
+
+.practice-report-banner-eyebrow {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #1d4ed8;
+}
+
+.practice-report-banner-title {
+  margin: 0;
+  font-family: "Manrope", system-ui, sans-serif;
+  font-size: clamp(1.9rem, 3vw, 2.8rem);
+  line-height: 1.05;
+  color: #0f172a;
+}
+
+.practice-report-banner-copy {
+  margin: 0;
+  font-size: 1rem;
+  color: #475569;
+}
+
+.practice-report-back {
+  border: 1px solid rgba(37, 150, 190, 0.25);
+  background: #f8fcff;
+  color: #0f172a;
+  border-radius: 999px;
+  padding: 0.75rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
 }
 
 .practice-report-summary {

@@ -14,14 +14,17 @@ const metricDefinitions = [
     benchmark: {
       goodLabel: "On Target",
       cautionLabel: "Needs Review",
-      alertLabel: "Action Needed",
-      goodGuidance: "Best range: under 40 days.",
-      cautionGuidance: "Between 40 and 55 days needs review.",
-      alertGuidance: "Above 55 days needs improvement.",
+      alertLabel: "Needs Improvement",
+      criticalLabel: "High Risk",
+      goodGuidance: "35 days or less.",
+      cautionGuidance: "between 36 and 45 days.",
+      alertGuidance: "between 46 and 55 days needs improvement.",
+      criticalGuidance: "More than 55 days is not good.",
       evaluate: (value) => {
-        if (value <= 40) return "good"
-        if (value <= 55) return "caution"
-        return "alert"
+        if (value <= 35) return "good"
+        if (value <= 45) return "caution"
+        if (value <= 55) return "alert"
+        return "critical"
       },
     },
   },
@@ -163,6 +166,8 @@ export const buildMetricResult = (metric, computed) => {
       ? metric.benchmark?.goodLabel ?? "Good"
       : statusTone === "caution"
         ? metric.benchmark?.cautionLabel ?? "Caution"
+        : statusTone === "critical"
+          ? metric.benchmark?.criticalLabel ?? "Critical"
         : metric.benchmark?.alertLabel ?? "Review"
 
   return {
@@ -171,11 +176,14 @@ export const buildMetricResult = (metric, computed) => {
     benchmark: {
       tone: statusTone,
       label: statusLabel,
+      industryStandard: metric.benchmark?.goodGuidance ?? "",
       guidance:
         statusTone === "good"
           ? metric.benchmark?.goodGuidance ?? ""
           : statusTone === "caution"
             ? metric.benchmark?.cautionGuidance ?? ""
+            : statusTone === "critical"
+              ? metric.benchmark?.criticalGuidance ?? ""
             : metric.benchmark?.alertGuidance ?? "",
     },
   }
@@ -191,4 +199,3 @@ export const buildPracticeResults = () =>
     acc[metric.id] = buildMetricResult(metric, computed)
     return acc
   }, {})
-

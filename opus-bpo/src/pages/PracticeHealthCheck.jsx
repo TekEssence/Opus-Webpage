@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import {
   practiceMetrics,
   buildPracticeInputs,
@@ -29,7 +29,6 @@ const PracticeHealthCheck = () => {
   const [inputs, setInputs] = useState(buildPracticeInputs)
   const [report, setReport] = useState(null)
   const [errorMessage, setErrorMessage] = useState("")
-  const reportRef = useRef(null)
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "auto" })
@@ -38,7 +37,7 @@ const PracticeHealthCheck = () => {
   useEffect(() => {
     if (!report) return
 
-    reportRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+    window.scrollTo({ top: 0, behavior: "smooth" })
   }, [report])
 
   const benchmarkSummary = useMemo(() => {
@@ -127,189 +126,212 @@ const PracticeHealthCheck = () => {
   }
 
   return (
-    <section className="section-tint practice-health-page">
+    <section
+      className={`section-tint practice-health-page ${report ? "practice-health-page-report" : ""}`}
+    >
       <div className="mx-auto w-full max-w-7xl px-6 py-20">
         <div className="practice-health-shell">
-          <div className="practice-health-intro practice-print-hidden">
-            <p className="practice-health-eyebrow">Practice Health Check</p>
-            <h1 className="practice-health-title">Generate one complete five-metric report.</h1>
-            <p className="practice-health-copy">
-              Enter the client company details once, add the metric values, and generate a
-              blood-report style summary with OPUS branding, benchmark status, and guidance for all
-              five revenue cycle metrics.
-            </p>
-          </div>
-
-          <form className="practice-health-form practice-print-hidden" onSubmit={handleSubmit}>
-            <div className="practice-form-block">
-              <div className="practice-form-block-header">
-                <h2>Client details</h2>
-                <p>The report header will use this information.</p>
-              </div>
-              <div className="practice-client-grid">
-                <label className="practice-card-field">
-                  <span>Company Name</span>
-                  <input
-                    type="text"
-                    name="companyName"
-                    value={clientDetails.companyName}
-                    placeholder="Enter client company name"
-                    onChange={handleClientChange}
-                  />
-                </label>
-                <label className="practice-card-field">
-                  <span>Email Address</span>
-                  <input
-                    type="email"
-                    name="email"
-                    value={clientDetails.email}
-                    placeholder="name@company.com"
-                    onChange={handleClientChange}
-                  />
-                </label>
-              </div>
-            </div>
-
-            <div className="practice-form-block">
-              <div className="practice-form-block-header">
-                <h2>Metric inputs</h2>
-                <p>Use your client&apos;s actual numbers to generate the full report.</p>
-              </div>
-              <div className="practice-metrics-stack">
-                {practiceMetrics.map((metric) => (
-                  <article key={metric.id} className="practice-card practice-card-wide">
-                    <div className="practice-card-header">
-                      <p className="practice-card-title">{metric.title}</p>
-                      <p className="practice-card-description">{metric.description}</p>
-                    </div>
-                    <div className="practice-card-fields">
-                      {metric.fields.map((field) => (
-                        <label key={field.name} className="practice-card-field">
-                          <span>{field.label}</span>
-                          <input
-                            type="text"
-                            inputMode="decimal"
-                            value={inputs[metric.id][field.name]}
-                            placeholder={field.placeholder}
-                            onChange={(event) =>
-                              handleMetricInputChange(metric.id, field.name, event.target.value)
-                            }
-                          />
-                        </label>
-                      ))}
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </div>
-
-            <div className="practice-actions">
-              <button type="submit" className="practice-card-button">
-                Generate Result Report
-              </button>
-              <p className="practice-actions-note">
-                After generation, the report will appear below on the same page.
-              </p>
-              {errorMessage && (
-                <p className="practice-card-result is-error" aria-live="polite">
-                  {errorMessage}
+          {!report ? (
+            <>
+              <div className="practice-health-intro practice-print-hidden">
+                <p className="practice-health-eyebrow">Practice Health Check</p>
+                <h1 className="practice-health-title">Generate one complete five-metric report.</h1>
+                <p className="practice-health-copy">
+                  Enter the client company details once, add the metric values, and generate a
+                  blood-report style summary with OPUS branding, benchmark status, and guidance for all
+                  five revenue cycle metrics.
                 </p>
-              )}
-            </div>
-          </form>
-
-          {report && (
-            <article ref={reportRef} className="practice-report">
-              <div className="practice-report-topbar" />
-              <header className="practice-report-header">
-                <div className="practice-report-brand">
-                  <img src="/opus-logo.png" alt="OPUS BPO logo" className="practice-report-logo" />
-                  <div>
-                    <p className="practice-report-eyebrow">Practice Health Check</p>
-                    <h2 className="practice-report-title">Revenue Cycle Performance Report</h2>
-                    <p className="practice-report-subtitle">
-                      {opusContact.company} | {opusContact.subtitle}
-                    </p>
+              </div>
+              <form className="practice-health-form practice-print-hidden" onSubmit={handleSubmit}>
+                <div className="practice-form-block">
+                  <div className="practice-form-block-header">
+                    <h2>Client details</h2>
+                    <p>The report header will use this information.</p>
+                  </div>
+                  <div className="practice-client-grid">
+                    <label className="practice-card-field">
+                      <span>Company Name</span>
+                      <input
+                        type="text"
+                        name="companyName"
+                        value={clientDetails.companyName}
+                        placeholder="Enter client company name"
+                        onChange={handleClientChange}
+                      />
+                    </label>
+                    <label className="practice-card-field">
+                      <span>Email Address</span>
+                      <input
+                        type="email"
+                        name="email"
+                        value={clientDetails.email}
+                        placeholder="name@company.com"
+                        onChange={handleClientChange}
+                      />
+                    </label>
                   </div>
                 </div>
-                <div className="practice-report-client">
-                  <p>
-                    <strong>Client Company:</strong> {report.client.companyName}
-                  </p>
-                  <p>
-                    <strong>Email Address:</strong> {report.client.email}
-                  </p>
-                  <p>
-                    <strong>Generated On:</strong> {report.generatedAt}
-                  </p>
-                </div>
-              </header>
 
-              <section className="practice-report-body">
-                <div className="practice-report-summary">
-                  {benchmarkSummary.map((item) => (
-                    <div key={item.label} className="practice-report-summary-card">
-                      <strong>{item.count}</strong>
-                      <span>{item.label}</span>
+                <div className="practice-form-block">
+                  <div className="practice-form-block-header">
+                    <h2>Metric inputs</h2>
+                    <p>Use your client&apos;s actual numbers to generate the full report.</p>
+                  </div>
+                  <div className="practice-metrics-stack">
+                    {practiceMetrics.map((metric) => (
+                      <article key={metric.id} className="practice-card practice-card-wide">
+                        <div className="practice-card-header">
+                          <p className="practice-card-title">{metric.title}</p>
+                          <p className="practice-card-description">{metric.description}</p>
+                        </div>
+                        <div className="practice-card-fields">
+                          {metric.fields.map((field) => (
+                            <label key={field.name} className="practice-card-field">
+                              <span>{field.label}</span>
+                              <input
+                                type="text"
+                                inputMode="decimal"
+                                value={inputs[metric.id][field.name]}
+                                placeholder={field.placeholder}
+                                onChange={(event) =>
+                                  handleMetricInputChange(metric.id, field.name, event.target.value)
+                                }
+                              />
+                            </label>
+                          ))}
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="practice-actions">
+                  <button type="submit" className="practice-card-button">
+                    Generate Result Report
+                  </button>
+                  <p className="practice-actions-note">
+                    After generation, the report will replace this form on the same page.
+                  </p>
+                  {errorMessage && (
+                    <p className="practice-card-result is-error" aria-live="polite">
+                      {errorMessage}
+                    </p>
+                  )}
+                </div>
+              </form>
+            </>
+          ) : null}
+
+          {report && (
+            <>
+              <div className="practice-report-banner practice-print-hidden">
+                <p className="practice-report-banner-eyebrow">Report Results</p>
+                <h2 className="practice-report-banner-title">Your practice health check is ready.</h2>
+                <p className="practice-report-banner-copy">
+                  Review the complete five-metric performance summary below.
+                </p>
+              </div>
+              <div className="practice-report-actions practice-print-hidden">
+                <button
+                  type="button"
+                  className="practice-report-back"
+                  onClick={() => setReport(null)}
+                >
+                  Back To Metrics
+                </button>
+              </div>
+              <article className="practice-report">
+                <div className="practice-report-topbar" />
+                <header className="practice-report-header">
+                  <div className="practice-report-brand">
+                    <img src="/opus-logo.png" alt="OPUS BPO logo" className="practice-report-logo" />
+                    <div>
+                      <p className="practice-report-eyebrow">Practice Health Check</p>
+                      <h2 className="practice-report-title">Revenue Cycle Performance Report</h2>
+                      <p className="practice-report-subtitle">
+                        {opusContact.company} | {opusContact.subtitle}
+                      </p>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                  <div className="practice-report-client">
+                    <p>
+                      <strong>Client Company:</strong> {report.client.companyName}
+                    </p>
+                    <p>
+                      <strong>Email Address:</strong> {report.client.email}
+                    </p>
+                    <p>
+                      <strong>Generated On:</strong> {report.generatedAt}
+                    </p>
+                  </div>
+                </header>
 
-                <div className="practice-report-table-wrap">
-                  <table className="practice-report-table">
-                    <thead>
-                      <tr>
-                        <th>Metric</th>
-                        <th>Result</th>
-                        <th>Status</th>
-                        <th>Guidance</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {report.metrics.map((metric) => (
-                        <tr key={metric.id}>
-                          <td>
-                            <div className="practice-report-metric-name">{metric.title}</div>
-                            <div className="practice-report-metric-description">
-                              {metric.description}
-                            </div>
-                          </td>
-                          <td className="practice-report-result-cell">{metric.result.text}</td>
-                          <td>
-                            <span
-                              className={`practice-card-indicator is-${metric.result.benchmark.tone}`}
-                            >
-                              {metric.result.benchmark.label}
-                            </span>
-                          </td>
-                          <td className="practice-report-guidance">
-                            {metric.result.benchmark.guidance}
-                          </td>
+                <section className="practice-report-body">
+                  <div className="practice-report-summary">
+                    {benchmarkSummary.map((item) => (
+                      <div key={item.label} className="practice-report-summary-card">
+                        <strong>{item.count}</strong>
+                        <span>{item.label}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="practice-report-table-wrap">
+                    <table className="practice-report-table">
+                      <thead>
+                        <tr>
+                          <th>Metric</th>
+                          <th>Result</th>
+                          <th>Status</th>
+                          <th>Industry Standard</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </section>
+                      </thead>
+                      <tbody>
+                        {report.metrics.map((metric) => (
+                          <tr key={metric.id}>
+                            <td>
+                              <div className="practice-report-metric-name">{metric.title}</div>
+                              <div className="practice-report-metric-description">
+                                {metric.description}
+                              </div>
+                            </td>
+                            <td className="practice-report-result-cell">{metric.result.text}</td>
+                            <td>
+                              <span
+                                className={`practice-card-indicator is-${metric.result.benchmark.tone}`}
+                              >
+                                {metric.result.benchmark.label}
+                              </span>
+                            </td>
+                            <td className="practice-report-guidance">
+                              {metric.result.benchmark.industryStandard}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
 
-              <footer className="practice-report-footer">
-                <div>
-                  <p className="practice-report-footer-title">{opusContact.company}</p>
-                  <p>{opusContact.subtitle}</p>
-                </div>
-                <div>
-                  <p>
-                    <strong>Address:</strong> {opusContact.address}
-                  </p>
-                  <p>
-                    <strong>Phone:</strong> {opusContact.phone}
-                  </p>
-                  <p>
-                    <strong>Email:</strong> {opusContact.email}
-                  </p>
-                </div>
-              </footer>
-            </article>
+                <footer className="practice-report-footer">
+                  <div>
+                    <p className="practice-report-footer-title">{opusContact.company}</p>
+                    <p>{opusContact.subtitle}</p>
+                  </div>
+                  <div>
+                    <p>
+                      <strong>Address:</strong> {opusContact.address}
+                    </p>
+                    <p>
+                      <strong>Phone:</strong> {opusContact.phone}
+                    </p>
+                    <p>
+                      <strong>Email:</strong> {opusContact.email}
+                    </p>
+                  </div>
+                </footer>
+              </article>
+            </>
           )}
         </div>
       </div>
