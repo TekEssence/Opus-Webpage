@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react"
-import { Link, NavLink, Outlet, useLocation } from "react-router-dom"
+import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-dom"
 import FloatingHealthCheck from "./FloatingHealthCheck.jsx"
-import { practiceMetrics } from "../data/practiceHealthCheck.js"
 import { navItems, services } from "../data/content.js"
 
 const linkBase = "text-sm font-semibold uppercase tracking-[0.12em] transition-colors"
@@ -18,6 +17,7 @@ const Layout = () => {
   const [menuOpen, setMenuOpen] = useState(false)
   const [practiceMenuOpen, setPracticeMenuOpen] = useState(false)
   const location = useLocation()
+  const navigate = useNavigate()
   const practiceMenuRef = useRef(null)
   const practiceButtonRef = useRef(null)
   const practiceHoverTimer = useRef(null)
@@ -111,8 +111,8 @@ const Layout = () => {
   }
 
   const handleFloatingPracticeClick = () => {
-    setPracticeMenuOpen(true)
-    practiceButtonRef.current?.scrollIntoView({ behavior: "smooth", block: "center" })
+    setPracticeMenuOpen(false)
+    navigate("/practice-health-check")
   }
 
   const handleServicesTopClick = () => {
@@ -237,8 +237,11 @@ const Layout = () => {
               <button
                 type="button"
                 className="practice-menu-button"
-                aria-label="Open Practice Health Check options"
-                onClick={() => setPracticeMenuOpen((prev) => !prev)}
+                aria-label="Open Practice Health Check"
+                onClick={() => {
+                  setPracticeMenuOpen(false)
+                  navigate("/practice-health-check")
+                }}
                 onMouseEnter={openPracticeMenuHover}
                 onMouseLeave={closePracticeMenuHover}
                 aria-expanded={practiceMenuOpen}
@@ -255,15 +258,9 @@ const Layout = () => {
                   onMouseEnter={openPracticeMenuHover}
                   onMouseLeave={closePracticeMenuHover}
                 >
-                  {practiceMetrics.map((metric) => (
-                    <a
-                      key={metric.id}
-                      href={`/practice-health-check?metric=${metric.id}`}
-                      onClick={() => setPracticeMenuOpen(false)}
-                    >
-                      {metric.title}
-                    </a>
-                  ))}
+                  <Link to="/practice-health-check" onClick={() => setPracticeMenuOpen(false)}>
+                    Generate Practice Report
+                  </Link>
                 </div>
               )}
             </div>
@@ -346,15 +343,9 @@ const Layout = () => {
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
                   Practice Health Check
                 </p>
-                {practiceMetrics.map((metric) => (
-                  <a
-                    key={metric.id}
-                    href={`/practice-health-check?metric=${metric.id}`}
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    {metric.title}
-                  </a>
-                ))}
+                <Link to="/practice-health-check" onClick={() => setMenuOpen(false)}>
+                  Generate Practice Report
+                </Link>
               </div>
 
               <NavLink
