@@ -49,13 +49,13 @@ const PracticeHealthCheck = () => {
         acc[tone] += 1
         return acc
       },
-      { good: 0, caution: 0, alert: 0 }
+      { good: 0, caution: 0, alert: 0, critical: 0 }
     )
 
     return [
       { label: "On Target", count: counts.good },
       { label: "Needs Review", count: counts.caution },
-      { label: "Action Needed", count: counts.alert },
+      { label: "Action Needed", count: counts.alert + counts.critical },
     ]
   }, [report])
 
