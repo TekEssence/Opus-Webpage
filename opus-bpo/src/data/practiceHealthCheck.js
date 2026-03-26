@@ -5,7 +5,7 @@ const metricDefinitions = [
     description: "Measure how quickly the team converts charges into cash.",
     fields: [
       { name: "totalAr", label: "Total AR", placeholder: "e.g. 1,250,000", sample: 1250000 },
-      { name: "avgDailyCharges", label: "Avg Daily Charges", placeholder: "e.g. 3,000", sample: 30000 },
+      { name: "avgDailyCharges", label: "Avg Daily Charges", placeholder: "e.g. 30,000", sample: 30000 },
     ],
     calculate: ({ totalAr, avgDailyCharges }) =>
       avgDailyCharges ? totalAr / avgDailyCharges : null,
@@ -137,8 +137,7 @@ export const practiceMetrics = metricDefinitions
 export const buildPracticeInputs = () =>
   metricDefinitions.reduce((acc, metric) => {
     acc[metric.id] = metric.fields.reduce((inner, field) => {
-      inner[field.name] =
-        field.sample !== undefined ? field.sample.toLocaleString("en-US") : ""
+      inner[field.name] = ""
       return inner
     }, {})
     return acc

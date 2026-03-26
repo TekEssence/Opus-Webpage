@@ -26,49 +26,111 @@ const reportDateFormatter = new Intl.DateTimeFormat("en-US", {
   timeStyle: "short",
 })
 
-const gaugePath = "M 16 80 A 64 64 0 0 1 144 80"
-const gaugeLength = Math.PI * 64
-
 const sanitizeFileName = (value) =>
   value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")
 
-const renderSummaryGauge = (count, totalIndicators, animate = false) => {
-  const gaugeRatio = totalIndicators ? count / totalIndicators : 0
-  const gaugeOffset = gaugeLength * (1 - gaugeRatio)
+const renderSummaryChart = (
+  summaryItems,
+  totalCount,
+  animate = false,
+  activeKey = null,
+  onSegmentEnter,
+  onSegmentLeave
+) => {
+  const chartSize = 196
+  const radius = 66
+  const circumference = 2 * Math.PI * radius
+  const activeItem = summaryItems.find((item) => item.key === activeKey) ?? null
+  let accumulatedLength = 0
 
   return (
-    <div className="practice-report-summary-gauge">
-      <svg
-        className="practice-report-summary-svg"
-        viewBox="0 0 160 92"
-        aria-hidden="true"
-        focusable="false"
-      >
-        <path
-          d={gaugePath}
-          className="practice-report-summary-track"
-          pathLength={gaugeLength}
-        />
-        <path
-          d={gaugePath}
-          className="practice-report-summary-progress"
-          pathLength={gaugeLength}
-          strokeDasharray={gaugeLength}
-          strokeDashoffset={gaugeOffset}
+    <div className="practice-report-summary-chart-shell">
+      <div className="practice-report-summary-chart">
+        <svg
+          className="practice-report-summary-chart-svg"
+          viewBox={`0 0 ${chartSize} ${chartSize}`}
+          role="img"
+          aria-label="Practice status distribution chart"
         >
-          {animate ? (
-            <animate
-              attributeName="stroke-dashoffset"
-              from={gaugeLength}
-              to={gaugeOffset}
-              dur="1.1s"
-              fill="freeze"
-            />
-          ) : null}
-        </path>
-      </svg>
-      <div className="practice-report-summary-value">
-        {count}/{totalIndicators}
+          <circle
+            className="practice-report-summary-chart-track"
+            cx={chartSize / 2}
+            cy={chartSize / 2}
+            r={radius}
+          />
+          {summaryItems.map((segment, index) => {
+            const segmentLength = totalCount
+              ? (segment.count / totalCount) * circumference
+              : 0
+
+            if (segmentLength <= 0) return null
+
+            const strokeDasharray = `${segmentLength} ${circumference - segmentLength}`
+            const strokeDashoffset = -accumulatedLength
+            accumulatedLength += segmentLength
+
+            return (
+              <circle
+                key={segment.key}
+                className={`practice-report-summary-chart-segment ${segment.className} ${
+                  activeKey ? (activeKey === segment.key ? "is-active" : "is-muted") : ""
+                }`}
+                cx={chartSize / 2}
+                cy={chartSize / 2}
+                r={radius}
+                strokeDasharray={strokeDasharray}
+                strokeDashoffset={strokeDashoffset}
+                tabIndex={onSegmentEnter ? 0 : -1}
+                role={onSegmentEnter ? "button" : undefined}
+                aria-label={`${segment.label}: ${segment.count}`}
+                onMouseEnter={onSegmentEnter ? () => onSegmentEnter(segment.key) : undefined}
+                onFocus={onSegmentEnter ? () => onSegmentEnter(segment.key) : undefined}
+                onMouseLeave={onSegmentLeave}
+                onBlur={onSegmentLeave}
+                style={
+                  animate
+                    ? {
+                        animation: `practice-summary-segment-draw 1s cubic-bezier(0.22, 1, 0.36, 1) ${
+                          index * 0.12
+                        }s both`,
+                      }
+                    : undefined
+                }
+              >
+                <title>{`${segment.label}: ${segment.count}`}</title>
+              </circle>
+            )
+          })}
+        </svg>
+        <div className={`practice-report-summary-chart-center ${activeItem ? activeItem.className : ""}`}>
+          <span className="practice-report-summary-chart-value">
+            {activeItem ? activeItem.count : totalCount}
+          </span>
+          <span className="practice-report-summary-chart-total">
+            {activeItem ? activeItem.label : "Total"}
+          </span>
+        </div>
+      </div>
+      <div className="practice-report-summary-legend" aria-label="Practice status counts">
+        {summaryItems.map((item) => (
+          <div
+            key={item.key}
+            className={`practice-report-summary-legend-item ${
+              activeKey ? (activeKey === item.key ? "is-active" : "is-muted") : ""
+            }`}
+            onMouseEnter={onSegmentEnter ? () => onSegmentEnter(item.key) : undefined}
+            onFocus={onSegmentEnter ? () => onSegmentEnter(item.key) : undefined}
+            onMouseLeave={onSegmentLeave}
+            onBlur={onSegmentLeave}
+            tabIndex={onSegmentEnter ? 0 : -1}
+          >
+            <span className={`practice-report-summary-legend-swatch ${item.className}`} />
+            <div className="practice-report-summary-legend-copy">
+              <span className="practice-report-summary-legend-label">{item.label}</span>
+              <span className="practice-report-summary-legend-value">{item.count}</span>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   )
@@ -80,6 +142,7 @@ const PracticeHealthCheck = () => {
   const [report, setReport] = useState(null)
   const [errorMessage, setErrorMessage] = useState("")
   const [isAutoDownloading, setIsAutoDownloading] = useState(false)
+  const [activeSummaryKey, setActiveSummaryKey] = useState(null)
   const reportRef = useRef(null)
   const pdfExportRef = useRef(null)
 
@@ -91,6 +154,10 @@ const PracticeHealthCheck = () => {
     if (!report) return
 
     window.scrollTo({ top: 0, behavior: "smooth" })
+  }, [report])
+
+  useEffect(() => {
+    setActiveSummaryKey(null)
   }, [report])
 
   const benchmarkSummary = useMemo(() => {
@@ -112,52 +179,44 @@ const PracticeHealthCheck = () => {
     ]
   }, [report])
 
+  const summarySnapshot = useMemo(() => {
+    if (!benchmarkSummary.length) return null
+
+    const onTarget = benchmarkSummary.find((item) => item.label === "On Target")?.count ?? 0
+    const needsReview = benchmarkSummary.find((item) => item.label === "Needs Review")?.count ?? 0
+    const actionNeeded = benchmarkSummary.find((item) => item.label === "Action Needed")?.count ?? 0
+    const tone = actionNeeded > 0 ? "alert" : needsReview > 0 ? "caution" : "good"
+    const label =
+      tone === "alert" ? "Action Needed" : tone === "caution" ? "Needs Review" : "On Target"
+
+    return { tone, label, onTarget, needsReview, actionNeeded }
+  }, [benchmarkSummary])
+
+  const summaryItems = useMemo(
+    () => [
+      {
+        key: "good",
+        label: "On Target",
+        count: summarySnapshot?.onTarget ?? 0,
+        className: "is-good",
+      },
+      {
+        key: "caution",
+        label: "Needs Review",
+        count: summarySnapshot?.needsReview ?? 0,
+        className: "is-caution",
+      },
+      {
+        key: "alert",
+        label: "Action Needed",
+        count: summarySnapshot?.actionNeeded ?? 0,
+        className: "is-alert",
+      },
+    ],
+    [summarySnapshot]
+  )
+
   const totalIndicators = report?.metrics.length ?? practiceMetrics.length
-
-  useEffect(() => {
-    if (!report) return
-
-    const downloadTimer = window.setTimeout(() => {
-      const downloadPdf = async () => {
-        if (!pdfExportRef.current) return
-
-        setIsAutoDownloading(true)
-        try {
-          const canvas = await html2canvas(pdfExportRef.current, {
-            scale: 2,
-            useCORS: true,
-            backgroundColor: "#ffffff",
-            scrollY: -window.scrollY,
-            windowWidth: pdfExportRef.current.scrollWidth,
-          })
-
-          const imageData = canvas.toDataURL("image/png")
-          const pdf = new jsPDF("p", "mm", "a4")
-          const pageWidth = pdf.internal.pageSize.getWidth()
-          const pageHeight = pdf.internal.pageSize.getHeight()
-          const margin = 8
-          const maxWidth = pageWidth - margin * 2
-          const maxHeight = pageHeight - margin * 2
-          const scaleRatio = Math.min(maxWidth / canvas.width, maxHeight / canvas.height)
-          const imgWidth = canvas.width * scaleRatio
-          const imgHeight = canvas.height * scaleRatio
-          const x = (pageWidth - imgWidth) / 2
-
-          pdf.addImage(imageData, "PNG", x, margin, imgWidth, imgHeight)
-
-          pdf.save(
-            `${sanitizeFileName(report.client.companyName || "practice-health-check")}-report.pdf`
-          )
-        } finally {
-          setIsAutoDownloading(false)
-        }
-      }
-
-      downloadPdf()
-    }, 2500)
-
-    return () => window.clearTimeout(downloadTimer)
-  }, [report])
 
   const handleClientChange = ({ target }) => {
     const { name, value } = target
@@ -179,6 +238,38 @@ const PracticeHealthCheck = () => {
     setErrorMessage("")
   }
 
+  const handleDownloadReport = async () => {
+    if (!pdfExportRef.current || !report) return
+
+    setIsAutoDownloading(true)
+    try {
+      const canvas = await html2canvas(pdfExportRef.current, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: "#ffffff",
+        scrollY: -window.scrollY,
+        windowWidth: pdfExportRef.current.scrollWidth,
+      })
+
+      const imageData = canvas.toDataURL("image/png")
+      const pdf = new jsPDF("p", "mm", "a4")
+      const pageWidth = pdf.internal.pageSize.getWidth()
+      const pageHeight = pdf.internal.pageSize.getHeight()
+      const margin = 8
+      const maxWidth = pageWidth - margin * 2
+      const maxHeight = pageHeight - margin * 2
+      const scaleRatio = Math.min(maxWidth / canvas.width, maxHeight / canvas.height)
+      const imgWidth = canvas.width * scaleRatio
+      const imgHeight = canvas.height * scaleRatio
+      const x = (pageWidth - imgWidth) / 2
+
+      pdf.addImage(imageData, "PNG", x, margin, imgWidth, imgHeight)
+      pdf.save(`${sanitizeFileName(report.client.companyName || "practice-health-check")}-report.pdf`)
+    } finally {
+      setIsAutoDownloading(false)
+    }
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault()
 
@@ -193,6 +284,29 @@ const PracticeHealthCheck = () => {
     const metrics = []
     for (const metric of practiceMetrics) {
       const payload = {}
+      let hasAnyValue = false
+      let hasAllValues = true
+
+      for (const field of metric.fields) {
+        const rawValue = inputs[metric.id][field.name]
+        const trimmedValue = rawValue.trim()
+
+        if (trimmedValue) {
+          hasAnyValue = true
+        } else {
+          hasAllValues = false
+        }
+      }
+
+      if (!hasAnyValue) {
+        continue
+      }
+
+      if (!hasAllValues) {
+        setErrorMessage(`Complete all fields for ${metric.title}, or leave that metric blank.`)
+        return
+      }
+
       for (const field of metric.fields) {
         const parsed = parseMetricEntry(inputs[metric.id][field.name])
         if (parsed === null) {
@@ -214,6 +328,11 @@ const PracticeHealthCheck = () => {
         description: metric.description,
         result: buildMetricResult(metric, computed),
       })
+    }
+
+    if (!metrics.length) {
+      setErrorMessage("Fill in at least one complete metric to generate the report.")
+      return
     }
 
     const generatedAt = reportDateFormatter.format(new Date())
@@ -273,7 +392,7 @@ const PracticeHealthCheck = () => {
                 <div className="practice-form-block">
                   <div className="practice-form-block-header">
                     <h2>Metric inputs</h2>
-                    <p>Input real data to create an accurate performance report.</p>
+                    <p>Turn your numbers into a clear snapshot of practice performance.</p>
                   </div>
                   <div className="practice-metrics-stack">
                     {practiceMetrics.map((metric) => (
@@ -325,11 +444,7 @@ const PracticeHealthCheck = () => {
                 <p className="practice-report-banner-copy">
                   Dive into your five-metric performance summary.
                 </p>
-                {isAutoDownloading && (
-                  <p className="practice-report-banner-copy">
-                    Downloading PDF report...
-                  </p>
-                )}
+                {isAutoDownloading && <p className="practice-report-banner-copy">Preparing PDF...</p>}
               </div>
               <div className="practice-report-actions practice-print-hidden">
                 <button
@@ -338,6 +453,14 @@ const PracticeHealthCheck = () => {
                   onClick={() => setReport(null)}
                 >
                   Back To Metrics
+                </button>
+                <button
+                  type="button"
+                  className="practice-card-button"
+                  onClick={handleDownloadReport}
+                  disabled={isAutoDownloading}
+                >
+                  {isAutoDownloading ? "Preparing PDF" : "Download Report"}
                 </button>
               </div>
               <article ref={reportRef} className="practice-report">
@@ -367,24 +490,29 @@ const PracticeHealthCheck = () => {
                 </header>
 
                 <section className="practice-report-body">
-                  <div className="practice-report-summary">
-                    {benchmarkSummary.map((item) => {
-                      return (
-                      <div
-                        key={item.label}
-                        className={`practice-report-summary-card ${
-                          item.label === "On Target"
-                            ? "is-good"
-                            : item.label === "Needs Review"
-                              ? "is-caution"
-                              : "is-alert"
-                        }`}
-                      >
-                        {renderSummaryGauge(item.count, totalIndicators, true)}
-                        <span className="practice-report-summary-label">{item.label}</span>
+                  {summarySnapshot ? (
+                    <div className="practice-report-summary">
+                      <div className={`practice-report-summary-card is-${summarySnapshot.tone}`}>
+                        <div className="practice-report-summary-visual">
+                          {renderSummaryChart(
+                            summaryItems,
+                            totalIndicators,
+                            true,
+                            activeSummaryKey,
+                            setActiveSummaryKey,
+                            () => setActiveSummaryKey(null)
+                          )}
+                        </div>
+                        <div className="practice-report-summary-content">
+                          <p className="practice-report-summary-kicker">Overall Practice Snapshot</p>
+                          <p className="practice-report-summary-label">{summarySnapshot.label}</p>
+                          <p className="practice-report-summary-subtext">
+                            {totalIndicators} metrics reviewed across the three performance status categories.
+                          </p>
+                        </div>
                       </div>
-                    )})}
-                  </div>
+                    </div>
+                  ) : null}
 
                   <div className="practice-report-table-wrap">
                     <table className="practice-report-table">
@@ -467,24 +595,22 @@ const PracticeHealthCheck = () => {
                   </header>
 
                   <section className="practice-report-body practice-report-body-pdf">
-                    <div className="practice-report-summary">
-                      {benchmarkSummary.map((item) => {
-                        return (
-                        <div
-                          key={`pdf-${item.label}`}
-                          className={`practice-report-summary-card ${
-                            item.label === "On Target"
-                              ? "is-good"
-                              : item.label === "Needs Review"
-                                ? "is-caution"
-                                : "is-alert"
-                          }`}
-                        >
-                          {renderSummaryGauge(item.count, totalIndicators, false)}
-                          <span className="practice-report-summary-label">{item.label}</span>
+                    {summarySnapshot ? (
+                      <div className="practice-report-summary">
+                        <div className={`practice-report-summary-card is-${summarySnapshot.tone}`}>
+                          <div className="practice-report-summary-visual">
+                            {renderSummaryChart(summaryItems, totalIndicators, false)}
+                          </div>
+                          <div className="practice-report-summary-content">
+                            <p className="practice-report-summary-kicker">Overall Practice Snapshot</p>
+                            <p className="practice-report-summary-label">{summarySnapshot.label}</p>
+                            <p className="practice-report-summary-subtext">
+                              {totalIndicators} metrics reviewed across the three performance status categories.
+                            </p>
+                          </div>
                         </div>
-                      )})}
-                    </div>
+                      </div>
+                    ) : null}
 
                     <div className="practice-report-table-wrap">
                       <table className="practice-report-table">
