@@ -37,8 +37,8 @@ const renderSummaryChart = (
   onSegmentEnter,
   onSegmentLeave
 ) => {
-  const chartSize = 196
-  const radius = 66
+  const chartSize = 184
+  const radius = 60
   const circumference = 2 * Math.PI * radius
   const activeItem = summaryItems.find((item) => item.key === activeKey) ?? null
   let accumulatedLength = 0
@@ -173,21 +173,21 @@ const PracticeHealthCheck = () => {
     )
 
     return [
-      { label: "On Target", count: counts.good },
-      { label: "Needs Review", count: counts.caution },
-      { label: "Action Needed", count: counts.alert + counts.critical },
+      { label: "Strong Performance", count: counts.good },
+      { label: "Moderate Performance", count: counts.caution },
+      { label: "Below Expectations", count: counts.alert + counts.critical },
     ]
   }, [report])
 
   const summarySnapshot = useMemo(() => {
     if (!benchmarkSummary.length) return null
 
-    const onTarget = benchmarkSummary.find((item) => item.label === "On Target")?.count ?? 0
-    const needsReview = benchmarkSummary.find((item) => item.label === "Needs Review")?.count ?? 0
-    const actionNeeded = benchmarkSummary.find((item) => item.label === "Action Needed")?.count ?? 0
+    const onTarget = benchmarkSummary.find((item) => item.label === "Strong Performance")?.count ?? 0
+    const needsReview = benchmarkSummary.find((item) => item.label === "Moderate Performance")?.count ?? 0
+    const actionNeeded = benchmarkSummary.find((item) => item.label === "Below Expectations")?.count ?? 0
     const tone = actionNeeded > 0 ? "alert" : needsReview > 0 ? "caution" : "good"
     const label =
-      tone === "alert" ? "Action Needed" : tone === "caution" ? "Needs Review" : "On Target"
+      tone === "alert" ? "Below Expectations" : tone === "caution" ? "Moderate Performance" : "Strong Performance"
 
     return { tone, label, onTarget, needsReview, actionNeeded }
   }, [benchmarkSummary])
@@ -196,19 +196,19 @@ const PracticeHealthCheck = () => {
     () => [
       {
         key: "good",
-        label: "On Target",
+        label: "Strong Performance",
         count: summarySnapshot?.onTarget ?? 0,
         className: "is-good",
       },
       {
         key: "caution",
-        label: "Needs Review",
+        label: "Moderate Performance",
         count: summarySnapshot?.needsReview ?? 0,
         className: "is-caution",
       },
       {
         key: "alert",
-        label: "Action Needed",
+        label: "Below Expectations",
         count: summarySnapshot?.actionNeeded ?? 0,
         className: "is-alert",
       },
@@ -392,7 +392,7 @@ const PracticeHealthCheck = () => {
                 <div className="practice-form-block">
                   <div className="practice-form-block-header">
                     <h2>Metric inputs</h2>
-                    <p>Turn your numbers into a clear snapshot of practice performance.</p>
+                    <p>Capture the core metrics that shape a sharper view of financial performance.</p>
                   </div>
                   <div className="practice-metrics-stack">
                     {practiceMetrics.map((metric) => (
@@ -470,7 +470,9 @@ const PracticeHealthCheck = () => {
                     <img src="/opus-logo.png" alt="OPUS BPO logo" className="practice-report-logo" />
                     <div>
                       <p className="practice-report-eyebrow">Practice Health Check</p>
-                      <h2 className="practice-report-title">Revenue Cycle Performance Report</h2>
+                      <h2 className="practice-report-title">
+                        {report.client.companyName} Health Performance Report
+                      </h2>
                       <p className="practice-report-subtitle">
                         {opusContact.company} | {opusContact.subtitle}
                       </p>
@@ -504,7 +506,7 @@ const PracticeHealthCheck = () => {
                           )}
                         </div>
                         <div className="practice-report-summary-content">
-                          <p className="practice-report-summary-kicker">Overall Practice Snapshot</p>
+                          <p className="practice-report-summary-kicker">Overall Performance Summary</p>
                           <p className="practice-report-summary-label">{summarySnapshot.label}</p>
                           <p className="practice-report-summary-subtext">
                             {totalIndicators} metrics reviewed across the three performance status categories.
@@ -521,7 +523,7 @@ const PracticeHealthCheck = () => {
                           <th>Metric</th>
                           <th>Result</th>
                           <th>Status</th>
-                          <th>Industry Standard</th>
+                          <th>Performance Range</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -539,7 +541,15 @@ const PracticeHealthCheck = () => {
                               </span>
                             </td>
                             <td className="practice-report-guidance">
-                              {metric.result.benchmark.industryStandard}
+                              {Array.isArray(metric.result.benchmark.industryStandard) ? (
+                                metric.result.benchmark.industryStandard.map((line) => (
+                                  <div key={`${metric.id}-${line}`} className="practice-report-guidance-line">
+                                    {line}
+                                  </div>
+                                ))
+                              ) : (
+                                metric.result.benchmark.industryStandard
+                              )}
                             </td>
                           </tr>
                         ))}
@@ -575,7 +585,9 @@ const PracticeHealthCheck = () => {
                       <img src="/opus-logo.png" alt="OPUS BPO logo" className="practice-report-logo" />
                       <div>
                         <p className="practice-report-eyebrow">Practice Health Check</p>
-                        <h2 className="practice-report-title">Revenue Cycle Performance Report</h2>
+                        <h2 className="practice-report-title">
+                          {report.client.companyName} Health Performance Report
+                        </h2>
                         <p className="practice-report-subtitle">
                           {opusContact.company} | {opusContact.subtitle}
                         </p>
@@ -602,7 +614,7 @@ const PracticeHealthCheck = () => {
                             {renderSummaryChart(summaryItems, totalIndicators, false)}
                           </div>
                           <div className="practice-report-summary-content">
-                            <p className="practice-report-summary-kicker">Overall Practice Snapshot</p>
+                            <p className="practice-report-summary-kicker">Overall Performance Summary</p>
                             <p className="practice-report-summary-label">{summarySnapshot.label}</p>
                             <p className="practice-report-summary-subtext">
                               {totalIndicators} metrics reviewed across the three performance status categories.
@@ -619,7 +631,7 @@ const PracticeHealthCheck = () => {
                             <th>Metric</th>
                             <th>Result</th>
                             <th>Status</th>
-                            <th>Industry Standard</th>
+                            <th>Performance Range</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -637,7 +649,18 @@ const PracticeHealthCheck = () => {
                                 </span>
                               </td>
                               <td className="practice-report-guidance">
-                                {metric.result.benchmark.industryStandard}
+                                {Array.isArray(metric.result.benchmark.industryStandard) ? (
+                                  metric.result.benchmark.industryStandard.map((line) => (
+                                    <div
+                                      key={`pdf-${metric.id}-${line}`}
+                                      className="practice-report-guidance-line"
+                                    >
+                                      {line}
+                                    </div>
+                                  ))
+                                ) : (
+                                  metric.result.benchmark.industryStandard
+                                )}
                               </td>
                             </tr>
                           ))}
