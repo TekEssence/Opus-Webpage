@@ -130,16 +130,16 @@ const Layout = () => {
             <span className="hidden sm:inline">Client Support & Governance</span>
           </div>
         </div>
-        <div className="flex w-full items-center px-6 py-4">
-          <div className="flex shrink-0 items-center gap-4">
+        <div className="flex w-full items-center px-4 py-4 sm:px-6">
+          <div className="flex min-w-0 items-center gap-2 sm:gap-4">
             <img
               src="/opus-logo.png"
               alt="OPUS BPO Medical Billing and Revenue Cycle Management logo"
-              className="h-12 w-auto"
+              className="h-8 w-auto sm:h-12"
             />
-            <div>
-              <p className="font-heading text-lg text-brand-slate">OPUS BPO</p>
-              <p className="text-xs uppercase tracking-[0.2em] text-slate-500">
+            <div className="min-w-0">
+              <p className="font-heading text-sm text-brand-slate sm:text-lg">OPUS BPO</p>
+              <p className="text-[0.52rem] uppercase tracking-[0.08em] text-slate-500 sm:text-xs sm:tracking-[0.2em]">
                 Medical Billing & RCM
               </p>
             </div>
@@ -230,7 +230,7 @@ const Layout = () => {
 
           <div className="ml-auto flex shrink-0 items-center gap-3">
             <div
-              className="practice-menu-wrapper hidden lg:block"
+              className="practice-menu-wrapper !hidden lg:!inline-flex"
               onMouseEnter={openPracticeMenuHover}
               onMouseLeave={closePracticeMenuHover}
             >
@@ -271,6 +271,14 @@ const Layout = () => {
               className="hidden whitespace-nowrap rounded-full bg-brand-red px-7 py-3 text-base font-bold text-white shadow-[0_12px_30px_-16px_rgba(219,68,37,0.9)] transition hover:bg-red-700 lg:inline-flex"
             >
               Schedule a Call
+            </NavLink>
+
+            <NavLink
+              to="/practice-health-check"
+              aria-label="Open Practice Health Check"
+              className="inline-flex whitespace-nowrap rounded-full bg-[linear-gradient(135deg,#3aa3c6_0%,#f4cf2f_48%,#e56a2e_100%)] px-2.5 py-2 text-[0.5rem] font-bold uppercase tracking-[0.12em] text-white shadow-[0_12px_30px_-16px_rgba(58,163,198,0.9)] sm:px-3 sm:text-[0.58rem] sm:tracking-[0.16em] lg:hidden"
+            >
+              Health Check
             </NavLink>
 
             <button
@@ -392,3 +400,4 @@ const Layout = () => {
 }
 
 export default Layout
+
