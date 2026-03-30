@@ -276,9 +276,9 @@ const Layout = () => {
             <NavLink
               to="/practice-health-check"
               aria-label="Open Practice Health Check"
-              className="inline-flex whitespace-nowrap rounded-full bg-[linear-gradient(135deg,#3aa3c6_0%,#f4cf2f_48%,#e56a2e_100%)] px-2.5 py-2 text-[0.5rem] font-bold uppercase tracking-[0.12em] text-white shadow-[0_12px_30px_-16px_rgba(58,163,198,0.9)] sm:px-3 sm:text-[0.58rem] sm:tracking-[0.16em] lg:hidden"
+              className="inline-flex whitespace-nowrap rounded-full bg-[linear-gradient(135deg,#3aa3c6_0%,#f4cf2f_48%,#e56a2e_100%)] px-2 py-2 text-[0.42rem] font-bold uppercase tracking-[0.08em] text-white shadow-[0_12px_30px_-16px_rgba(58,163,198,0.9)] sm:px-3 sm:text-[0.58rem] sm:tracking-[0.16em] lg:hidden"
             >
-              Health Check
+              Practice Health Check
             </NavLink>
 
             <button

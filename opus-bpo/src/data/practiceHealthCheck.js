@@ -4,8 +4,8 @@ const metricDefinitions = [
     title: "Days In AR",
     description: "Measure how quickly the team converts charges into cash.",
     fields: [
-      { name: "totalAr", label: "Total AR ($)", placeholder: "Enter total AR amount, e.g., $1,250,000", sample: 1250000 },
-      { name: "avgDailyCharges", label: "Avg Daily Charges ($)", placeholder: "Enter avg daily charges, e.g., $30,000", sample: 30000 },
+      { name: "totalAr", label: "Total AR ($)", placeholder: "Enter total AR amount, e.g., $1,250,000", mobilePlaceholder: "e.g., $1,250,000", sample: 1250000 },
+      { name: "avgDailyCharges", label: "Avg Daily Charges ($)", placeholder: "Enter avg daily charges, e.g., $30,000", mobilePlaceholder: "e.g., $30,000", sample: 30000 },
     ],
     calculate: ({ totalAr, avgDailyCharges }) =>
       avgDailyCharges ? totalAr / avgDailyCharges : null,
@@ -34,8 +34,8 @@ const metricDefinitions = [
     title: "Denial Rate",
     description: "Keep denials low to protect cash flow and reduce rework.",
     fields: [
-      { name: "deniedClaims", label: "Denied Claims", placeholder: "Enter denied claims, e.g., 1,100", sample: 1100 },
-      { name: "submittedClaims", label: "Submitted Claims", placeholder: "Enter submitted claims, e.g., 50,000", sample: 50000 },
+      { name: "deniedClaims", label: "Denied Claims", placeholder: "Enter denied claims, e.g., 1,100", mobilePlaceholder: "e.g., 1,100", sample: 1100 },
+      { name: "submittedClaims", label: "Submitted Claims", placeholder: "Enter submitted claims, e.g., 50,000", mobilePlaceholder: "e.g., 50,000", sample: 50000 },
     ],
     calculate: ({ deniedClaims, submittedClaims }) =>
       submittedClaims ? (deniedClaims / submittedClaims) * 100 : null,
@@ -61,8 +61,8 @@ const metricDefinitions = [
     title: "Gross Collection Rate",
     description: "Shows how much of billed value was collected before adjustments.",
     fields: [
-      { name: "payments", label: "Total Payments ($)", placeholder: "Enter total payments, e.g., $470,000", sample: 470000 },
-      { name: "charges", label: "Total Charges ($)", placeholder: "Enter total charges, e.g., $500,000", sample: 500000 },
+      { name: "payments", label: "Total Payments ($)", placeholder: "Enter total payments, e.g., $470,000", mobilePlaceholder: "e.g., $470,000", sample: 470000 },
+      { name: "charges", label: "Total Charges ($)", placeholder: "Enter total charges, e.g., $500,000", mobilePlaceholder: "e.g., $500,000", sample: 500000 },
     ],
     calculate: ({ payments, charges }) => (charges ? (payments / charges) * 100 : null),
     unit: "%",
@@ -87,8 +87,8 @@ const metricDefinitions = [
     title: "Net Collection Rate",
     description: "Reflects collections after write-offs and contractual discounts.",
     fields: [
-      { name: "netPayments", label: "Adjusted Payments ($)", placeholder: "Enter adjusted payments, e.g., $450,000", sample: 450000 },
-      { name: "charges", label: "Total Charges ($)", placeholder: "Enter total charges, e.g., $500,000", sample: 500000 },
+      { name: "netPayments", label: "Adjusted Payments ($)", placeholder: "Enter adjusted payments, e.g., $450,000", mobilePlaceholder: "e.g., $450,000", sample: 450000 },
+      { name: "charges", label: "Total Charges ($)", placeholder: "Enter total charges, e.g., $500,000", mobilePlaceholder: "e.g., $500,000", sample: 500000 },
     ],
     calculate: ({ netPayments, charges }) => (charges ? (netPayments / charges) * 100 : null),
     unit: "%",
@@ -113,8 +113,8 @@ const metricDefinitions = [
     title: "First-Pass Resolution Rate",
     description: "Track how many claims clear on the first-pass review.",
     fields: [
-      { name: "paidOnFirst", label: "Claims Paid on 1st Submission", placeholder: "Enter first-pass paid claims, e.g., 18,000", sample: 18000 },
-      { name: "totalClaims", label: "Total Claims Submitted", placeholder: "Enter total claims submitted, e.g., 20,000", sample: 20000 },
+      { name: "paidOnFirst", label: "Claims Paid on 1st Submission", placeholder: "Enter first-pass paid claims, e.g., 18,000", mobilePlaceholder: "e.g., 18,000", sample: 18000 },
+      { name: "totalClaims", label: "Total Claims Submitted", placeholder: "Enter total claims submitted, e.g., 20,000", mobilePlaceholder: "e.g., 20,000", sample: 20000 },
     ],
     calculate: ({ paidOnFirst, totalClaims }) =>
       totalClaims ? (paidOnFirst / totalClaims) * 100 : null,
@@ -203,3 +203,4 @@ export const buildPracticeResults = () =>
     acc[metric.id] = buildMetricResult(metric, computed)
     return acc
   }, {})
+

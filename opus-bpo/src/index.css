@@ -3368,6 +3368,17 @@ a {
   }
 }
 
+@media (max-width: 767px) {
+  .practice-card-field input {
+    padding: 0.72rem 0.85rem;
+    font-size: 0.82rem;
+  }
+
+  .practice-card-field input::placeholder {
+    font-size: 0.82rem;
+  }
+}
+
 @media print {
   body {
     background: #fff !important;

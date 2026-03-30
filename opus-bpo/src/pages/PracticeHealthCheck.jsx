@@ -143,6 +143,7 @@ const PracticeHealthCheck = () => {
   const [errorMessage, setErrorMessage] = useState("")
   const [isAutoDownloading, setIsAutoDownloading] = useState(false)
   const [activeSummaryKey, setActiveSummaryKey] = useState(null)
+  const [isCompactMobile, setIsCompactMobile] = useState(() => window.innerWidth <= 430)
   const reportRef = useRef(null)
   const pdfExportRef = useRef(null)
 
@@ -159,6 +160,14 @@ const PracticeHealthCheck = () => {
   useEffect(() => {
     setActiveSummaryKey(null)
   }, [report])
+
+  useEffect(() => {
+    const handleResize = () => setIsCompactMobile(window.innerWidth <= 430)
+
+    handleResize()
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
 
   const benchmarkSummary = useMemo(() => {
     if (!report) return []
@@ -409,7 +418,7 @@ const PracticeHealthCheck = () => {
                                 type="text"
                                 inputMode="decimal"
                                 value={inputs[metric.id][field.name]}
-                                placeholder={field.placeholder}
+                                placeholder={isCompactMobile ? field.mobilePlaceholder ?? field.placeholder : field.placeholder}
                                 onChange={(event) =>
                                   handleMetricInputChange(metric.id, field.name, event.target.value)
                                 }
@@ -697,3 +706,4 @@ const PracticeHealthCheck = () => {
 }
 
 export default PracticeHealthCheck
+
