@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import { Bot, Check, CloudCog, DatabaseZap, FileScan, Gauge, LayoutDashboard, LockKeyhole, Network, RefreshCw, SearchCheck, ShieldCheck, Sparkles, TimerReset, Workflow } from "lucide-react"
 
 const areas = [
@@ -16,6 +17,33 @@ const capabilities = [
   [Gauge, "Centralized operational data and performance visibility"],
 ]
 
+const AutomationEcosystem = () => {
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  useEffect(() => {
+    const sections = areas.map((area) => document.getElementById(`automation-${area.number}`)).filter(Boolean)
+    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
+      if (entry.isIntersecting) setActiveIndex(Number(entry.target.dataset.index))
+    }), { rootMargin: "-35% 0px -45%", threshold: 0 })
+    sections.forEach((section) => observer.observe(section))
+    return () => observer.disconnect()
+  }, [])
+
+  const jumpTo = (index) => document.getElementById(`automation-${areas[index].number}`)?.scrollIntoView({ behavior: "smooth", block: "start" })
+
+  return <section className="section-divider bg-[#f7fafb]"><div className="mx-auto max-w-7xl px-6 pb-24 pt-20">
+    <div className="mx-auto max-w-4xl text-center"><p className="text-sm font-semibold uppercase tracking-[.22em] text-brand-blue">Automation in Action</p><h2 className="mt-4 font-heading text-3xl font-semibold text-brand-slate md:text-4xl">Scroll through five connected automation capabilities.</h2><p className="mt-5 text-lg font-medium leading-relaxed text-slate-700">Each capability is designed to remove friction, strengthen control, and make operational performance easier to see.</p></div>
+    <nav className="sticky top-[105px] z-30 mx-auto mt-10 flex max-w-4xl justify-center gap-2 rounded-full border border-slate-200/80 bg-white/90 p-2 shadow-[0_14px_35px_-24px_rgba(15,23,42,.5)] backdrop-blur" aria-label="Automation journey">{areas.map((area,index)=><button key={area.number} type="button" onClick={()=>jumpTo(index)} aria-label={`Jump to ${area.label}`} className={`flex h-10 min-w-10 items-center justify-center rounded-full px-3 text-xs font-bold transition duration-300 ${activeIndex===index?'bg-brand-blue text-white shadow-lg':'text-slate-500 hover:bg-slate-100 hover:text-brand-blue'}`}><span>{area.number}</span><span className={`ml-2 hidden whitespace-nowrap lg:inline ${activeIndex===index?'':'sr-only'}`}>{area.label}</span></button>)}</nav>
+    <div className="mt-6">{areas.map((area,index)=>{const Icon=area.icon;return <article id={`automation-${area.number}`} data-index={index} key={area.number} className="scroll-mt-48 relative flex min-h-[760px] items-center overflow-hidden py-20">
+      <div className={`absolute inset-x-0 top-1/2 h-[82%] -translate-y-1/2 rounded-[52px] ${index===0?'bg-[linear-gradient(135deg,#e6f9ff,#eef5ff)]':index===1?'bg-[linear-gradient(135deg,#f4efff,#eef0ff)]':index===2?'bg-[linear-gradient(135deg,#fff5db,#fff0e7)]':index===3?'bg-[linear-gradient(135deg,#e8fbf3,#e7f8f8)]':'bg-[linear-gradient(135deg,#e9f2ff,#f2efff)]'}`}/>
+      <span className={`absolute ${index%2?'left-8':'right-8'} top-20 font-heading text-[12rem] font-black leading-none text-slate-900/[.045] md:text-[18rem]`}>{area.number}</span>
+      <div className={`relative grid w-full items-center gap-14 px-7 md:px-12 lg:grid-cols-2 lg:px-16 ${index%2?'':''}`}>
+        <div className={index%2?'lg:order-2':''}><div className="flex items-center gap-4"><span className={`grid h-16 w-16 place-items-center rounded-full bg-gradient-to-br ${area.accent} text-white shadow-xl transition duration-500 hover:rotate-12 hover:scale-110`}><Icon className="h-8 w-8"/></span><div><p className="text-xs font-bold uppercase tracking-[.24em] text-brand-blue">Chapter {area.number}</p><p className="mt-1 text-sm font-semibold text-slate-500">{area.label}</p></div></div><h3 className="mt-7 max-w-xl font-heading text-3xl font-semibold leading-tight text-brand-slate md:text-5xl">{area.title}</h3><p className="mt-6 max-w-xl text-lg font-medium leading-relaxed text-slate-700">{area.description}</p><div className="mt-8 flex items-center gap-3 text-xs font-bold uppercase tracking-[.18em] text-brand-blue"><span className={`h-2 w-12 rounded-full bg-gradient-to-r ${area.accent}`}/>Explore the impact</div></div>
+        <div className={`relative min-h-[430px] ${index%2?'lg:order-1':''}`}><div className={`absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br ${area.accent} opacity-15 blur-2xl`}/><div className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 animate-[spin_28s_linear_infinite] rounded-full border border-dashed border-slate-400/50"/><div className={`absolute left-1/2 top-1/2 grid h-32 w-32 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-gradient-to-br ${area.accent} text-white shadow-[0_25px_50px_-20px_rgba(15,23,42,.65)]`}><Icon className="h-12 w-12"/><span className="text-[8px] font-bold uppercase tracking-[.18em]">Opus Engine</span></div>{area.benefits.map((benefit,benefitIndex)=>{const positions=['left-0 top-4','right-0 top-4','left-0 bottom-5','right-0 bottom-5','left-1/2 bottom-0 -translate-x-1/2'];return <button type="button" key={benefit} className={`group absolute ${positions[benefitIndex]} max-w-[190px] text-left`}><span className="flex items-start gap-3 rounded-2xl border border-white bg-white/85 p-4 shadow-[0_18px_40px_-28px_rgba(15,23,42,.65)] backdrop-blur transition duration-300 group-hover:-translate-y-2 group-hover:shadow-xl"><span className={`grid h-7 w-7 shrink-0 place-items-center rounded-full bg-gradient-to-br ${area.accent}`}><Check className="h-4 w-4 text-white"/></span><span className="text-xs font-semibold leading-relaxed text-slate-700">{benefit}</span></span></button>})}</div>
+      </div>
+    </article>})}</div>
+  </div></section>
+}
 const AboutTechnology = () => <>
   <section className="relative isolate overflow-hidden bg-[#092f42] text-white">
     <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_15%,rgba(34,211,238,.22),transparent_28%),radial-gradient(circle_at_88%_22%,rgba(250,204,21,.18),transparent_24%),linear-gradient(125deg,#092f42_0%,#0b5268_54%,#123b50_100%)]" />
@@ -33,15 +61,7 @@ const AboutTechnology = () => <>
     </div>
   </section>
 
-  <section className="section-divider bg-white"><div className="mx-auto max-w-6xl px-6 py-20">
-    <div className="mx-auto max-w-5xl text-center reveal"><p className="text-sm font-semibold uppercase tracking-[.22em] text-brand-blue">How Our Automation Works</p><h2 className="mt-4 font-heading text-3xl font-semibold text-brand-slate md:text-4xl">Connected workflows. Clearer decisions. Stronger control.</h2><p className="mx-auto mt-5 max-w-4xl text-lg font-medium leading-relaxed text-slate-700">Every solution follows a practical operating model: capture reliable inputs, validate them against defined rules, route exceptions to the right teams, and make performance visible. The result is automation that fits into existing operations instead of adding another layer of complexity.</p><div className="mt-9 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{[["01","Capture","Reliable data inputs"],["02","Validate","Rule-based quality checks"],["03","Route","Exceptions to the right team"],["04","Report","Clear operational visibility"]].map(([number,title,detail]) => <div key={title} className="relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 px-5 py-5 text-left"><span className="absolute right-3 top-1 font-heading text-4xl font-bold text-brand-blue/10">{number}</span><p className="text-xs font-bold uppercase tracking-[.18em] text-brand-blue">{title}</p><p className="mt-2 text-sm font-medium text-slate-600">{detail}</p></div>)}</div></div>
-    <div className="mt-16 space-y-8">{areas.map(({number,label,title,description,benefits,icon:Icon,accent,wash}) => <article key={number} className={`reveal relative grid overflow-hidden rounded-[30px] border border-slate-200 bg-gradient-to-br ${wash} shadow-[0_24px_60px_-42px_rgba(15,23,42,.5)] lg:grid-cols-[.76fr_1.24fr]`}>
-      <div className="relative p-7 md:p-9"><div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${accent}`} /><span className="absolute -right-3 -top-7 font-heading text-[8rem] font-bold text-slate-900/[.045]">{number}</span><span className={`inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${accent} text-white shadow-lg`}><Icon className="h-7 w-7" /></span><p className="mt-6 text-xs font-bold uppercase tracking-[.22em] text-slate-500">{number} | {label}</p><h3 className="mt-3 font-heading text-2xl font-semibold text-brand-slate">{title}</h3><p className="mt-5 text-sm font-medium leading-relaxed text-slate-600">{description}</p></div>
-      <div className="border-t border-white/80 bg-white/75 p-7 md:p-9 lg:border-l lg:border-t-0"><p className="text-xs font-bold uppercase tracking-[.22em] text-brand-blue">Key Benefits</p><div className="mt-5 grid gap-4 sm:grid-cols-2">{benefits.map(b => <div key={b} className="flex items-start gap-3 rounded-2xl border border-white bg-white/80 p-4 shadow-sm"><span className={`mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-gradient-to-br ${accent}`}><Check className="h-3.5 w-3.5 text-white" /></span><p className="text-sm font-medium leading-relaxed text-slate-700">{b}</p></div>)}</div></div>
-    </article>)}</div>
-  </div></section>
-
-  
+  <AutomationEcosystem />
 
   <section className="section-divider bg-white"><div className="mx-auto max-w-6xl px-6 py-20"><div className="relative overflow-hidden rounded-[36px] bg-[linear-gradient(120deg,#092f42,#0d6074)] px-7 py-14 text-white shadow-2xl md:px-14"><div className="relative grid items-center gap-10 lg:grid-cols-[1fr_auto]"><div><div className="flex items-center gap-3"><LockKeyhole className="h-6 w-6 text-amber-300" /><p className="text-xs font-bold uppercase tracking-[.24em] text-cyan-100">People + Technology</p></div><h2 className="mt-4 font-heading text-3xl font-semibold md:text-4xl">Automation That Works With Your Operations</h2><p className="mt-5 max-w-3xl text-lg leading-relaxed text-slate-200">At Opus BPO, automation is not about replacing people—it is about <strong className="text-white">eliminating repetitive work, strengthening controls, and enabling teams to focus on higher-value activities</strong>.</p><p className="mt-4 max-w-3xl leading-relaxed text-slate-300">Our automation solutions are developed and maintained with the same focus on <strong className="text-white">data security, confidentiality, compliance, and operational integrity</strong> that governs our client operations.</p></div><div className="grid h-32 w-32 place-items-center rounded-full border border-white/20 bg-white/10"><ShieldCheck className="h-14 w-14 text-cyan-300" /></div></div></div></div></section>
 </>
