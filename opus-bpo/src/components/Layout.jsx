@@ -26,6 +26,7 @@ const Layout = () => {
     { label: "Vision & Mission", href: "/about/vision-mission" },
     { label: "Pillars Of Opus", href: "/about/pillars" },
     { label: "Why Opus", href: "/about/why-opus" },
+    { label: "Technology & Automation", href: "/about/technology-automation" },
   ]
 
   const serviceLinks = services.map((service) => ({

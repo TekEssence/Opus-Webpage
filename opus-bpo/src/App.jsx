@@ -5,6 +5,7 @@ import AboutCertification from "./pages/AboutCertification.jsx"
 import AboutPillars from "./pages/AboutPillars.jsx"
 import AboutVision from "./pages/AboutVision.jsx"
 import AboutWhy from "./pages/AboutWhy.jsx"
+import AboutTechnology from "./pages/AboutTechnology.jsx"
 import Compliance from "./pages/Compliance.jsx"
 import Contact from "./pages/Contact.jsx"
 import Home from "./pages/Home.jsx"
@@ -20,6 +21,7 @@ const App = () => (
         <Route path="about/vision-mission" element={<AboutVision />} />
         <Route path="about/pillars" element={<AboutPillars />} />
         <Route path="about/why-opus" element={<AboutWhy />} />
+        <Route path="about/technology-automation" element={<AboutTechnology />} />
         <Route path="about/certification" element={<AboutCertification />} />
         <Route path="services" element={<Services />} />
         <Route
@@ -31,6 +33,7 @@ const App = () => (
       </Route>
     </Routes>
   </BrowserRouter>
+
 )
 
 export default App

@@ -10,3 +10,5 @@ To get the previous code
 git log --oneline    
 git reset --hard HEAD
 
+git push origin personal-shreya:shreya - this is for the tekessence github
+git push shreya personal-shreya - this is for the personal shreya github
