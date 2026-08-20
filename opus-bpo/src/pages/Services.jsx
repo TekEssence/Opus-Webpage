@@ -113,6 +113,7 @@ export default function Services() {
                         src={service.image}
                         alt={service.title}
                         loading="lazy"
+                        decoding="async"
                         className="h-44 w-full rounded-[1.15rem] object-cover"
                       />
                     </div>
@@ -198,7 +199,7 @@ export default function Services() {
 
                   <div className={`-mt-4 md:mt-0 ${isLeft ? "md:pl-12" : "md:pr-12"}`}>
                     <div className="group relative rounded-[2.25rem] bg-white/20 px-3 pb-3 pt-0 backdrop-blur-[2px] md:bg-transparent md:px-0 md:pb-0">
-                      <div className="relative h-56 w-full rounded-[2rem] border border-white bg-white/80 shadow-[0_24px_60px_-42px_rgba(15,23,42,0.16)] transition-all duration-700 ease-in-out group-hover:mx-auto group-hover:w-56 group-hover:rounded-full md:h-64 md:group-hover:w-64">
+                      <div className="relative h-56 w-full overflow-hidden rounded-[2rem] border border-white bg-white/80 shadow-[0_24px_60px_-42px_rgba(15,23,42,0.16)] transition-all duration-700 ease-in-out group-hover:mx-auto group-hover:w-56 group-hover:rounded-full md:h-64 md:group-hover:w-64">
                         <div
                           aria-hidden="true"
                           className="pointer-events-none absolute inset-[-6px] rounded-[1.9rem] opacity-0 transition-all duration-700 ease-in-out group-hover:rounded-full group-hover:opacity-100"
@@ -218,7 +219,14 @@ export default function Services() {
                           src={service.image}
                           alt={service.title}
                           loading="lazy"
-                          className="relative h-56 w-full rounded-[1.5rem] object-cover transition-all duration-700 ease-in-out group-hover:h-full group-hover:rounded-full md:h-64"
+                          decoding="async"
+                          className={`relative block h-full w-full rounded-[1.5rem] object-cover transition-all duration-700 ease-in-out group-hover:rounded-full ${
+                            index === 1
+                              ? "object-bottom"
+                              : index === 5
+                                ? "object-[center_72%]"
+                                : "object-top"
+                          }`}
                         />
                       </div>
                     </div>

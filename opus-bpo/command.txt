@@ -1,4 +1,4 @@
-cd "c:\Users\shreya\Desktop\Shreya\OPUS website\opus-bpo"
+cd "C:\Users\Shreya\Desktop\OPUS website\opus-bpo"
 
 git add .
 git commit -m ""

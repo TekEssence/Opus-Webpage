@@ -204,6 +204,8 @@ const About = () => (
                   <img
                     src="/pillars-23.png"
                     alt="Operations leadership discussion"
+                    loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-cover"
                   />
                   <div className="absolute inset-x-6 bottom-6 rounded-[24px] border border-white/35 bg-slate-950/55 px-5 py-4 text-white backdrop-blur-sm">

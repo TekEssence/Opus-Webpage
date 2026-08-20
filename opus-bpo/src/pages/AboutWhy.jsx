@@ -242,6 +242,8 @@ const AboutWhy = () => {
                         key={image.src}
                         src={image.src}
                         alt={image.alt}
+                        loading="lazy"
+                        decoding="async"
                         className="h-56 w-full rounded-3xl object-cover shadow-subtle"
                       />
                     ))}
@@ -251,6 +253,8 @@ const AboutWhy = () => {
                     <img
                       src={section.image}
                       alt={section.tag}
+                      loading="lazy"
+                      decoding="async"
                       className="h-72 w-full object-cover md:h-[360px]"
                     />
                   </div>
@@ -273,6 +277,8 @@ const AboutWhy = () => {
                       key={image.src}
                       src={image.src}
                       alt={image.alt}
+                      loading="lazy"
+                      decoding="async"
                       className="h-56 w-full rounded-3xl object-cover shadow-subtle"
                     />
                   ))}

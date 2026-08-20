@@ -311,13 +311,14 @@ const Home = () => {
             <video
               autoPlay
               muted
-            loop
-            playsInline
-            className="hero-video hero-video-stack hero-video-1"
-            poster="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80"
+              loop
+              playsInline
+              preload="metadata"
+              className="hero-video hero-video-stack hero-video-1"
+              poster="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=65"
           >
             <source
-              src="https://cdn.coverr.co/videos/coverr-business-office-team-1114/1080p.mp4"
+              src="https://cdn.coverr.co/videos/coverr-business-office-team-1114/720p.mp4"
               type="video/mp4"
             />
           </video>
@@ -326,11 +327,12 @@ const Home = () => {
             muted
             loop
             playsInline
+            preload="none"
             className="hero-video hero-video-stack hero-video-2"
-            poster="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1600&q=80"
+            poster="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1200&q=65"
           >
             <source
-              src="https://cdn.coverr.co/videos/coverr-office-team-brainstorming-1416/1080p.mp4"
+              src="https://cdn.coverr.co/videos/coverr-office-team-brainstorming-1416/720p.mp4"
               type="video/mp4"
             />
           </video>
@@ -339,11 +341,12 @@ const Home = () => {
             muted
             loop
             playsInline
+            preload="none"
             className="hero-video hero-video-stack hero-video-3"
-            poster="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80"
+            poster="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=65"
           >
             <source
-              src="https://cdn.coverr.co/videos/coverr-finance-office-1460/1080p.mp4"
+              src="https://cdn.coverr.co/videos/coverr-finance-office-1460/720p.mp4"
               type="video/mp4"
             />
           </video>

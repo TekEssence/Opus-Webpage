@@ -53,6 +53,8 @@ const AboutPillars = () => (
               <img
                 src="/pillars-7.png"
                 alt="Healthcare operations planning"
+                loading="lazy"
+                decoding="async"
                 className="h-full w-full object-cover"
               />
             </div>

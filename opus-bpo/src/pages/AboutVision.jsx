@@ -23,6 +23,8 @@ const AboutVision = () => (
           <img
             src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1800"
             alt="Healthcare leadership"
+            decoding="async"
+            fetchPriority="high"
             className="absolute inset-0 h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-slate-900/60"></div>
@@ -63,6 +65,8 @@ const AboutVision = () => (
               <img
                 src="/about-6.jpg"
                 alt="RCM collaboration"
+                loading="lazy"
+                decoding="async"
                 className="h-full w-full rounded-2xl object-cover"
               />
             </div>
@@ -132,6 +136,8 @@ const AboutVision = () => (
             <img
               src="/about-8.jpg"
               alt="Healthcare leadership alignment"
+              loading="lazy"
+              decoding="async"
               className="h-full w-full rounded-2xl object-cover"
             />
           </div>
