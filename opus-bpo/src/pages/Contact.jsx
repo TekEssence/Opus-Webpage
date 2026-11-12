@@ -135,7 +135,7 @@ const Contact = () => {
                   href="mailto:Scott.nowicki@opusbpo.com"
                   className="font-semibold text-brand-blue underline underline-offset-4 transition hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-200"
                 >
-                  Scott.nowicki@opusbpo.com
+                  contact@opusbpo.com
                 </a>
               </p>
               <p>
@@ -144,12 +144,12 @@ const Contact = () => {
                   href="tel:+16302727618"
                   className="font-semibold text-brand-blue underline underline-offset-4 transition hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-200"
                 >
-                  (630) 272 7618
+                  408-647-3699
                 </a>
               </p>
               <p>
-                <span className="font-bold text-brand-slate">Address:</span> 6167 Jarvis Ave,
-                Newark, CA 94560, United States
+                <span className="font-bold text-brand-slate">Address:</span> OPUS BPO Inc. 6167 Jarvis Ave,
+              Newark, CA 94560, United States
               </p>
               <p>
                 <span className="font-bold text-brand-slate">Headquarters:</span> Delivery teams
