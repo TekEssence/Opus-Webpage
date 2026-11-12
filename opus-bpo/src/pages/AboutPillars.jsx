@@ -1,5 +1,8 @@
 import SectionHeader from "../components/SectionHeader.jsx"
 
+// Enable when the remaining partner profiles are ready to display.
+const showAdditionalPartnerCards = false
+
 const pillars = [
   {
     title: "Accuracy",
@@ -72,9 +75,24 @@ const AboutPillars = () => (
             title="Partners of OPUS BPO"
           />
         </div>
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {[0, 1, 2].map((slot) => (
-            <div key={slot} className="card-metal overflow-hidden rounded-3xl">
+        <div className="mt-10 flex flex-wrap justify-center gap-6">
+          <div className="w-full max-w-[260px] overflow-hidden border border-slate-200 bg-white">
+            <img
+              src="/ben-square.png"
+              alt="Ben, CEO of OPUS BPO"
+              loading="lazy"
+              decoding="async"
+              width="1024"
+              height="1024"
+              className="block aspect-square w-full object-cover"
+            />
+            <div className="bg-white px-5 py-4 text-center">
+              <p className="font-heading text-xl font-semibold text-brand-slate">Ben</p>
+              <p className="mt-1 text-sm text-slate-600">CEO</p>
+            </div>
+          </div>
+          {showAdditionalPartnerCards && [1, 2].map((slot) => (
+            <div key={slot} className="card-metal w-full max-w-sm overflow-hidden rounded-3xl">
               <div className="h-56 w-full bg-slate-900"></div>
               <div className="bg-white px-6 py-5">
                 <div className="h-4 w-32 rounded-full bg-slate-200"></div>
