@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const FORM_ENDPOINT = "https://formsubmit.co/ajax/contact@opusbpo.com"
+const FORM_ENDPOINT = "https://formsubmit.co/ajax/gary@tekessence.com"
 const EMAIL_SUBJECT = "New RCM Consultation Request | Opus BPO Website"
 
 const initialFormState = {
