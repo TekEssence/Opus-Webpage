@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const FORM_ENDPOINT = "https://formsubmit.co/ajax/gary@tekessence.com"
+const FORM_ENDPOINT = "https://formsubmit.co/ajax/contact@opusbpo.com"
 const EMAIL_SUBJECT = "New RCM Consultation Request | Opus BPO Website"
 
 const initialFormState = {
@@ -132,7 +132,7 @@ const Contact = () => {
               <p>
                 <span className="font-bold text-brand-slate">Email:</span>{" "}
                 <a
-                  href="mailto:gary@tekessence.com"
+                  href="mailto:contact@opusbpo.com"
                   className="font-semibold text-brand-blue underline underline-offset-4 transition hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-200"
                 >
                   contact@opusbpo.com
