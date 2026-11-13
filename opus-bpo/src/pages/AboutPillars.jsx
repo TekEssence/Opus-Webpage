@@ -3,6 +3,15 @@ import SectionHeader from "../components/SectionHeader.jsx"
 // Enable when the remaining partner profiles are ready to display.
 const showAdditionalPartnerCards = false
 
+const benBiography = [
+  "Ben Thatha is the President of OPUS BPO, Inc., bringing over 20 years of extensive experience in Revenue Cycle Management (RCM), healthcare business operations, and information technology. He has dedicated his career to helping healthcare providers, independent physician practices, and medical billing organizations improve operational efficiency, optimize revenue performance, and build scalable business processes.",
+  "With deep expertise across the entire revenue cycle, Ben has led and managed diverse RCM operations spanning medical billing, coding, accounts receivable management, denial management, payment posting, credentialing, and revenue optimization across multiple medical specialties.",
+  "In addition to his extensive RCM experience, Ben brings a strong background in information technology, having previously managed large-scale Oracle data mining and data analysis projects. This combination of healthcare domain knowledge and technology expertise gives him a unique perspective on leveraging data to identify operational trends, uncover revenue opportunities, improve financial performance, and drive informed business decisions. He strongly believes that data analytics and technology play a critical role in transforming healthcare revenue cycle management.",
+  "Under his leadership, OPUS has continued to strengthen its capabilities as a trusted RCM partner, delivering comprehensive, technology-enabled solutions to healthcare organizations across the United States. He is particularly focused on building strong client partnerships, driving operational excellence, developing high-performing teams, and leveraging technology and automation to transform traditional healthcare revenue cycle operations.",
+  "Ben is passionate about the evolving role of artificial intelligence, automation, and advanced data analytics in healthcare. He is actively focused on integrating innovative technologies into RCM workflows to improve productivity, enhance revenue outcomes, and deliver greater value to clients.",
+  "His leadership philosophy centers on building long-term relationships, maintaining a strong commitment to service quality, and creating sustainable growth through operational excellence, innovation, data-driven decision-making, and a people-first approach.",
+]
+
 const pillars = [
   {
     title: "Accuracy",
@@ -75,21 +84,26 @@ const AboutPillars = () => (
             title="Partners of OPUS BPO"
           />
         </div>
-        <div className="mt-10 flex flex-wrap justify-center gap-6">
-          <div className="w-full max-w-[260px] overflow-hidden border border-slate-200 bg-white">
+        <div className="mt-10 grid items-start gap-8 md:grid-cols-[260px_minmax(0,1fr)] lg:gap-12">
+          <div className="mx-auto w-full max-w-[260px] overflow-hidden border border-slate-200 bg-white">
             <img
-              src="/ben-square.png"
-              alt="Ben, CEO of OPUS BPO"
+              src="/Ben%20photo.png"
+              alt="Ben Thatha, President of OPUS BPO, Inc."
               loading="lazy"
               decoding="async"
-              width="1024"
-              height="1024"
-              className="block aspect-square w-full object-cover"
+              width="1107"
+              height="1421"
+              className="block h-auto w-full"
             />
             <div className="bg-white px-5 py-4 text-center">
-              <p className="font-heading text-xl font-semibold text-brand-slate">Ben</p>
-              <p className="mt-1 text-sm text-slate-600">CEO</p>
+              <h3 className="font-heading text-xl font-semibold text-brand-slate">Ben Thatha</h3>
+              <p className="mt-1 text-sm text-slate-600">President</p>
             </div>
+          </div>
+          <div className="space-y-5 text-base leading-relaxed text-slate-700">
+            {benBiography.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </div>
           {showAdditionalPartnerCards && [1, 2].map((slot) => (
             <div key={slot} className="card-metal w-full max-w-sm overflow-hidden rounded-3xl">
