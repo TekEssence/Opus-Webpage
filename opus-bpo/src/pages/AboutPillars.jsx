@@ -61,9 +61,7 @@ const AboutPillars = () => {
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <div className="flex flex-col gap-4">
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue">
-                Pillars of OPUS
-              </p>
+              
               <h2 className="font-heading text-3xl font-semibold leading-tight text-brand-slate md:text-4xl">
                 Principles that guide every engagement.
               </h2>
