@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const FORM_ENDPOINT = "https://formsubmit.co/ajax/396c60cecffb471f66c22699a3a13d49"
+const FORM_ENDPOINT = "https://formsubmit.co/ajax/contact@opusbpo.com"
 const EMAIL_SUBJECT = "New RCM Consultation Request | Opus BPO Website"
 
 const initialFormState = {
@@ -132,7 +132,7 @@ const Contact = () => {
               <p>
                 <span className="font-bold text-brand-slate">Email:</span>{" "}
                 <a
-                  href="mailto:Scott.nowicki@opusbpo.com"
+                  href="mailto:gary@tekessence.com"
                   className="font-semibold text-brand-blue underline underline-offset-4 transition hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-200"
                 >
                   contact@opusbpo.com
@@ -150,10 +150,6 @@ const Contact = () => {
               <p>
                 <span className="font-bold text-brand-slate">Address:</span> OPUS BPO Inc. 6167 Jarvis Ave,
               Newark, CA 94560, United States
-              </p>
-              <p>
-                <span className="font-bold text-brand-slate">Headquarters:</span> Delivery teams
-                supporting national coverage
               </p>
               <p>
                 <span className="font-bold text-brand-slate">Response Time:</span> Initial replies
