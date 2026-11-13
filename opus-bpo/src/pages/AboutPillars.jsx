@@ -1,15 +1,15 @@
+import { useEffect, useRef } from "react"
 import SectionHeader from "../components/SectionHeader.jsx"
 
 // Enable when the remaining partner profiles are ready to display.
 const showAdditionalPartnerCards = false
 
 const benBiography = [
-  "Ben Thatha is the President of OPUS BPO, Inc., bringing over 20 years of extensive experience in Revenue Cycle Management (RCM), healthcare business operations, and information technology. He has dedicated his career to helping healthcare providers, independent physician practices, and medical billing organizations improve operational efficiency, optimize revenue performance, and build scalable business processes.",
-  "With deep expertise across the entire revenue cycle, Ben has led and managed diverse RCM operations spanning medical billing, coding, accounts receivable management, denial management, payment posting, credentialing, and revenue optimization across multiple medical specialties.",
-  "In addition to his extensive RCM experience, Ben brings a strong background in information technology, having previously managed large-scale Oracle data mining and data analysis projects. This combination of healthcare domain knowledge and technology expertise gives him a unique perspective on leveraging data to identify operational trends, uncover revenue opportunities, improve financial performance, and drive informed business decisions. He strongly believes that data analytics and technology play a critical role in transforming healthcare revenue cycle management.",
-  "Under his leadership, OPUS has continued to strengthen its capabilities as a trusted RCM partner, delivering comprehensive, technology-enabled solutions to healthcare organizations across the United States. He is particularly focused on building strong client partnerships, driving operational excellence, developing high-performing teams, and leveraging technology and automation to transform traditional healthcare revenue cycle operations.",
-  "Ben is passionate about the evolving role of artificial intelligence, automation, and advanced data analytics in healthcare. He is actively focused on integrating innovative technologies into RCM workflows to improve productivity, enhance revenue outcomes, and deliver greater value to clients.",
-  "His leadership philosophy centers on building long-term relationships, maintaining a strong commitment to service quality, and creating sustainable growth through operational excellence, innovation, data-driven decision-making, and a people-first approach.",
+  "Ben Thatha is the President of OPUS BPO, Inc., bringing over 20 years of extensive experience in Revenue Cycle Management (RCM), healthcare business operations, and information technology. Throughout his career, he has helped healthcare providers, independent physician practices, and medical billing organizations enhance operational efficiency, optimize revenue performance, and establish scalable business processes.",
+  "With comprehensive expertise across the revenue cycle, Ben has led diverse RCM operations encompassing medical billing, coding, accounts receivable management, denial management, payment posting, credentialing, and revenue optimization across multiple medical specialties.",
+  "In addition to his extensive RCM experience, Ben has a strong background in information technology, having previously managed large-scale Oracle data mining and data analysis projects. His combined expertise in healthcare operations and technology provides a unique perspective on leveraging data to identify operational trends, uncover revenue opportunities, improve financial performance, and support informed business decisions.",
+  "Under his leadership, OPUS continues to strengthen its position as a trusted RCM partner, delivering comprehensive solutions to healthcare organizations across the United States. His focus remains on building strong client relationships, driving operational excellence, developing high-performing teams, and maintaining exceptional service quality.",
+  "His leadership philosophy centers on fostering long-term partnerships and achieving sustainable growth through operational excellence, data-driven decision-making, and a people-first approach.",
 ]
 
 const pillars = [
@@ -31,7 +31,30 @@ const pillars = [
   },
 ]
 
-const AboutPillars = () => (
+const AboutPillars = () => {
+  const biographyDialog = useRef(null)
+  const previousOverflow = useRef(null)
+
+  const restoreScroll = () => {
+    if (previousOverflow.current !== null) {
+      document.body.style.overflow = previousOverflow.current
+      previousOverflow.current = null
+    }
+  }
+
+  useEffect(() => () => {
+    if (previousOverflow.current !== null) {
+      document.body.style.overflow = previousOverflow.current
+    }
+  }, [])
+
+  const openBiography = () => {
+    biographyDialog.current.showModal()
+    previousOverflow.current = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+  }
+
+  return (
   <>
     <section className="section-tint section-divider">
       <div className="mx-auto w-full max-w-6xl px-6 py-20">
@@ -79,32 +102,63 @@ const AboutPillars = () => (
       <div className="mx-auto w-full max-w-6xl px-6 py-20">
         <div className="text-center">
           <SectionHeader
-            label="Leadership & Partners"
+            label="Leadership"
             labelClassName="mx-auto w-[235px] text-[11px] tracking-[0.26em]"
-            title="Partners of OPUS BPO"
+            title="Leader of OPUS BPO"
           />
         </div>
-        <div className="mt-10 grid items-start gap-8 md:grid-cols-[260px_minmax(0,1fr)] lg:gap-12">
-          <div className="mx-auto w-full max-w-[260px] overflow-hidden border border-slate-200 bg-white">
+        <div className="mt-10 space-y-6">
+          <article
+            aria-label="Ben Thatha, President"
+            onPointerMove={(event) => {
+              if (event.pointerType !== "mouse" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
+              const card = event.currentTarget
+              const bounds = card.getBoundingClientRect()
+              const x = Math.max(0, Math.min(1, (event.clientX - bounds.left) / bounds.width))
+              const y = Math.max(0, Math.min(1, (event.clientY - bounds.top) / bounds.height))
+              card.style.setProperty("--tilt-x", `${(0.5 - y) * 5}deg`)
+              card.style.setProperty("--tilt-y", `${(x - 0.5) * 5}deg`)
+              card.style.setProperty("--light-x", `${x * 100}%`)
+              card.style.setProperty("--light-y", `${y * 100}%`)
+            }}
+            onPointerLeave={(event) => {
+              event.currentTarget.style.removeProperty("--tilt-x")
+              event.currentTarget.style.removeProperty("--tilt-y")
+              event.currentTarget.style.removeProperty("--light-x")
+              event.currentTarget.style.removeProperty("--light-y")
+            }}
+            className="leadership-card relative mx-auto grid max-w-5xl cursor-pointer items-center gap-5 rounded-2xl border border-sky-100 bg-sky-50 p-5 shadow-sm md:grid-cols-[200px_minmax(0,1fr)] md:gap-6 md:p-6"
+          >
+          <div className="mx-auto w-full max-w-[200px] overflow-hidden">
             <img
               src="/Ben%20photo.png"
-              alt="Ben Thatha, President of OPUS BPO, Inc."
+              alt="Ben Thatha, President"
               loading="lazy"
               decoding="async"
               width="1107"
               height="1421"
-              className="block h-auto w-full"
+              className="leadership-portrait block h-auto w-full"
             />
-            <div className="bg-white px-5 py-4 text-center">
+            <div className="px-3 pt-3 text-center">
               <h3 className="font-heading text-xl font-semibold text-brand-slate">Ben Thatha</h3>
-              <p className="mt-1 text-sm text-slate-600">President</p>
+              <p className="mt-1 text-sm font-semibold text-slate-600">President</p>
             </div>
           </div>
-          <div className="space-y-5 text-base leading-relaxed text-slate-700">
-            {benBiography.map((paragraph) => (
+          <div className="space-y-3 text-base leading-relaxed text-slate-700">
+            {benBiography.slice(0, 2).map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
+            <button
+              type="button"
+              onClick={openBiography}
+              aria-haspopup="dialog"
+              aria-controls="ben-biography-dialog"
+              className="cursor-pointer rounded px-2 py-1 text-sm font-normal text-slate-500 underline decoration-slate-300 underline-offset-4 transition-colors duration-200 after:absolute after:inset-0 after:rounded-2xl after:content-[''] hover:bg-sky-100 hover:text-brand-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-blue"
+            >
+              Read more<span className="sr-only"> about Ben Thatha</span>
+            </button>
           </div>
+          </article>
           {showAdditionalPartnerCards && [1, 2].map((slot) => (
             <div key={slot} className="card-metal w-full max-w-sm overflow-hidden rounded-3xl">
               <div className="h-56 w-full bg-slate-900"></div>
@@ -117,7 +171,51 @@ const AboutPillars = () => (
         </div>
       </div>
     </section>
+    <dialog
+      ref={biographyDialog}
+      id="ben-biography-dialog"
+      aria-labelledby="ben-biography-title"
+      onClose={restoreScroll}
+      onClick={(event) => {
+        if (event.target === event.currentTarget) biographyDialog.current.close()
+      }}
+      className="leadership-dialog fixed inset-0 m-auto max-h-[85dvh] w-[calc(100%-2rem)] max-w-5xl overflow-y-auto rounded-2xl border border-sky-100 bg-sky-50 p-0 text-slate-700 shadow-2xl backdrop:bg-slate-900/50 backdrop:backdrop-blur-sm"
+    >
+      <div className="p-6 md:p-8">
+        <div className="mb-6 flex items-start justify-between gap-4 border-b border-slate-100 pb-5">
+          <div>
+            <h2 id="ben-biography-title" className="font-heading text-2xl font-semibold text-brand-slate">Ben Thatha</h2>
+            <p className="mt-1 text-sm text-slate-500">President | OPUS BPO, Inc.</p>
+          </div>
+          <button
+            type="button"
+            onClick={() => biographyDialog.current.close()}
+            autoFocus
+            aria-label="Close biography"
+            className="rounded-lg px-3 py-2 text-sm text-slate-600 hover:bg-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-blue"
+          >
+            Close <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div className="grid items-start gap-6 md:grid-cols-[200px_minmax(0,1fr)]">
+          <img
+            src="/Ben%20photo.png"
+            alt="Ben Thatha, President of OPUS BPO, Inc."
+            width="1107"
+            height="1421"
+            decoding="async"
+            className="mx-auto block h-auto w-full max-w-[200px] rounded-lg"
+          />
+          <div className="space-y-5 text-base leading-relaxed">
+            {benBiography.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+        </div>
+      </div>
+    </dialog>
   </>
-)
+  )
+}
 
 export default AboutPillars

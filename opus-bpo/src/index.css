@@ -3414,3 +3414,64 @@ a {
   }
 }
 
+.leadership-card {
+  background: radial-gradient(ellipse at var(--light-x, 20%) var(--light-y, 0%), rgba(255, 255, 255, 0.95), transparent 65%),
+    linear-gradient(135deg, #f0f9ff, #e0f2fe);
+  border-color: #bae6fd;
+  box-shadow: 0 5px 0 #c6e1ed, 0 12px 0 -4px #d5e7ef, 0 22px 40px -18px rgba(20, 65, 95, 0.3), inset 0 1px 0 #fff;
+  transform: perspective(1400px) rotateX(0deg) rotateY(0deg);
+  transition: transform 200ms ease-out, box-shadow 300ms ease, border-color 300ms ease;
+}
+
+.leadership-portrait {
+  border-radius: 10px;
+  box-shadow: 0 8px 18px -8px rgba(15, 45, 65, 0.4);
+  transition: transform 300ms ease, box-shadow 300ms ease;
+}
+
+.leadership-card:focus-within {
+  border-color: #7dd3fc;
+  box-shadow: 0 5px 0 #b8d9e9, 0 24px 48px -16px rgba(20, 65, 95, 0.35), inset 0 1px 0 #fff;
+}
+
+@media (hover: hover) {
+  .leadership-card:hover {
+    transform: perspective(1400px) translateY(-8px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+    border-color: #7dd3fc;
+    box-shadow: 0 6px 0 #b8d9e9, 0 14px 0 -5px #d5e7ef, 0 32px 55px -16px rgba(20, 65, 95, 0.4), inset 0 1px 0 #fff;
+  }
+
+  .leadership-card:hover .leadership-portrait {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 26px -8px rgba(15, 45, 65, 0.45);
+  }
+}
+
+.leadership-dialog[open] {
+  animation: leadership-dialog-enter 240ms ease-out;
+}
+
+.leadership-dialog[open]::backdrop {
+  animation: leadership-backdrop-enter 240ms ease-out;
+}
+
+@keyframes leadership-dialog-enter {
+  from { opacity: 0; transform: translateY(12px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes leadership-backdrop-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .leadership-card,
+  .leadership-portrait { transition: none; }
+  .leadership-card,
+  .leadership-card:hover,
+  .leadership-card:hover .leadership-portrait { transform: none; }
+  .leadership-dialog[open],
+  .leadership-dialog[open]::backdrop { animation: none; }
+}
+
